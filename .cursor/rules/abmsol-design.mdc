@@ -1,0 +1,51 @@
+---
+description: Sistema de design da ABMSOL (tokens, tipografia, grid, componentes, anti-padrões). Aplicar ao criar ou editar UI, CSS e Tailwind.
+alwaysApply: true
+---
+
+# ABMSOL — Design
+
+Fonte: `docs/PLAN.md` §3. Esta regra substitui a limitação de "4 cores" do dharmalabs.
+
+## Conceito
+"Tecnologia com acabamento": **trilhas ligam, nós marcam estados.** Dourado = trilha/em andamento/marca. Menta = nó validado/testado/sucesso. Marinho = a noite de onde a luz sai.
+
+## Cores
+- Só por variável CSS em `app/globals.css`, expostas no `tailwind.config.ts`. **Zero hex em componente.**
+- Marca: marinho `#0B173F` (fundo), dourado `#DCA931` (trilhas, acentos), menta `#73D9B1` (nós, foco, sucesso). Derivados: `navy-800`, `navy-700` (bordas sempre com alfa, nunca cinza sólido).
+- Texto: `--c-ink` (off-white quente) e `--c-ink-muted` (~70%). **Nunca `#000` nem `#FFF`.**
+- `--c-paper` (off-white claro): no máximo 1 ou 2 seções invertidas, texto marinho. **Dourado sobre paper falha AA: só decorativo.**
+- Dourado e menta são acentos (≤ 10% da tela), nunca cor de parágrafo longo.
+- Contraste AA obrigatório: ≥ 4,5:1 (texto), ≥ 3:1 (texto grande e UI). Validar por script na fase 01.
+- Foco: `:focus-visible` com anel menta 2 px e offset. Nunca remover.
+
+## Tipografia (D1 = opção A)
+- Display **Syne**, texto **Instrument Sans**, rótulos **JetBrains Mono** 400. Via `next/font/google`, subset latin.
+- Wordmark "ABMSOL" = **SVG inline em curvas** (`role="img"`, `aria-label`), sem fonte. Rajdhani só entra se o André escolher a opção A após as amostras da Fase 01. Header/favicon/avatar usam `mark-simple` (≥ 28–32 px).
+- Máx. 2 famílias de texto + 1 mono (3 no total). Fontes ≤ 90 KB woff2 no total; se estourar, reduzir pesos.
+- Proibido como fonte principal: Inter, Roboto, Arial.
+- `clamp()` em todo título. Escala: display `clamp(2.5rem, 7vw + 1rem, 6.5rem)`, h2 `clamp(1.75rem, 3.5vw, 3rem)`, lead `clamp(1.125rem, 1.5vw, 1.375rem)`, body 1rem, label 0,75rem mono.
+- Caixa-alta com `letter-spacing` 0,15 a 0,25em **só em rótulos**. Entrelinha 1,1 a 1,2 (display), 1,6 a 1,7 (corpo). Testar o headline em 375 px.
+
+## Espaçamento, grid, breakpoints
+- Escala de 4 px: 4, 8, 12, 16, 24, 32, 48, 64, 96, 128. Padding vertical de seção ≥ `8vw`.
+- Mobile-first, `min-width`: **375 · 768 · 1280 · 1920**.
+- Grid 4/8/12 colunas; container máx. 1280 px (1440 em `2xl`); gutters 16/24/32.
+- Layout **assimétrico**. Nunca hero centralizada no desktop. Seções alternam `navy-900` e `navy-800`.
+
+## Componentes
+- Server Components por padrão. `'use client'` só onde houver estado/efeito: `SunCircuit`, `Trail`, `MobileNav`, `WhatsAppBar`, `Cursor` (só na 03b, em `components/cursor/`), `WhatsAppLink`.
+- `Button`: retangular, raio ≤ 4 px, cor sólida, sem gradiente. FAQ com `<details name="faq">`, zero JS.
+- Alvos de toque ≥ 48×48 px.
+- `ConceptCard` exige o rótulo "Projeto conceito".
+- Ícones: Lucide React. Nunca emoji como ícone de UI.
+
+## Anti-padrões (proibido)
+- Glassmorphism no header, cards com raio grande + `drop-shadow`, gradiente roxo/azul, carrossel para conteúdo principal.
+- Grid 3×1 de ícones para serviços (usar lista assimétrica).
+- Hero centralizada com botão abaixo; hero com imagem (o LCP é o h1).
+- Clichês de IA: ver anti-padrões do BRIEF (Copy Tone, NEVER USE) e PLAN §2.5; a skill `design-taste-frontend` foi removida (arquivo corrompido). Skill `gpt-taste` não entra.
+- Reutilizar chrome (cursor, header, hero) de outros clientes (regra anti-clone do `AGENTS.md`).
+
+## Semântica e acessibilidade
+`header/nav/main/section/footer`, um `h1` por página, sem pular níveis, skip link, `lang="pt-BR"`, SVG decorativo com `aria-hidden`, links de WhatsApp com texto descritivo (nunca "clique aqui").

@@ -1,0 +1,41 @@
+---
+description: Regras de conteúdo e prova da ABMSOL (zero placeholder, proibido inventar depoimento/cliente/métrica, rótulo "Projeto conceito", tom de voz, WhatsApp). Aplicar ao escrever copy, conteúdo, metadados ou dados estruturados.
+alwaysApply: true
+---
+
+# ABMSOL — Conteúdo e prova
+
+Fonte: `docs/brief-original.md` §5 e §6, `docs/PLAN.md` §1.4, §2.5. Conteúdo pesa no julgamento e o site é comercial.
+
+## Regras firmes
+- **Ainda não há clientes vendidos.** Portfólio = projetos conceito, sempre rotulados **"Projeto conceito"** (no card e na página).
+- **Proibido inventar:** depoimento, métrica, cliente, logo de terceiro, avaliação (`Review`/`AggregateRating`), tempo de experiência, certificação.
+- **Zero placeholder:** nada de lorem ipsum, "Cliente X", "em breve", "texto aqui". O que faltar vira item na lista de pendências (`docs/INTAKE.md`), não texto no site.
+- Projetos conceito usam **marcas fictícias** e imagens com licença válida registrada em `docs/assets/LICENSES.md`. Nunca nome, logo, texto ou foto de marca real que não nos contratou.
+- Só publicar o que o André confirmou (formação, experiência, checks de teste). Dado não confirmado fica de fora.
+- Bárbara e Miguel: apenas **origem do nome (A·B·M + SOL)**. Sem fotos e sem o nome completo do Miguel.
+- Preços: **nunca publicar.** CTA: "solicite uma proposta".
+- Sem formulário, sem banner de cookies. WhatsApp é o canal único. E-mail só como alternativa, quando confirmado.
+- Previsto: onde entram depoimento e caso real quando houver cliente com autorização (campo opcional, vazio = não renderiza).
+- Diagnóstico gratuito: **checklist rápido por WhatsApp, escopo limitado** (D6). Não prometer além do definido no brief.
+
+## Voz e tom
+- PT-BR, frases curtas, voz ativa, sem jargão, sem superlativo. Profissional, direto e humano.
+- Corpo em **"nós"** (estúdio). Seção "Quem assina" em **"eu"** (André).
+- Proibido: "solução completa", "transforme seu negócio", "inovação tecnológica", "próximo nível" e os clichês listados no BRIEF (Copy Tone, NEVER USE). Nunca prometer conformidade legal ("100% LGPD", "certificado"): usar "boas práticas de privacidade".
+- Headline do hero (D2): "Tecnologia que funciona. Do suporte do dia a dia ao site premium."
+
+## Estrutura e densidade
+- Conteúdo tipado em `lib/content/*` (serviços, conceitos, processo, FAQ). Nada de texto solto fora de `lib/content` ou do componente final.
+- ≤ 200 palavras por seção, ≤ 3 blocos por seção, nunca duas seções do mesmo tipo seguidas. FAQ com 5 perguntas. Exatamente 1 CTA primário por viewport.
+- Nome da marca **só** de `site.config.json` / `lib/site.ts` (nome em verificação INPI). Nomes de arquivo neutros (`mark.svg`).
+
+## WhatsApp
+- Número `5517991446829` só em `lib/contact.ts`. Mensagens montadas em `lib/whatsapp.ts` com contexto, ex.: "Olá, vim pelo site e quero uma proposta de Institucional."
+- Evento de analytics `whatsapp_click` com `source` (seção) e `service`.
+
+## SEO e dados estruturados
+- `createMetadata()` por página: título 50 a 60 caracteres, descrição 140 a 160.
+- JSON-LD: `ProfessionalService` com `areaServed` (Rio Preto/SP + Brasil online), `Service`, `FAQPage`, `WebSite`. Sem `Review`.
+- `noindex` em `*.vercel.app` até o domínio final. Alt text escrito como se a foto final já existisse.
+- Verificação antes de entregar: `rg -i "lorem|placeholder|cliente x|cliente base"` = 0 resultados.

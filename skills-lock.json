@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "cinematic-scroll": {
+      "source": "MustBeSimo/cinematic-scroll-skill",
+      "sourceType": "github",
+      "skillPath": ".codex/skills/cinematic-scroll/SKILL.md",
+      "computedHash": "a7e7c37061262668bfb75827be1c01ae6b1ccbc6f3d4f7392f1f9b55dae57c82"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "93f53fd1c0352d3d7ec17b8f73d7351bf76f4821e55d123c9d2abc2c53ba48e4"
+    },
+    "gsap-react": {
+      "source": "greensock/gsap-skills",
+      "sourceType": "github",
+      "skillPath": "skills/gsap-react/SKILL.md",
+      "computedHash": "255206fb6a4a079ad73b4a12e7c63197dc451a8549c7ac4e852b50ff74ef3bd6"
+    }
+  }
+}

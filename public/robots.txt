@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://abmsol.vercel.app/sitemap.xml
+
+# LLMs
+# https://abmsol.vercel.app/llms.txt

@@ -1,0 +1,46 @@
+{
+  "name": "abmsol",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "dev:clean": "node -e \"try{require('fs').rmSync('.next',{recursive:true,force:true})}catch(e){}\" && next dev -p 3000",
+    "generate:images": "node scripts/generate-images.mjs",
+    "prebuild": "npm run generate:images",
+    "build": "next build && node scripts/generate-sitemap.js",
+    "prestart": "node -e \"try{require('fs').accessSync('out/index.html')}catch(e){console.error('Rode npm run build antes de npm start.');process.exit(1)}\"",
+    "start": "npx --yes serve@14 out -l 3000",
+    "lint": "next lint",
+    "sitemap": "node scripts/generate-sitemap.js",
+    "deploy:vercel": "node scripts/deploy-vercel.mjs",
+    "deploy:mockup": "node scripts/deploy-mockup.js",
+    "new:client": "node scripts/new-client.mjs",
+    "intake:portfolio": "node scripts/sync-portfolio-intake.mjs",
+    "download:assets": "node scripts/download-assets.js"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.40.0",
+    "gray-matter": "^4.0.3",
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.23",
+    "lucide-react": "^0.475.0",
+    "next": "14.2.35",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-markdown": "^10.1.0",
+    "tailwind-merge": "^3.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.35",
+    "postcss": "^8.4.38",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.4.5"
+  }
+}

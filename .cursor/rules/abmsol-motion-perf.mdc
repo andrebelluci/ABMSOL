@@ -1,0 +1,52 @@
+---
+description: Motion, performance e camadas do Sol-Índice da ABMSOL (GSAP, matchMedia, orçamento, sem WebGL). Aplicar ao criar animação, scroll, JS cliente ou imagens.
+alwaysApply: true
+---
+
+# ABMSOL — Motion e performance
+
+Fonte: `docs/PLAN.md` §2.2, §3.5, §4.4, §4.5. Teto técnico: **SVG + GSAP + canvas 2D. Sem WebGL, sem `three`.**
+
+## Princípios de motion
+- Animar só `transform`, `opacity`, `clip-path`, `stroke-dashoffset` (e cor em hover). **Nunca layout** (`width`, `height`, `top`, `left`, `margin`).
+- Durações: 150 ms feedback · 250 ms UI · 450 ms entrada · 800 a 1600 ms **apenas** o intro do sol. Intro total ≤ 1,8 s e nunca atrasa leitura nem CTA.
+- Easing: `power3.out` (entrada), `power2.inOut` (transição). Sem bounce/elastic.
+- Todo GSAP dentro de `gsap.matchMedia()`: `(prefers-reduced-motion: no-preference)` e, para extras, `(min-width: 1280px) and (pointer: fine)`. Registrar em `lib/gsap.ts`; cleanup com `gsap.context()`; `ScrollTrigger.refresh` na troca de rota.
+- Revelar uma vez: `toggleActions: 'play none none none'`, `start: 'top 85%'`, `markers: false`.
+- **Conteúdo nunca depende de JS para aparecer.** Estado inicial escondido só por classe adicionada via JS (`html.js`). Sem JS, tudo visível.
+- Lenis só em `pointer: fine` e sem reduced-motion; scroll nativo no celular. Sem pin/scrub pesado no mobile.
+- Framer Motion só com `LazyMotion` + `domAnimation` (painel de nav, micro-interações). GSAP cuida do scroll.
+- `prefers-reduced-motion` respeitado em tudo (CSS e GSAP). `scroll-behavior` desligado em reduced-motion.
+- Cursor custom (fase 03b) só `(pointer: fine) and (hover: hover)` ≥ 1280 px, sem reduced-motion/`forced-colors`/`saveData`; ponteiro real sempre no centro (anel 1:1, sem lerp); expandir = deslocar (satélite); proibido `mix-blend-mode`, transparência e blur em texto do cursor; atributos `data-cursor*`; código só em `components/cursor/`. Sem tela de loading. Sem widget de chat flutuante.
+
+## Sol-Índice: camadas
+| Camada | Quando | O que roda |
+|---|---|---|
+| 0 | Sem JS, reduced-motion, `saveData`, FPS ruim | Sol e trilha estáticos, já desenhados |
+| 1 | Celular padrão | Intro de traço curta, trilha em scrub simples, sem ponteiro, 2 a 3 nós com pulso CSS (pausa fora da tela) |
+| 2 | ≥ 1280 px + ponteiro (fase 03b) | Camada 1 + energização por ponteiro + cursor-nó v2 |
+
+Sonda de ~500 ms no intro: média de frame > 24 ms rebaixa a camada. O h1 já está visível antes do intro (LCP é texto). Carregar sol/GSAP/Lenis após o primeiro paint (`dynamic import` + `requestIdleCallback`).
+
+## Orçamento (mobile, 4G lenta, CPU 4×; mediana de 5 execuções)
+| Métrica | Meta | Teto (reprova a fase) |
+|---|---|---|
+| LCP | ≤ 2,0 s | 2,5 s |
+| CLS | ≤ 0,02 | 0,1 |
+| INP | ≤ 150 ms | 200 ms |
+| TBT | ≤ 150 ms | 300 ms |
+| FCP | ≤ 1,3 s | 1,8 s |
+| Lighthouse mobile | Perf ≥ 95; A11y/BP/SEO = 100 | Perf ≥ 90 |
+| JS inicial da home (gzip) | ≤ 130 KB | 170 KB |
+| JS crítico antes do LCP | ≤ 100 KB | 120 KB |
+| CSS (gzip) | ≤ 25 KB | 35 KB |
+| Fontes (woff2) | ≤ 90 KB | 110 KB |
+| Imagem individual | ≤ 120 KB mobile / 200 KB desktop | 200 KB |
+| Transferência inicial da home | ≤ 500 KB | 700 KB |
+
+## Táticas obrigatórias
+- RSC por padrão; `'use client'` só nos componentes listados em `abmsol-design.mdc`.
+- Imagens geradas por `sharp` (AVIF/WebP), `width`/`height` explícitos, `loading="lazy"` abaixo da dobra, `srcset`.
+- `content-visibility: auto` em seções longas. Sem fonte de terceiros em runtime. Analytics (Umami) com `defer`.
+- Não adicionar dependência fora do `BRIEF.md`. Nunca reintroduzir `three`, `axios`, `react-hook-form`, `zod`, `vanilla-tilt`.
+- `scripts/check-budget.mjs` (fase 06) falha o build se um teto for ultrapassado.

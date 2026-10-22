@@ -1,0 +1,42 @@
+---
+description: Bloqueia operações destrutivas em arquivos e disco sem pedido explícito do usuário
+alwaysApply: true
+---
+
+# Proteção de Arquivos e Disco
+
+Nunca execute operações destrutivas ou de alto risco sem pedido **explícito na mensagem atual** do usuário.
+
+## Bloquear sempre (a menos que o usuário peça explicitamente)
+
+- Comandos recursivos amplos: `rm -rf`, `del /s`, `rmdir /s`, `Remove-Item -Recurse`, `fs.rmSync` em caminhos amplos
+- Excluir/mover pastas inteiras do projeto, diretórios pai (`www`, `Projetos`, `D:\andre`) ou projetos irmãos
+- Git destrutivo: `git clean -fdx`, `git reset --hard`, `git push --force`
+- Comandos em caminhos **fora** do workspace atual do projeto
+- Exclusão em massa de múltiplos diretórios não relacionados
+
+## Permitido (escopo normal)
+
+- Editar, criar ou excluir **um arquivo** que o usuário pediu para remover
+- Limpar artefatos de build (`.next`, `node_modules`, `dist`) **somente** quando o usuário pedir limpeza explicitamente
+
+## Em caso de dúvida
+
+Se o escopo da exclusão for ambíguo, **pergunte antes** de executar.
+
+## Exemplos
+
+```bash
+# ❌ RUIM — exclusão recursiva ampla sem pedido explícito
+rm -rf node_modules ../cardflow
+Remove-Item -Recurse D:\andre\Projetos\www\*
+
+# ❌ RUIM — git destrutivo não solicitado
+git reset --hard && git clean -fdx
+
+# ✅ BOM — arquivo único pedido pelo usuário
+del src\components\OldButton.tsx
+
+# ✅ BOM — limpeza pedida explicitamente
+Remove-Item -Recurse -Force .next
+```

@@ -1,0 +1,14 @@
+{
+  "name": "ABMSOL",
+  "tagline": "Soluções Digitais",
+  "description": "Sites premium, sistemas sob medida e suporte de TI com um parceiro só. Sediados em Rio Preto (SP), atendendo todo o Brasil online.",
+  "slug": "abmsol",
+  "url": "https://abmsol.vercel.app",
+  "author": "André Belluci",
+  "city": "Rio Preto",
+  "state": "SP",
+  "features": {
+    "blog": false,
+    "localSeoStrong": false
+  }
+}
