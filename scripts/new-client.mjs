@@ -185,7 +185,7 @@ Atualize este arquivo ao fim de cada sessão de agente.
 
 ## Anti-clone declarado
 
-- Ver checklist em `docs/INTAKE.md` (rodar `npm run intake:portfolio`)
+- Ver checklist em \`docs/INTAKE.md\` (rodar \`npm run intake:portfolio\`)
 
 ## Próximo passo
 

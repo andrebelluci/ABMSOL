@@ -10,7 +10,7 @@ import { createMetadata } from '@/lib/seo'
 const BLOG_DISABLED_SLUG = '__blog_disabled__'
 
 type PageProps = {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export function generateStaticParams() {
@@ -20,7 +20,8 @@ export function generateStaticParams() {
   return getBlogSlugs().map((slug) => ({ slug }))
 }
 
-export function generateMetadata({ params }: PageProps) {
+export async function generateMetadata(props: PageProps) {
+  const params = await props.params;
   if (!SITE_FEATURES.blog || params.slug === BLOG_DISABLED_SLUG) return {}
   const post = getBlogPost(params.slug)
   if (!post) return {}
@@ -31,7 +32,8 @@ export function generateMetadata({ params }: PageProps) {
   })
 }
 
-export default function BlogPostPage({ params }: PageProps) {
+export default async function BlogPostPage(props: PageProps) {
+  const params = await props.params;
   if (!SITE_FEATURES.blog || params.slug === BLOG_DISABLED_SLUG) notFound()
 
   const post = getBlogPost(params.slug)

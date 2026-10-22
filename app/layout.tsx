@@ -41,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-BR" className={`${cormorant.variable} ${dmSans.variable}`}>
+    <html lang="pt-BR" data-scroll-behavior="smooth" className={`${cormorant.variable} ${dmSans.variable}`}>
       <body>
         <JsonLd />
         <SmoothScroll>

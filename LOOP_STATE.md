@@ -19,9 +19,9 @@ Atualize este arquivo ao fim de cada sessão de agente.
 | BRIEF revisado | ✅ aprovado com ressalvas menores (`docs/BRIEF-REVIEW.md`) | 2026-10-20 |
 | BRIEF aprovado (humano) | ✅ BRIEF e rodada 2 aprovados (P15) | 2026-10-22 |
 | Limpeza de integridade (`docs/qa/LIMPEZA-INTEGRIDADE.md`) | ✅ aplicada | 2026-10-22 |
-| Pré-Fase 00 (`docs/qa/PRE-FASE00.md`) | ✅ passos 1–6; **gate: André revisa o relatório antes da Fase 00** | 2026-10-22 |
+| Pré-Fase 00 (`docs/qa/PRE-FASE00.md`) | ✅ gate liberado | 2026-10-22 |
 | BRIEF revisado (rodada 2, itens A–K — `docs/CHANGELOG-REVISAO.md`) | ✅ aplicado, **aguardando aprovação do André** | 2026-10-20 |
-| Fase 00 upgrade Next 16 (primeira a executar) | ⬜ | |
+| Fase 00 upgrade Next 16 | ✅ Next 16.4.2 + React 19.2.9; `docs/qa/baseline-next16.md` | 2026-10-22 |
 | Fase 01 design-system | ⬜ | |
 | Fase 02 chrome | ⬜ | |
 | Fase 03a hero + Sol-Índice (camadas 0/1, lançamento) | ⬜ | |
@@ -84,6 +84,6 @@ Lista completa em `docs/INTAKE.md` § Pendências (P1 a P14). Bloqueantes agora:
 
 ## Próximo passo
 
-1. **Gate:** André revisa `docs/qa/PRE-FASE00.md` e libera a Fase 00 (branch `fase-00-next16`).
-2. (feito) BRIEF aprovado em 22/10/2026.
-3. `/phase-executor` na `docs/phases/00-upgrade-next16.md` (uma fase por sessão; depois 01, 02, 03a, 04, 05, 06 e, pós-lançamento, 03b).
+1. Fase 00 concluída na branch `fase-00-next16`. **A Fase 01 não começou.**
+2. André revisa `docs/qa/baseline-next16.md` (audit só relatório; Lighthouse e pixels continuam manuais).
+3. Quando liberar: `/phase-executor` em `docs/phases/01-design-system.md`. Depois 02, 03a, 04, 05, 06 e, pós-lançamento, 03b.
