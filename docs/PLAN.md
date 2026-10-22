@@ -256,7 +256,7 @@ Nomes de arquivo neutros (`mark.svg`, não `abmsol-logo.svg`): o nome ainda pass
 
 ### 4.4 Orçamento de performance (mobile primeiro)
 
-Medição: Lighthouse mobile (4G lenta, CPU 4×) sobre o `out/` servido localmente e depois sobre a URL da Vercel, mediana de 5 execuções.
+Medição: pelo agente no Cursor Browser (PerformanceObserver, CPU 4×, `out/` servido localmente com `python -m http.server`) e, pelo **André**, Lighthouse mobile (4G lenta, CPU 4×) no `out/` local e na URL da Vercel, mediana de 5 execuções. Ver `docs/qa/VALIDACAO-FERRAMENTAS.md`.
 
 | Métrica | Meta | Teto (reprova a fase) |
 |---|---|---|
@@ -302,7 +302,7 @@ Seguem o loop do `_ClienteBase`: **uma fase por sessão do `phase-executor`**, `
 | **3a — Hero e Sol-Índice (lançamento)** | `SunCircuit` camadas 0 e 1, intro, `Trail`, cross-fade sol → `mark-simple` | LCP = h1 e ≤ 2,0 s; CLS ≤ 0,02; **contraste do h1 ≥ 4,5:1 na pior posição das trilhas (375/768/1280/1920)**; JS do sol ≤ 25 KB gz lazy; sem JS/reduced-motion = sol estático; sol `aria-hidden`, sem tab stop, navegação só por teclado completa; intro ≤ 1,8 s | `/phase-executor`, `gsap-react`, `cinematic-scroll`, `frontend-design`; doc. oficial do GSAP |
 | **4 — Seções da home** | Seções 2 a 9 da §1.3, conteúdo em `lib/content/*` | Nenhum texto fora de `lib/content` ou dos componentes finais; `rg -i 'lorem\|placeholder\|cliente x'` = 0; ≤ 200 palavras por seção; FAQ = 5; **exatamente 1 CTA primário por viewport** em 375/768/1280; nós do processo acendem no scroll; trilha conecta todas as seções | `/phase-executor`, `cinematic-scroll`; doc. oficial do ScrollTrigger; regra `abmsol-content` |
 | **5 — Páginas internas e conceitos** | `/servicos`, `/portfolio/[slug]` ×3, `/sobre`, `/contato`, `/privacidade`, 404 | `out/` contém as 8 rotas (`ls out/**/index.html`); cada conceito tem o rótulo "Projeto conceito" na página e no card; imagens com licença registrada em `docs/assets/LICENSES.md`; `/contato` gera mensagem de WhatsApp correta (teste no Cursor Browser: URL `wa.me/5517991446829?text=…`) | `/phase-executor`, `frontend-design`; regra `abmsol-content` |
-| **6 — SEO, performance, QA e deploy** | Metadados, JSON-LD, sitemap, robots, `llms.txt`, OG, analytics, `vercel.json` (cache/headers), `check-budget.mjs`, remover `/_design`, deploy Vercel | Todos os tetos de §4.4 cumpridos em `/`, `/servicos`, `/sobre`, 1 conceito; `axe` 0 problemas sérios/críticos; Rich Results sem erro; `sitemap.xml` com 8 URLs; `*.vercel.app` com `noindex`; `build` + `lint` verdes; deploy abre e o evento `whatsapp_click` aparece no analytics | `/phase-executor`, `/qa-static-export`; doc. oficial do Next/React; Cursor Browser (MCP `cursor-ide-browser`) (validação); `deploy:vercel` |
+| **6 — SEO, performance, QA e deploy** | Metadados, JSON-LD, sitemap, robots, `llms.txt`, OG, analytics, `vercel.json` (cache/headers), `check-budget.mjs`, remover `/_design`, deploy Vercel | Todos os tetos de §4.4 cumpridos em `/`, `/servicos`, `/sobre`, 1 conceito; `axe` 0 problemas sérios/críticos (André); Rich Results sem erro (André); `sitemap.xml` com 8 URLs; `*.vercel.app` com `noindex`; `build` + `lint` verdes; deploy abre e o evento `whatsapp_click` aparece no analytics | `/phase-executor`, `/qa-static-export`; doc. oficial do Next/React; Cursor Browser (MCP `cursor-ide-browser`) (validação); `deploy:vercel` |
 | **3b — Cursor-nó v2 e Sol interativo (pós-lançamento)** | `components/cursor/`, camada 2 do sol, sonda de FPS | Todos os critérios F9 de `DIFFERENTIATION.md`; FPS ≥ 55 com CPU 4×; nativo restaurado nos 5 casos de F8; remover `components/cursor/` não quebra o build | `/phase-executor`, `gsap-react`; doc. oficial do GSAP; Cursor Browser (MCP `cursor-ide-browser`) |
 | **7 — Pós-lançamento** | Domínio + DNS após checagem do nome; Search Console; `DESIGN.md` e `GITHUB-SHOWCASE.md`; vídeo demo de 30 a 60 s; submissão Awwwards | Domínio final com `index` ativo e canonical correto; Search Console verificado e sitemap enviado; `DESIGN.md` preenchido; checklists da §6.3 e §6.4 assinados | `docs/GITHUB-SHOWCASE.md`, `docs/DESIGN.md` |
 
@@ -314,7 +314,7 @@ Se uma fase sair do trilho: reverter, apertar o `phases/NN.md` correspondente e 
 
 ### 6.1 Lighthouse
 
-- Rotina: `npm run build` → `npx serve out` → Lighthouse CLI mobile (`--preset=perf`, throttling padrão) em 4 rotas, mediana de 5 execuções, relatório HTML salvo em `docs/qa/`.
+- Rotina (sem downloads no projeto): `npm run build` → `python -m http.server -d out` → Lighthouse mobile **pelo André** (DevTools/PageSpeed; o agente não instala nem baixa o Lighthouse CLI) (`--preset=perf`, throttling padrão) em 4 rotas, mediana de 5 execuções, relatório HTML salvo em `docs/qa/`.
 - Repetir sobre a URL publicada e no PageSpeed Insights (inclui dados de campo quando houver tráfego).
 - Reprova a fase se algum teto da §4.4 for ultrapassado.
 
@@ -338,7 +338,7 @@ Se uma fase sair do trilho: reverter, apertar o `phases/NN.md` correspondente e 
 
 - **Semântica e SEO:** landmarks, um `h1`, JSON-LD válido, canonical, sitemap.
 - **Animações e transições:** só `transform/opacity/clip-path/stroke-dashoffset`; `matchMedia`; reduced-motion; sem *jank* (sem frames > 50 ms no intro).
-- **Acessibilidade:** axe limpo, teclado, contraste, alvos de toque.
+- **Acessibilidade:** axe limpo (André), teclado (agente: focáveis; André: Tab real), contraste, alvos de toque.
 - **Performance:** metas da §4.4 + `check-budget`.
 - **Responsividade:** 375 a 1920 sem quebra, sem rolagem horizontal.
 - **Marcação e metadados:** HTML validado (W3C), OG/Twitter, ícones (favicon simplificado, apple-touch), `theme-color`, `lang`.

@@ -18,7 +18,8 @@ Atualize este arquivo ao fim de cada sessão de agente.
 | BRIEF gerado | ✅ | 2026-10-20 |
 | BRIEF revisado | ✅ aprovado com ressalvas menores (`docs/BRIEF-REVIEW.md`) | 2026-10-20 |
 | BRIEF aprovado (humano) | ✅ BRIEF e rodada 2 aprovados (P15) | 2026-10-22 |
-| Limpeza de integridade (`docs/qa/LIMPEZA-INTEGRIDADE.md`) | ✅ aplicada; **gate: André revisa o relatório antes da Fase 00** | 2026-10-22 |
+| Limpeza de integridade (`docs/qa/LIMPEZA-INTEGRIDADE.md`) | ✅ aplicada | 2026-10-22 |
+| Pré-Fase 00 (`docs/qa/PRE-FASE00.md`) | ✅ passos 1–6; **gate: André revisa o relatório antes da Fase 00** | 2026-10-22 |
 | BRIEF revisado (rodada 2, itens A–K — `docs/CHANGELOG-REVISAO.md`) | ✅ aplicado, **aguardando aprovação do André** | 2026-10-20 |
 | Fase 00 upgrade Next 16 (primeira a executar) | ⬜ | |
 | Fase 01 design-system | ⬜ | |
@@ -47,7 +48,8 @@ Lista completa em `docs/INTAKE.md` § Pendências (P1 a P14). Bloqueantes agora:
 - ~~P1 logo em vetor~~ recebido (20/10); resta aprovar a versão simplificada na Fase 01 · **P2** fotos do André · **P3** texto de "Quem assina" e diferenciais públicos · **P9** referências do André · **P10** definição do diagnóstico gratuito.
 - Antes da fase 04/05: P6 (checks reais), P7 (serviços), P8 (3 conceitos), P13 (FAQ), P14 (autorização de Bárbara).
 - Antes da fase 06/07: P4 (e-mail e dados legais), P5 (revisão jurídica), P11 (Umami), P12 (nome/domínio).
-- ~~Pendência técnica `scene2d.dll`~~ → em quarentena (`D:\andre\quarentena\`). `design-taste-frontend` **não será reinstalada**; `gsap-core`, `gsap-scrolltrigger` e `vercel-react-best-practices` estão **fora de uso** (quarentena). **Reinstalar qualquer skill é pendência futura, só com aprovação do André após verificar fonte e hash.**
+- ~~Pendência técnica `scene2d.dll`~~ → em quarentena (`D:\andre\quarentena\`). `design-taste-frontend` **não será reinstalada**; `gpt-taste` **vetada** (quarentena); `gsap-core`, `gsap-scrolltrigger` e `vercel-react-best-practices` estão **fora de uso**. **Reinstalar qualquer skill é pendência futura, só com aprovação do André após verificar fonte e hash.**
+- **P22:** AllSucos/LimaCitrus **não** servem de fonte para os projetos conceito (P8) sem auditoria.
 
 ## Decisões do André (20/10/2026)
 
@@ -67,13 +69,14 @@ Lista completa em `docs/INTAKE.md` § Pendências (P1 a P14). Bloqueantes agora:
 
 | ID | Status |
 |----|--------|
-| P15 | ✅ BRIEF e rodada 2 aprovados. **Gate:** a Fase 00 só começa após o André revisar `docs/qa/LIMPEZA-INTEGRIDADE.md` |
+| P15 | ✅ BRIEF e rodada 2 aprovados. **Gate condicional (22/10):** Fase 00 só depois dos passos 1–6 e da revisão de `docs/qa/PRE-FASE00.md` |
 | P16 | ⏳ Wordmark **adiado para a Fase 01**, com amostras renderizadas (A vs B) |
 | P17 | ✅ Confirmado: cursor v2 e camada 2 do sol na 03b (pós-lançamento) |
 | P18 | 👤 Ação do André (Google Meu Negócio); sem ação do agente |
 | P19 | 👤 Ação do André (Instagram); só entra no rodapé quando existir e tiver conteúdo |
 | P20 | ✅ Repositório **privado**; sem limpeza dos docs herdados agora. **Não publicar sem uma cópia saneada** |
-| P21 | ✅ `scene2d.dll` em quarentena; `design-taste-frontend` NÃO será reinstalada; skills GSAP corrompidas fora de uso; reinstalar qualquer skill só com aprovação do André após verificar fonte e hash |
+| P21 | ✅ `scene2d.dll` em quarentena; `design-taste-frontend` NÃO será reinstalada; `gpt-taste` vetada e em quarentena; skills GSAP corrompidas fora de uso; reinstalar qualquer skill só com aprovação do André após verificar fonte e hash |
+| P22 | ⏳ **Não usar AllSucos/LimaCitrus como fonte dos projetos conceito (P8)** sem auditoria (dano disseminado: 48 arquivos, BRIEF/INTAKE corrompidos, pastas estranhas em `docs/phases/`) |
 
 ## Ferramenta de validação
 
@@ -81,6 +84,6 @@ Lista completa em `docs/INTAKE.md` § Pendências (P1 a P14). Bloqueantes agora:
 
 ## Próximo passo
 
-1. **Gate:** André revisa `docs/qa/LIMPEZA-INTEGRIDADE.md` e libera a Fase 00.
+1. **Gate:** André revisa `docs/qa/PRE-FASE00.md` e libera a Fase 00 (branch `fase-00-next16`).
 2. (feito) BRIEF aprovado em 22/10/2026.
 3. `/phase-executor` na `docs/phases/00-upgrade-next16.md` (uma fase por sessão; depois 01, 02, 03a, 04, 05, 06 e, pós-lançamento, 03b).

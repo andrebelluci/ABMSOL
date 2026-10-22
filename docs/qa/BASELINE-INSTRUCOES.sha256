@@ -1,5 +1,5 @@
-# SHA-256 baseline das instruções do agente (regenerado em 2026-10-22, antes da Fase 00). Formato sha256sum.
-# Escopo: skills-lock.json, AGENTS.md, .cursor/mcp.json, .cursor/rules, .cursor/skills, .agents/skills (skills em quarentena excluídas).
+# SHA-256 baseline das instruções do agente (regenerado 2026-10-22, após passos 1–2 pré-Fase 00). Formato sha256sum.
+# Escopo: skills-lock.json, AGENTS.md, .cursor/mcp.json, .cursor/rules, .cursor/skills, .agents/skills (sem __pycache__).
 0f6a7284288cfaee6b6e34efdb3526c8cb34a0b83b3c27445153702a04eb0b6a  .agents/skills/cinematic-scroll/SKILL.md
 eb3d7b5485466acbd81f2b496f595ab637d2792e268206b27d99e793bdb67549  .agents/skills/frontend-design/LICENSE.txt
 35c43b9d10c2388dbb228047ad028c989a14033750812125f351c85aa42c7a4a  .agents/skills/frontend-design/SKILL.md
@@ -9,11 +9,11 @@ d9904f3c09c3ef851157c9d5f11a945e848ce9a42e1f9e278ffe2fffdccd9898  .cursor/rules/
 666a4fee781f11b244ed45b848674b8279af97838c9d96d68cf5454c98c5435d  .cursor/rules/abmsol-design.mdc
 7d8004d02926444bcbcd91de05a526ea34bc38846317c7b41878525b48dc81da  .cursor/rules/abmsol-motion-perf.mdc
 7fdc5c161e27108d8fc4483c109cb18e419447e0595bc5dc739e09c5ceb0f000  .cursor/rules/protecao-arquivos.mdc
-93e8084e3f74c5b1cd827dd958e1363a3bf322900339cba3d22173239cf60ed9  .cursor/skills/brief-architect/SKILL.md
+d653328624d44385bad8ebb31da73483b665b7b99971b4b7aa56900b6b62c6e3  .cursor/skills/brief-architect/SKILL.md
 77449c65e1d6dea3e06ebf34f5299ce386b2f611a23dc6063c55e9ef8830bb80  .cursor/skills/brief-reviewer/run_test.py
 36e82ec401fff7dadc459d27c982e13f7ca9b6bdcd485eb31611f36a2ff86623  .cursor/skills/brief-reviewer/SKILL.md
 2bb0cad16d02e68decbf1d644fc55dd971657e63f07a30883484545250368917  .cursor/skills/gsap-next-motion/SKILL.md
-804208b4c10313adedc2db345af48ff7645ab8701596696cfddce58415e9d8bf  .cursor/skills/phase-executor/SKILL.md
+177ce1c6715cebbd68a11e0ddd7a5e19624d2b3752c09b96ab51e514836c18bc  .cursor/skills/phase-executor/SKILL.md
 7737e6498c53787b635b3e72eba0685d0aec989ea17397c8e827766d5f2026ac  .cursor/skills/qa-static-export/SKILL.md
 b754c0efffcf54cb889114a9314be1d5af6ceebe65c4c436d713b52018e752c9  .cursor/skills/ui-ux-pro-max/data/charts.csv
 4cc0df2785f340b8bd0ace50bd4068dc13a7c4c6fa4d9d2723271244ce904614  .cursor/skills/ui-ux-pro-max/data/colors.csv
@@ -39,12 +39,9 @@ ad3c3236134d833bda01a2faf31ddeaaa1dbd5005fa430dec571fa91b26e5fea  .cursor/skills
 58fc52fff69f62709f8c7dd460de6f6693699ea820f24287f3301a427c2b554e  .cursor/skills/ui-ux-pro-max/data/ui-reasoning.csv
 1870ee048f2a2bdd60709f8f7adf7f3b6dcad560bc005c8b2915a8ac8639820d  .cursor/skills/ui-ux-pro-max/data/ux-guidelines.csv
 10bfc24e09a6a15db8309e6ef9b6881e1d4af97dffb7c99418aefb8e30df7d54  .cursor/skills/ui-ux-pro-max/data/web-interface.csv
-a52dfb67e93d503bfcee6f4108b89cdbc2169995ff49193a5b1d84746484dc75  .cursor/skills/ui-ux-pro-max/scripts/__pycache__/core.cpython-314.pyc
-31b4e2e8006494600b6bccabe46dd8f524c5187ccd658d07c9195db794c27383  .cursor/skills/ui-ux-pro-max/scripts/__pycache__/design_system.cpython-314.pyc
-73bde4bb8508dbe8206e7bbc3719bb953f83b2e47b37439d3f607aa670e8d189  .cursor/skills/ui-ux-pro-max/scripts/__pycache__/search.cpython-314.pyc
 5459d1f04eea03dfb913742d0c03edc5065ac67f6227e4807fa87699662588cb  .cursor/skills/ui-ux-pro-max/scripts/core.py
 4da1d341f3c7749df51b51db4a543a48a427c3c746eb0e9882a1ab86acf3bb54  .cursor/skills/ui-ux-pro-max/scripts/design_system.py
 a449e57060ef5134e98e62fd11f6e240153afd68c27dab89cbb72a3ce55f1498  .cursor/skills/ui-ux-pro-max/scripts/search.py
 fbc527ab5bab075d4b5b15d7e32c71645aa2f6518bd48560956d45a0603d0fb1  .cursor/skills/ui-ux-pro-max/SKILL.md
-178db3d5b7c49245d57bcad0f6d413785e6cc3a3b680e01ba927622776200062  AGENTS.md
+a5eaa0ad879da52cdc92c9393b522db112a45a9139ffc383b02eed7b05f8ec65  AGENTS.md
 537db576216a325aeebf82de326e88cb1920c8e09caf8a10fd216290207a628c  skills-lock.json

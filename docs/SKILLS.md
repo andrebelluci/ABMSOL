@@ -32,7 +32,7 @@ INTAKE → brief-architect → brief-reviewer → [você aprova]
 | **cinematic-scroll** | Narrativa scroll-driven, capítulos | Hero narrativo, produtos-artesanal |
 | ~~design-taste-frontend~~ | **Removida do ABMSOL** (SKILL.md corrompido; ver `docs/CHANGELOG-REVISAO.md`) | — |
 | **frontend-design** | Direção estética intencional (Anthropic) | Architect + fases 01–03 |
-| **gpt-taste** | Copy/marketing AIDA + GSAP editorial | Só nichos criativos (ver abaixo) |
+| ~~gpt-taste~~ | **Vetada no BRIEF** (tom sóbrio); em quarentena `D:\andre\quarentena\skills\gpt-taste`. Não reinstalar | — |
 | ~~vercel-react-best-practices~~ | **Fora de uso no ABMSOL** (hash divergente, quarentena); usar BRIEF/PLAN §4.4 e a documentação oficial | — |
 
 ### design-taste-frontend — copy e anti-IA?
@@ -60,9 +60,9 @@ Para **copy longa** (blog, manifesto, sobre), o brief do intake ainda manda — 
 
 Escolhe direção estética **intencional** por projeto; evita os 3 “looks default” de IA. Use no **brief-architect** e fases 01–03. Complementa `DIFFERENTIATION.md`.
 
-### gpt-taste (Leonxlnx) — instalada
+### gpt-taste (Leonxlnx) — FORA DE USO (vetada no BRIEF; quarentena)
 
-Copy **marketing** + AIDA + GSAP editorial forte. **Só** quando o BRIEF marcar `Copy engine: gpt-taste` (gastronomia, artesanal). **Não** em clínica/médico — conflita com chrome sóbrio.
+Não usar no ABMSOL. Copy vem do INTAKE + Copy Tone / NEVER USE do BRIEF.
 
 ### ui-ux-pro-max
 
@@ -132,7 +132,7 @@ Válido para portfólio GitHub, recrutadores e submissão Awwwards. Rode **após
 | 06 polish | phase-executor, qa-static-export, doc. oficial do Next/React |
 | **Pós-launch** | Preencher `DESIGN.md` + `GITHUB-SHOWCASE.md` (manual) |
 
-\* `gpt-taste` só se BRIEF autorizar (não clínica/médico default)
+\* `gpt-taste` **vetada** no ABMSOL (não reinstalar).
 
 ---
 
@@ -141,11 +141,12 @@ Válido para portfólio GitHub, recrutadores e submissão Awwwards. Rode **após
 ```bash
 # NÃO EXECUTAR no ABMSOL sem aprovação do André (verificar fonte e hash antes):
 # npx skills add https://github.com/greensock/gsap-skills --skill gsap-react --skill gsap-scrolltrigger --skill gsap-core -y
-npx skills add https://github.com/MustBeSimo/cinematic-scroll-skill -y
+# npx skills add https://github.com/MustBeSimo/cinematic-scroll-skill -y
 # npx skills add https://github.com/vercel-labs/agent-skills --skill vercel-react-best-practices -y
 # (design-taste-frontend: NÃO será reinstalada, decisão do André)
-npx skills add https://github.com/anthropics/skills --skill frontend-design -y
-npx skills add https://github.com/Leonxlnx/taste-skill --skill gpt-taste -y
+# npx skills add https://github.com/anthropics/skills --skill frontend-design -y
+# (gpt-taste: vetada no BRIEF; NÃO reinstalar)
+# npx skills add https://github.com/Leonxlnx/taste-skill --skill gpt-taste -y
 ```
 
 ---

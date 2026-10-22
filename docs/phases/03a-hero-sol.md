@@ -65,21 +65,21 @@
 - [ ] Sem imagem na hero (LCP = h1).
 
 ## Critérios de aceite
-- [ ] LCP = h1 e ≤ 2,0 s (Lighthouse mobile); CLS ≤ 0,02.
-- [ ] **Contraste do h1 ≥ 4,5:1 na PIOR posição das trilhas** (inclusive durante a intro e nó aceso) em **375, 768, 1280 e 1920 px**; verificado por script (captura via Cursor Browser (MCP `cursor-ide-browser`) + amostragem de pixels sob o texto) e anexado em `docs/qa/`. Se falhar: máscara SVG que reduz a opacidade das trilhas na zona do texto.
+- [ ] LCP = h1 e ≤ 2,0 s; CLS ≤ 0,02 (medição no Cursor Browser (PerformanceObserver: LCP, CLS, long tasks; viewport 375 px, CPU 4×, `out/` servido localmente) + **Lighthouse/PageSpeed manual do André**; ver docs/qa/VALIDACAO-FERRAMENTAS.md).
+- [ ] **Contraste do h1 ≥ 4,5:1 na PIOR posição das trilhas** (inclusive durante a intro e nó aceso) em **375, 768, 1280 e 1920 px**. Método: cálculo analítico + captura no Cursor Browser + `getComputedStyle`. Sem amostragem programática de pixels compositados (ver `docs/qa/VALIDACAO-FERRAMENTAS.md`); o André confirma com o conta-gotas se o caso for duvidoso. Se falhar: máscara SVG na zona do texto.
 - [ ] JS do sol ≤ 25 KB gzip, carregado lazy após o primeiro paint (`dynamic import` + `requestIdleCallback`).
 - [ ] Sem JS e com `prefers-reduced-motion`: sol estático completo e conteúdo legível.
 - [ ] Intro ≤ 1,8 s; nenhum frame > 50 ms no intro (inclusive com CPU 4× e 6× via `Emulation.setCPUThrottlingRate`).
 - [ ] Só `transform`, `opacity`, `stroke-dashoffset`, `clip-path`; GSAP dentro de `gsap.matchMedia()` com cleanup.
 - [ ] Hero implementa a Hero Composition do BRIEF (não interpretação genérica).
-- [ ] **Acessibilidade do sol:** `aria-hidden="true"`; nós **sem** tab stop; **navegação completa só por teclado** (header + Trail Index sheet) funciona sem o sol; verificado no Cursor Browser (MCP `cursor-ide-browser`).
+- [ ] **Acessibilidade do sol:** `aria-hidden="true"`; nós **sem** tab stop; **navegação completa só por teclado** (header + Trail Index sheet) funciona sem o sol; verificado por enumeração dos focáveis e ordem no DOM no Cursor Browser (o `Tab` do navegador é sintético e não move o foco) **e pelo André com teclado real**.
 - [ ] Troca/cross-fade sol → `mark-simple` sem salto de layout (CLS ≤ 0,02).
 
 ## Skills
 gsap-react, cinematic-scroll (só trilha em scrub), rontend-design. GSAP core e ScrollTrigger: documentação oficial do GSAP (gsap.com/docs: `gsap.context`, `matchMedia`, ScrollTrigger, `useGSAP`) (as skills gsap-core/gsap-scrolltrigger estão fora de uso).
 
 ## QA
-`npm run build` · `npm run lint` · Lighthouse mobile · Cursor Browser (MCP `cursor-ide-browser`) (reduced-motion, JS off, CPU 4×/6×, teclado) · `/qa-static-export`
+`npm run build` · `npm run lint` · medição de LCP/CLS no Cursor Browser + Lighthouse manual (André) · Cursor Browser (MCP `cursor-ide-browser`) (reduced-motion, JS off, CPU 4×/6×, teclado) · `/qa-static-export`
 
 ## Referências
 - `docs/BRIEF.md` (Hero Composition, Decisão de impacto, Animações)

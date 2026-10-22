@@ -96,7 +96,7 @@ Este hero **não** é split cream genérico: fundo marinho, headline em Syne ocu
 - **Motion na entrada (0 a 1,8 s):** h1 e subtítulo já visíveis (SSR, sem JS). Após o primeiro paint, as trilhas se desenham do núcleo aos nós (`stroke-dashoffset`, ≤ 1,6 s, `power3.out`), nós acendem em sequência (dourado), o núcleo pulsa uma vez. Nada atrasa a leitura nem o CTA.
 - **Motion na interação (camada 2 — fase 03b, pós-lançamento, antes da submissão ao Awwwards; desktop, `pointer: fine`, ≥ 1280 px):** o ponteiro "energiza" o raio mais próximo; um pulso menta viaja pela trilha até o nó; o rótulo mono do nó aparece (`01 SERVIÇOS`); clique leva à âncora. Atualização via CSS custom properties no ticker único do GSAP. **No lançamento (03a) valem só as camadas 0 e 1.**
 - **Acessibilidade do sol (G):** a navegação canônica é o header (e o Trail Index sheet no mobile). O sol é **reforço para ponteiro**: `aria-hidden="true"`, nós **sem tab stop**. Aceite: a navegação completa funciona só por teclado, sem o sol.
-- **Legibilidade do h1 sobre o sol (C):** contraste do h1 ≥ 4,5:1 na pior posição das trilhas em 375, 768, 1280 e 1920 px (script com Cursor Browser (MCP `cursor-ide-browser`): captura + amostragem). Se falhar, reduzir a opacidade das trilhas na zona do texto com máscara SVG, sem mudar o layout.
+- **Legibilidade do h1 sobre o sol (C):** contraste do h1 ≥ 4,5:1 na pior posição das trilhas em 375, 768, 1280 e 1920 px. Verificação: (1) cálculo analítico das cores/opacidades; (2) captura no Cursor Browser; (3) `getComputedStyle` da cor do texto. **Amostragem de pixels compositados** (trilha SVG por baixo do glifo) **não** está disponível no MCP — conferência visual do agente + conta-gotas do André. Se falhar: máscara SVG na zona do texto, sem mudar o layout. Ver `docs/qa/VALIDACAO-FERRAMENTAS.md`.
 - **Desktop:** 2 protagonistas (headline + sol). CTA primário WhatsApp + link secundário "Como trabalhamos →".
 - **Mobile:** sol menor atrás do canto inferior direito, intro curta, 2 a 3 nós com pulso CSS (pausa fora da tela), sem ponteiro. Camada 0 (estático) em reduced-motion, `saveData`, sem JS ou FPS ruim.
 - **Explicitly NOT:** split 2 colunas em fundo neutro; headline centralizada com botão abaixo; hero com foto/vídeo; carrossel; WebGL; halo/glow branco; só fade-in.
@@ -442,7 +442,7 @@ Body: concreto, sem jargão; mostra o que é verificado, não adjetivos.
 | CSS (gzip) / Fontes (woff2) | ≤ 25 KB / ≤ 90 KB | 35 KB / 110 KB |
 | Transferência inicial da home | ≤ 500 KB | 700 KB |
 
-Acessibilidade: HTML semântico, um `h1` por página, skip link, foco visível, navegação completa por teclado, contraste AA por script, `axe` sem problemas sérios/críticos.
+Acessibilidade: HTML semântico, um `h1` por página, skip link, foco visível, navegação completa por teclado, contraste AA por script, `axe` sem problemas sérios/críticos (rodado pelo André; ver `docs/qa/VALIDACAO-FERRAMENTAS.md`).
 
 ---
 

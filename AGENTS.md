@@ -81,19 +81,16 @@ Ver `docs/SKILLS.md`. Ordem típica:
 | QA | `qa-static-export` |
 | Motion GSAP | `gsap-next-motion`, `gsap-react` + documentação oficial do GSAP (`gsap-core` e `gsap-scrolltrigger` estão fora de uso: corrompidas, em quarentena) |
 | Scroll narrativo | `cinematic-scroll` |
-| Copy marketing (só nichos criativos) | `gpt-taste` |
+| Copy | Copy Tone e NEVER USE do BRIEF (`gpt-taste` vetada, em quarentena) |
 | Performance | orçamento do BRIEF/PLAN §4.4 + documentação oficial do Next/React (`vercel-react-best-practices` fora de uso, em quarentena) |
 | Showcase pós-launch | `docs/GITHUB-SHOWCASE.md`, `docs/DESIGN.md` |
 
 ## Ferramentas MCP e registries (design / componentes)
 
-Setup de MCPs: **removido no ABMSOL** (sem servidores de terceiros) · Catálogo: **`docs/AI-TOOLS.md`**
+Setup de MCPs: **nenhum servidor no projeto** (`.cursor/mcp.json` vazio). Validação visual: **Cursor Browser** (`cursor-ide-browser`). Catálogo histórico: `docs/AI-TOOLS.md` (não instalar o que o BRIEF vetou).
 
-- **shadcn MCP** — busca/instala de `components.json` (Cult UI, Skiper, Unlumen, React Bits)
-- **21st.dev**, **Origin Kit**, **MotionSites** — MCP em `.cursor/mcp.json`
-- **Motion AI Kit** — `npx motion-ai` (docs Motion + springs CSS)
-- **Three.js** — `lib/three.ts` (WebGL só se BRIEF aprovar)
-- **GetLayers** — plugin OAuth (ver `docs/AI-TOOLS.md`)
+- **Vetados:** shadcn MCP, 21st.dev, Origin Kit, MotionSites, Motion AI Kit (`@latest`), WebGL/Three, GetLayers, registries pagos.
+- **`components.json`:** permanece até a auditoria da Fase 00; não aciona MCP.
 
 Agentes de implementação usam ferramentas listadas na seção **AI Tools** do `BRIEF.md` — não instalar libs fora do brief.
 

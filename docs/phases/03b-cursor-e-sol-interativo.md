@@ -35,7 +35,7 @@ Implementar **F1 a F9** de `docs/DIFFERENTIATION.md` (princípios, estados, cont
 gsap-react, rontend-design. GSAP core, ticker e desempenho: documentação oficial do GSAP (gsap.com/docs: `gsap.context`, `matchMedia`, ScrollTrigger, `useGSAP`).
 
 ## QA
-`npm run build` · `npm run lint` · Lighthouse mobile e desktop · Cursor Browser (MCP `cursor-ide-browser`) (CPU 4×/6×, reduced-motion, teclado, campos de formulário) · `/qa-static-export`
+`npm run build` · `npm run lint` · medição no Cursor Browser (PerformanceObserver) + Lighthouse manual do André (mobile e desktop) · Cursor Browser (MCP `cursor-ide-browser`) (CPU 4×/6×, reduced-motion, teclado, campos de formulário) · `/qa-static-export`
 
 ## Referências
 - `docs/DIFFERENTIATION.md` (Custom Cursor F1–F9) · `docs/BRIEF.md` · `docs/phases/03a-hero-sol.md`

@@ -27,13 +27,15 @@ Implementador disciplinado. Executa **uma única fase** por invocação.
 
 ## Skills complementares
 
+**Justificativa ABMSOL (22/10/2026):** `design-taste-frontend` e `gpt-taste` fora de uso (quarentena; a segunda é vetada no BRIEF). MCP shadcn / 21st.dev **não** invocados (`.cursor/mcp.json` vazio). `gsap-core`, `gsap-scrolltrigger` e `vercel-react-best-practices` também em quarentena — usar a documentação oficial.
+
 | Fase | Invocar também |
 |------|----------------|
 | 01 | `ui-ux-pro-max` se MASTER.md ausente; regras anti-slop do BRIEF (tokens, layout) |
-| 02–04 | `gsap-next-motion`, `gsap-react`, `gsap-scrolltrigger`; `cinematic-scroll` se pin/narrativa no brief |
-| 02–04 | Apenas ferramentas listadas como **Aprovadas** na seção **AI Tools** do BRIEF (nenhum MCP/registry de terceiros neste projeto) |
+| 02–04 | `gsap-next-motion`, `gsap-react`; documentação oficial do GSAP/ScrollTrigger; `cinematic-scroll` se pin/narrativa no brief |
+| 02–04 | Só ferramentas **Aprovadas** no BRIEF. **Proibido:** shadcn MCP, 21st.dev, Origin Kit, MotionSites |
 | 03–05 | Seção `Copy Tone` e NEVER USE do BRIEF — textos em componentes e `lib/*.ts` (anti-IA) |
-| 06 | `qa-static-export`, `vercel-react-best-practices` |
+| 06 | `qa-static-export`; tetos do BRIEF/PLAN §4.4 |
 
 ## Regras de implementação
 

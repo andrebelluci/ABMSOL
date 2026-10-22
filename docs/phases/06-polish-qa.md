@@ -17,7 +17,7 @@
 | `vercel.json` | Cache `immutable` para assets e cabeçalhos de segurança |
 | `scripts/check-budget.mjs` | Falha o build se um teto do orçamento for ultrapassado |
 | `app/_design/**` | **Remover** |
-| `docs/qa/` | Relatórios Lighthouse (mediana de 5, 4 rotas) |
+| `docs/qa/` | Medições do Cursor Browser (PerformanceObserver, mediana de 5) e relatórios Lighthouse **gerados pelo André** (DevTools/PageSpeed Insights, 4 rotas) |
 
 ## Deploy
 - [ ] `site.config.json` → `url` permanece `*.vercel.app` com `noindex` (D7) até a fase 07.
@@ -26,9 +26,9 @@
 ## Critérios de aceite
 - [ ] Esta fase **fecha o lançamento** (00, 01, 02, 03a, 04, 05, 06). A **03b** (cursor-nó v2 + sol camada 2) roda depois, com o baseline de desempenho registrado aqui como referência.
 - [ ] Nenhum texto do site afirma conformidade legal/certificação (`rg -i 'lgpd|certificad|conformidade' app lib components` revisado manualmente).
-- [ ] Todos os tetos do BRIEF (LCP, CLS, INP, TBT, FCP, JS, CSS, fontes, transferência) cumpridos em `/`, `/servicos`, `/sobre` e 1 conceito (Lighthouse mobile, mediana de 5).
-- [ ] `axe` sem problemas sérios/críticos; contraste AA; navegação por teclado completa.
-- [ ] Rich Results Test sem erro; JSON-LD válido.
+- [ ] Todos os tetos do BRIEF (LCP, CLS, INP, TBT, FCP, JS, CSS, fontes, transferência) cumpridos em `/`, `/servicos`, `/sobre` e 1 conceito. LCP/CLS/long tasks/JS/CSS/fontes pelo agente (Cursor Browser + `check-budget`); **Lighthouse mobile (Perf, A11y, BP, SEO) e INP real pelo André**.
+- [ ] `axe` sem problemas sérios/críticos (**rodado pelo André** com a extensão do navegador; nada é instalado no projeto); contraste AA por script; navegação por teclado completa (enumeração de focáveis pelo agente + **Tab real pelo André**).
+- [ ] Rich Results Test sem erro (**rodado pelo André**, serviço online); JSON-LD válido (parse local pelo agente).
 - [ ] `out/sitemap.xml` com 8 URLs; `*.vercel.app` responde com `noindex`.
 - [ ] Rolagem horizontal = 0 em 375, 390, 768, 1280 e 1920 px; reduced-motion e JS desligado verificados.
 - [ ] `/_design` removido; `rg -i 'lorem|placeholder|cliente x|cliente base'` = 0.

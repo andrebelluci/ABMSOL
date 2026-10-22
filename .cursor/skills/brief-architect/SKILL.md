@@ -29,12 +29,12 @@ Você é o **arquiteto de brief**, não o implementador. Sua saída são documen
 10. `docs/prompts/legal-seo-blog.md` — legal, cookies, SEO, blog (sempre vs flags)
 11. `docs/prompts/doc-awwwards.md` — regras de motion e mobile
 12. `docs/assets/references/REFERENCE-LOG.md` + screenshots em `docs/assets/references/`
-13. **`docs/AI-TOOLS.md`** — catálogo técnico MCP/registries
-14. **`docs/prompts/ai-tools-suggestions.md`** — matriz INTAKE → sugestões (**obrigatório**)
-15. (removido: skill `design-taste-frontend`, corrompida e fora de uso; usar as regras de Copy e anti-slop abaixo)
-16. Skill **frontend-design** — direção estética intencional (complementa conceito)
-17. (removido: skill `gpt-taste`, vetada neste projeto)
-18. `LOOP_STATE.md` — atualizar ao final
+13. **`docs/AI-TOOLS.md`** — catálogo técnico (no ABMSOL: só o que o BRIEF **Aprovar**; nenhum MCP/registry de terceiros)
+14. **`docs/prompts/ai-tools-suggestions.md`** — matriz INTAKE → sugestões (**obrigatório**; respeitar vetos)
+15. Skill **frontend-design** — direção estética intencional (complementa conceito)
+16. `LOOP_STATE.md` — atualizar ao final
+
+**Justificativa ABMSOL (22/10/2026):** as skills `design-taste-frontend` (corrompida; **não** será reinstalada) e `gpt-taste` (vetada no BRIEF — tom sóbrio) saíram de `.agents/skills/` e foram para `D:\andre\quarentena\skills\`. Copy e anti-slop vêm da seção abaixo + BRIEF/`abmsol-content.mdc`. MCP shadcn e 21st.dev **não** entram: `.cursor/mcp.json` está vazio; `components.json` permanece só até a auditoria da Fase 00.
 
 ## Opcional: design system via ui-ux-pro-max
 
@@ -156,8 +156,8 @@ Se o usuário já disse "aprovar sugestões" na sessão, gravar direto.
 ### Proibidas neste projeto
 - …
 
-### Registries de componentes
-- [— (nenhum registry/MCP de terceiros neste projeto; ver vetos do BRIEF)]
+### Registries / MCP de componentes
+- [— nenhum. shadcn MCP, 21st.dev, Origin Kit e MotionSites estão **vetados** no ABMSOL]
 
 ### MotionSites prompt
 > [texto para MCP ou n/a]
