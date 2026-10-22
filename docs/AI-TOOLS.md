@@ -1,3 +1,5 @@
+> **Herdado do boilerplate.** No ABMSOL valem os vetos do BRIEF (MotionSites, Origin Kit, Motion AI Kit, registries pagos, gpt-taste, 21st sem aprovação).
+
 # Ferramentas de design e componentes para agentes
 
 Catálogo de bibliotecas, MCPs e CLIs disponíveis neste boilerplate para **pesquisa**, **instalação** e **inspiração** durante INTAKE, brief e implementação.
