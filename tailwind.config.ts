@@ -6,37 +6,56 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    screens: {
+      sm: '375px',
+      md: '768px',
+      lg: '1280px',
+      xl: '1920px',
+    },
     extend: {
       colors: {
-        gold: {
-          DEFAULT: '#C9A96E',
-          light: '#E2C99A',
-          pale: '#F9F4EC',
+        navy: {
+          900: 'var(--c-navy-900)',
+          800: 'var(--c-navy-800)',
+          700: 'var(--c-navy-700)',
+          muted: 'var(--c-navy-muted)',
         },
-        black: '#0A0A0A',
-        'warm-dark': '#2B2B2B',
-        'off-white': '#F7F4EF',
-        surface: '#EDEAE4',
-        text: {
-          DEFAULT: '#1C1A17',
-          muted: '#7A7469',
+        gold: 'var(--c-gold)',
+        mint: 'var(--c-mint)',
+        ink: {
+          DEFAULT: 'var(--c-ink)',
+          muted: 'var(--c-ink-muted)',
         },
+        paper: 'var(--c-paper)',
+        line: 'var(--c-line)',
       },
       fontFamily: {
-        display: ['var(--font-cormorant)', 'Georgia', 'serif'],
-        sans: ['var(--font-dm-sans)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-syne)', 'sans-serif'],
+        sans: ['var(--font-instrument)', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
       },
       fontSize: {
-        'hero-display': 'clamp(3.5rem, 9vw, 10rem)',
-        'section-title': 'clamp(2rem, 4vw, 4rem)',
-        'card-title': 'clamp(1.1rem, 1.8vw, 1.4rem)',
-        counter: 'clamp(3rem, 6vw, 6rem)',
+        display: [
+          'clamp(2.5rem, 7vw + 1rem, 6.5rem)',
+          { lineHeight: '1.12', letterSpacing: '-0.03em', fontWeight: '700' },
+        ],
+        h2: [
+          'clamp(1.75rem, 3.5vw, 3rem)',
+          { lineHeight: '1.15', fontWeight: '600' },
+        ],
+        lead: [
+          'clamp(1.125rem, 1.5vw, 1.375rem)',
+          { lineHeight: '1.65' },
+        ],
+        body: ['1rem', { lineHeight: '1.65' }],
+        label: ['0.75rem', { lineHeight: '1.4', letterSpacing: '0.18em' }],
       },
-      screens: {
-        sm: '640px',
-        md: '768px',
-        lg: '1280px',
-        xl: '1920px',
+      maxWidth: {
+        page: '1280px',
+        'page-wide': '1440px',
+      },
+      borderRadius: {
+        control: '4px',
       },
       transitionDuration: {
         DEFAULT: '200ms',

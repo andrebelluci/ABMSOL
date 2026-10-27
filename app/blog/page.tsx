@@ -18,24 +18,24 @@ export default function BlogIndexPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-16 md:px-8 md:py-24">
-      <h1 className="font-display text-section-title font-semibold tracking-tight text-text">
+      <h1 className="text-h2 text-ink">
         Blog
       </h1>
       <ul className="mt-10 space-y-8">
         {posts.map((post) => (
-          <li key={post.slug} className="border-b border-text/10 pb-8">
+          <li key={post.slug} className="border-b border-line pb-8">
             <Link
               href={`${BLOG_ROUTE}/${post.slug}`}
               className="group block"
             >
-              <h2 className="font-display text-xl font-semibold text-text group-hover:text-accent">
+              <h2 className="font-display text-[clamp(1.25rem,2vw,1.75rem)] font-semibold leading-tight text-ink group-hover:text-mint">
                 {post.title}
               </h2>
               {post.description && (
-                <p className="mt-2 text-text-muted">{post.description}</p>
+                <p className="is-muted mt-2">{post.description}</p>
               )}
               {post.publishedAt && (
-                <p className="mt-2 text-xs uppercase tracking-widest text-text-muted">
+                <p className="is-muted mt-2 font-mono text-label uppercase">
                   {new Date(post.publishedAt).toLocaleDateString('pt-BR')}
                 </p>
               )}

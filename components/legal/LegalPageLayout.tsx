@@ -11,15 +11,15 @@ export function LegalPageLayout({ document, children }: LegalPageLayoutProps) {
 
   return (
     <article className="mx-auto max-w-3xl px-6 py-16 md:px-8 md:py-24">
-      <header className="mb-10 border-b border-text/10 pb-8">
-        <h1 className="font-display text-section-title font-semibold tracking-tight text-text">
+      <header className="mb-10 border-b border-line pb-8">
+        <h1 className="text-h2 text-ink">
           {document.title}
         </h1>
         {document.description && (
-          <p className="mt-3 text-lg text-text-muted">{document.description}</p>
+          <p className="is-muted mt-3 text-lead">{document.description}</p>
         )}
         {dateLabel && (
-          <p className="mt-4 text-sm text-text-muted">
+          <p className="is-muted mt-4 text-sm">
             Atualizado em{' '}
             {new Date(dateLabel).toLocaleDateString('pt-BR', {
               day: '2-digit',
@@ -29,10 +29,10 @@ export function LegalPageLayout({ document, children }: LegalPageLayoutProps) {
           </p>
         )}
       </header>
-      <div className="prose-legal space-y-4 text-base leading-relaxed text-text">
+      <div className="prose-legal space-y-4 text-body leading-relaxed text-ink">
         {children}
       </div>
-      <p className="mt-12 text-sm text-text-muted">
+      <p className="is-muted mt-12 text-sm">
         <Link href="/" className="underline-offset-4 hover:underline">
           Voltar ao início
         </Link>

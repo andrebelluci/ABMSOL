@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Cormorant_Garamond, DM_Sans } from 'next/font/google'
+import { Instrument_Sans, JetBrains_Mono, Syne } from 'next/font/google'
 import { AppShell } from '@/components/layout/AppShell'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { SmoothScroll } from '@/components/providers/SmoothScroll'
@@ -7,19 +7,24 @@ import { createMetadata } from '@/lib/seo'
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE } from '@/lib/site'
 import './globals.css'
 
-// Fontes provisórias do scaffold — substituídas na fase 01 (Syne + Instrument Sans + JetBrains Mono).
-const cormorant = Cormorant_Garamond({
+const syne = Syne({
   subsets: ['latin'],
-  weight: ['300', '400', '600'],
-  style: ['normal', 'italic'],
-  variable: '--font-cormorant',
+  weight: ['600', '700'],
+  variable: '--font-syne',
   display: 'swap',
 })
 
-const dmSans = DM_Sans({
+const instrument = Instrument_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500'],
-  variable: '--font-dm-sans',
+  weight: ['400', '500'],
+  variable: '--font-instrument',
+  display: 'swap',
+})
+
+const mono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-mono',
   display: 'swap',
 })
 
@@ -41,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-BR" data-scroll-behavior="smooth" className={`${cormorant.variable} ${dmSans.variable}`}>
+    <html lang="pt-BR" data-scroll-behavior="smooth" className={`${syne.variable} ${instrument.variable} ${mono.variable}`}>
       <body>
         <JsonLd />
         <SmoothScroll>

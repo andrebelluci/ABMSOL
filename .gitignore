@@ -52,6 +52,9 @@ ehthumbs.db
 # Screenshots de validação local
 docs/screenshots/*.png
 !docs/screenshots/.gitkeep
+!docs/screenshots/mark-simple-32.png
+!docs/screenshots/mark-simple-48.png
+!docs/screenshots/mark-simple-110.png
 prompt*.png
 
 # Temporários

@@ -22,7 +22,7 @@ Atualize este arquivo ao fim de cada sessão de agente.
 | Pré-Fase 00 (`docs/qa/PRE-FASE00.md`) | ✅ gate liberado | 2026-10-22 |
 | BRIEF revisado (rodada 2, itens A–K — `docs/CHANGELOG-REVISAO.md`) | ✅ aplicado, **aguardando aprovação do André** | 2026-10-20 |
 | Fase 00 upgrade Next 16 | ✅ Next 16.4.2 + React 19.2.9; `docs/qa/baseline-next16.md` | 2026-10-22 |
-| Fase 01 design-system | ⬜ | |
+| Fase 01 design-system | ✅ tokens, tipo D1, primitivos, `/_design`; wordmark A/B aguarda o André | 2026-10-22 |
 | Fase 02 chrome | ⬜ | |
 | Fase 03a hero + Sol-Índice (camadas 0/1, lançamento) | ⬜ | |
 | Fase 04 sections-home | ⬜ | |
@@ -70,7 +70,7 @@ Lista completa em `docs/INTAKE.md` § Pendências (P1 a P14). Bloqueantes agora:
 | ID | Status |
 |----|--------|
 | P15 | ✅ BRIEF e rodada 2 aprovados. **Gate condicional (22/10):** Fase 00 só depois dos passos 1–6 e da revisão de `docs/qa/PRE-FASE00.md` |
-| P16 | ⏳ Wordmark **adiado para a Fase 01**, com amostras renderizadas (A vs B) |
+| P16 | ⏳ Amostras em `/_design`: **A** Rajdhani latin 8,8 KB · **B** SVG em curvas 3,2 KB (padrão). A escolha final é do André |
 | P17 | ✅ Confirmado: cursor v2 e camada 2 do sol na 03b (pós-lançamento) |
 | P18 | 👤 Ação do André (Google Meu Negócio); sem ação do agente |
 | P19 | 👤 Ação do André (Instagram); só entra no rodapé quando existir e tiver conteúdo |
@@ -84,6 +84,6 @@ Lista completa em `docs/INTAKE.md` § Pendências (P1 a P14). Bloqueantes agora:
 
 ## Próximo passo
 
-1. Fase 00 concluída na branch `fase-00-next16`. **A Fase 01 não começou.**
-2. André revisa `docs/qa/baseline-next16.md` (audit só relatório; Lighthouse e pixels continuam manuais).
-3. Quando liberar: `/phase-executor` em `docs/phases/01-design-system.md`. Depois 02, 03a, 04, 05, 06 e, pós-lançamento, 03b.
+1. Fase 01 concluída na branch `fase-00-next16` (sem commit). Prova em `/_design` (noindex).
+2. **P16 ainda é do André:** A (Rajdhani, 8,8 KB latin) ou B (curvas, 3,2 KB, padrão já no componente). A marca simplificada em 32 px deixa os nós com cerca de 2 px — aprovação visual pendente.
+3. Quando liberar: `/phase-executor` em `docs/phases/02-chrome.md`. Depois 03a, 04, 05, 06 e, pós-lançamento, 03b.

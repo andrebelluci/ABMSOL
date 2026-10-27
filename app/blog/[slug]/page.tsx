@@ -41,15 +41,15 @@ export default async function BlogPostPage(props: PageProps) {
 
   return (
     <article className="mx-auto max-w-3xl px-6 py-16 md:px-8 md:py-24">
-      <header className="mb-10 border-b border-text/10 pb-8">
-        <p className="text-xs uppercase tracking-widest text-text-muted">
+      <header className="mb-10 border-b border-line pb-8">
+        <p className="font-mono text-label uppercase text-mint">
           Blog
         </p>
-        <h1 className="mt-3 font-display text-section-title font-semibold tracking-tight text-text">
+        <h1 className="mt-3 text-h2 text-ink">
           {post.title}
         </h1>
         {post.publishedAt && (
-          <p className="mt-4 text-sm text-text-muted">
+          <p className="is-muted mt-4 text-sm">
             {new Date(post.publishedAt).toLocaleDateString('pt-BR', {
               day: '2-digit',
               month: 'long',
@@ -58,10 +58,10 @@ export default async function BlogPostPage(props: PageProps) {
           </p>
         )}
       </header>
-      <div className="prose-legal space-y-4 text-base leading-relaxed text-text">
+      <div className="prose-legal space-y-4 text-body leading-relaxed text-ink">
         <ReactMarkdown>{post.body}</ReactMarkdown>
       </div>
-      <p className="mt-12 text-sm text-text-muted">
+      <p className="is-muted mt-12 text-sm">
         <Link href={BLOG_ROUTE} className="underline-offset-4 hover:underline">
           ← Todos os posts
         </Link>
