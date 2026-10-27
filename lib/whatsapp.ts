@@ -1,14 +1,22 @@
 import { contact } from '@/lib/contact'
 
-/** Mensagem padrão; CTAs contextuais (por serviço/seção) entram na fase 04. */
-export function buildWhatsAppMessage(topic?: string): string {
-  const trimmed = topic?.trim()
-  if (trimmed) {
-    return `Olá, vim pelo site e quero uma proposta de ${trimmed}.`
-  }
-  return 'Olá, vim pelo site e gostaria de mais informações.'
+export const WHATSAPP_MESSAGES = {
+  site: 'Olá, vim pelo site da ABMSOL e quero conversar.',
+  institucional: 'Olá, vim pelo site e quero uma proposta de Institucional.',
+  plano: 'Quero saber do plano mensal.',
+  diagnostico: 'Quero um diagnóstico gratuito do meu site / da minha TI.',
+} as const
+
+export function whatsappHref(message: string) {
+  return `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(message)}`
 }
 
-export function buildWhatsAppUrl(topic?: string): string {
-  return `${contact.whatsappLink}?text=${encodeURIComponent(buildWhatsAppMessage(topic))}`
+/** Stub até a fase 06. O listener de analytics entra depois. */
+export function trackWhatsAppClick(source: string, service?: string) {
+  if (typeof window === 'undefined') return
+  window.dispatchEvent(
+    new CustomEvent('whatsapp_click', {
+      detail: { source, service: service ?? null },
+    }),
+  )
 }

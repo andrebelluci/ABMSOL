@@ -48,6 +48,11 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" data-scroll-behavior="smooth" className={`${syne.variable} ${instrument.variable} ${mono.variable}`}>
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.classList.add('js')`,
+          }}
+        />
         <JsonLd />
         <SmoothScroll>
           <AppShell>{children}</AppShell>

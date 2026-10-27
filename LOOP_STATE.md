@@ -23,7 +23,7 @@ Atualize este arquivo ao fim de cada sessão de agente.
 | BRIEF revisado (rodada 2, itens A–K — `docs/CHANGELOG-REVISAO.md`) | ✅ aplicado, **aguardando aprovação do André** | 2026-10-20 |
 | Fase 00 upgrade Next 16 | ✅ Next 16.4.2 + React 19.2.9; `docs/qa/baseline-next16.md` | 2026-10-22 |
 | Fase 01 design-system | ✅ tokens, tipo D1, primitivos, `/_design`; wordmark A/B aguarda o André | 2026-10-22 |
-| Fase 02 chrome | ⬜ | |
+| Fase 02 chrome | ✅ header, Trail Index, rodapé, Lenis condicional, fade de entrada | 2026-10-26 |
 | Fase 03a hero + Sol-Índice (camadas 0/1, lançamento) | ⬜ | |
 | Fase 04 sections-home | ⬜ | |
 | Fase 05 inner-pages | ⬜ | |
@@ -84,6 +84,6 @@ Lista completa em `docs/INTAKE.md` § Pendências (P1 a P14). Bloqueantes agora:
 
 ## Próximo passo
 
-1. Fase 01 concluída na branch `fase-00-next16` (sem commit). Prova em `/_design` (noindex).
-2. **P16 ainda é do André:** A (Rajdhani, 8,8 KB latin) ou B (curvas, 3,2 KB, padrão já no componente). A marca simplificada em 32 px deixa os nós com cerca de 2 px — aprovação visual pendente.
-3. Quando liberar: `/phase-executor` em `docs/phases/02-chrome.md`. Depois 03a, 04, 05, 06 e, pós-lançamento, 03b.
+1. Fase 02 concluída na branch `fase-00-next16`. Chrome em todas as rotas; `/servicos/` e `/sobre/` caem no 404 da marca até a fase 05. Prova da fase 01 segue em `/_design` (noindex).
+2. **P16 ainda é do André:** A (Rajdhani, 8,8 KB latin) ou B (curvas, 3,2 KB, padrão já no header). A marca simplificada em 32 px deixa os nós com cerca de 2 px — aprovação visual pendente.
+3. Quando liberar: `/phase-executor` em `docs/phases/03a-hero.md`. Depois 04, 05, 06 e, pós-lançamento, 03b. Não antecipar o cursor-nó.
