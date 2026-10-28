@@ -29,7 +29,7 @@ Atualize este arquivo ao fim de cada sessão de agente.
 | Fase 05 inner-pages | ✅ serviços, 3 conceitos, sobre, contato, privacidade, 404; sem blog e sem termos | 2026-10-28 |
 | Fase 06 seo-perf-qa-deploy (fecha o lançamento) | código na branch `fase-00-next16`; a Vercel publica pelo Git (`docs/qa/fase-06.md`) | 2026-10-28 |
 | Fase 03b cursor-nó v2 + sol camada 2 (pós-lançamento) | ⬜ | |
-| Fase 07 pós-lançamento | ⬜ | |
+| Fase 07 pós-lançamento | URL canônica `https://abmsol.com.br` no código; Search Console ainda com o André | 2026-10-28 |
 
 ## Fase 0 — o que foi feito
 
@@ -47,7 +47,7 @@ Lista completa em `docs/INTAKE.md` § Pendências (P1 a P14). Bloqueantes agora:
 
 - ~~P1 logo em vetor~~ recebido (20/10); resta aprovar a versão simplificada na Fase 01 · **P2** fotos do André · **P3** texto de "Quem assina" e diferenciais públicos · **P9** referências do André · **P10** definição do diagnóstico gratuito.
 - Ainda sem página: **P6** checks reais, **P7** detalhe de cada serviço, **P8** brief real dos 3 conceitos (a fase 05 publicou marcas fictícias), **P13** FAQ, **P14** origem do nome, **P2/P3** foto e texto de quem assina.
-- Seguem para a fase 07, ou para quando o André tiver o dado: P4 (e-mail e dados legais), P5 (revisão jurídica), P11 (Umami), P12 (nome/domínio). A fase 06 não inventou e-mail, FAQ nem id do Umami.
+- Seguem para quando o André tiver o dado: P4 (e-mail e dados legais), P5 (revisão jurídica), P11 (Umami). P12: domínio comprado, `abmsol.com.br` (28/10/2026); INPI e @ seguem em aberto. A fase 06 não inventou e-mail, FAQ nem id do Umami.
 - ~~Pendência técnica `scene2d.dll`~~ → em quarentena (`D:\andre\quarentena\`). `design-taste-frontend` **não será reinstalada**; `gpt-taste` **vetada** (quarentena); `gsap-core`, `gsap-scrolltrigger` e `vercel-react-best-practices` estão **fora de uso**. **Reinstalar qualquer skill é pendência futura, só com aprovação do André após verificar fonte e hash.**
 - **P22:** AllSucos/LimaCitrus **não** servem de fonte para os projetos conceito (P8) sem auditoria.
 
@@ -89,6 +89,6 @@ Lista completa em `docs/INTAKE.md` § Pendências (P1 a P14). Bloqueantes agora:
 
 ## Próximo passo
 
-1. Fases 03a a 06 na branch `fase-00-next16`, enviadas ao origin para a Vercel publicar. `noindex` segue até o domínio final (`NEXT_PUBLIC_NOINDEX=0` só na fase 07). URL esperada: `https://abmsol.vercel.app`.
-2. O evento no Umami só entra com P11. Lighthouse, axe, Rich Results e Tab real ficam com o André depois que a URL responder.
-3. Quando liberar o domínio: fase 07. A 03b (cursor-nó v2 e sol camada 2) continua depois do lançamento.
+1. O canônico do código é `https://abmsol.com.br` e o export indexa. `abmsol.vercel.app` serve o mesmo HTML. Search Console, `DESIGN.md` e a submissão ficam com o André.
+2. Em 28/10/2026 o DNS público de `abmsol.com.br` (Registro.br, `a.auto.dns.br`) ainda não tinha registro A nem CNAME, e `www` não existia. Os endereços que a Vercel mostra precisam estar salvos nesse DNS para o domínio abrir.
+3. O evento no Umami só entra com P11. Lighthouse, axe, Rich Results e Tab real ficam com o André. A 03b continua depois do lançamento.

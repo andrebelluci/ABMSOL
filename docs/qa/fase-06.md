@@ -37,4 +37,4 @@ Nesta passagem o webview não devolveu entradas de `largest-contentful-paint` e 
 
 ## Deploy
 
-A publicação é a integração Git da Vercel, no mesmo esquema dos outros projetos. O script `deploy-vercel.mjs` não foi executado. O Umami continua de fora até P11 (id e URL do script). A URL esperada, `https://abmsol.vercel.app`, segue com `noindex`.
+A publicação é a integração Git da Vercel, no mesmo esquema dos outros projetos. O script `deploy-vercel.mjs` não foi executado. O Umami continua de fora até P11 (id e URL do script). Em 28/10/2026 o HTML no ar ainda estava em `https://abmsol.vercel.app` com `noindex`. O canônico passou a `https://abmsol.com.br` na fase 07.

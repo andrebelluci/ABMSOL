@@ -6,11 +6,12 @@ export { SITE_NAME, SITE_URL }
 export const DEFAULT_OG = '/images/og-image.webp'
 
 /**
- * `NEXT_PUBLIC_NOINDEX=0` libera a indexação no domínio final (fase 07).
- * Sem a variável, o export fica noindex — o host da Vercel não existe em runtime.
+ * O domínio final indexa. `NEXT_PUBLIC_NOINDEX=1` esconde de novo.
+ * O export estático não distingue abmsol.com.br de abmsol.vercel.app;
+ * o canônico é sempre a URL de site.config.json.
  */
 export function isNoindex() {
-  return process.env.NEXT_PUBLIC_NOINDEX !== '0'
+  return process.env.NEXT_PUBLIC_NOINDEX === '1'
 }
 
 interface PageMetadataOptions {

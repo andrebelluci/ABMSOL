@@ -4,13 +4,13 @@ Estúdio de sites, sistemas e suporte de TI. Sede em Rio Preto (SP). Atendimento
 
 ## Páginas
 
-- https://abmsol.vercel.app/
-- https://abmsol.vercel.app/servicos/
-- https://abmsol.vercel.app/portfolio/atelier-norte/
-- https://abmsol.vercel.app/portfolio/casa-vertice/
-- https://abmsol.vercel.app/portfolio/painel-serra/
-- https://abmsol.vercel.app/sobre/
-- https://abmsol.vercel.app/contato/
-- https://abmsol.vercel.app/privacidade/
+- https://abmsol.com.br/
+- https://abmsol.com.br/servicos/
+- https://abmsol.com.br/portfolio/atelier-norte/
+- https://abmsol.com.br/portfolio/casa-vertice/
+- https://abmsol.com.br/portfolio/painel-serra/
+- https://abmsol.com.br/sobre/
+- https://abmsol.com.br/contato/
+- https://abmsol.com.br/privacidade/
 
 Os três endereços em /portfolio/ são projetos conceito, com marcas fictícias. Não são clientes.

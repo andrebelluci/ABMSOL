@@ -27,4 +27,4 @@ O nome da marca vive só em `site.config.json`.
 npm run deploy:vercel
 ```
 
-Enquanto estiver em `*.vercel.app`, o site é `noindex` (decisão D7).
+O endereço canônico é `https://abmsol.com.br`. O mesmo HTML também responde em `abmsol.vercel.app`.
