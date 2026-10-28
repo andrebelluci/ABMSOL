@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { WhatsAppLink } from '@/components/ui/WhatsAppLink'
-import { WHATSAPP_MESSAGES } from '@/lib/whatsapp'
+import { FooterWhatsApp } from '@/components/layout/FooterWhatsApp'
 
 export function Footer() {
   return (
@@ -14,18 +13,15 @@ export function Footer() {
         <div className="flex items-end gap-4" aria-hidden>
           <span className="mb-4 h-16 w-px bg-gold" />
           <Image
-            src="/logo/mark-simple.svg"
+            src="/logo/mark.svg"
             alt=""
             width={48}
             height={48}
             unoptimized
+            className="object-contain"
           />
         </div>
-        <WhatsAppLink
-          source="footer"
-          message={WHATSAPP_MESSAGES.site}
-          className="mt-8"
-        />
+        <FooterWhatsApp />
         <p className="mt-6 text-body text-ink">
           Rio Preto (SP) · atendimento online em todo o Brasil
         </p>

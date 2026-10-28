@@ -13,7 +13,12 @@ export function WhatsAppBar() {
       const footerTop = footer?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY
       const pastHero = window.scrollY > window.innerHeight * 0.85
       const atFinalCta = footerTop < window.innerHeight * 0.92
-      setVisible(pastHero && !atFinalCta)
+      const primaryInView = [...document.querySelectorAll('.btn-primary')].some((node) => {
+        if (node.closest('.whatsapp-bar')) return false
+        const rect = node.getBoundingClientRect()
+        return rect.bottom > 72 && rect.top < window.innerHeight - 8
+      })
+      setVisible(pastHero && !atFinalCta && !primaryInView)
     }
 
     update()

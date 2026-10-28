@@ -164,6 +164,23 @@ export const SUN_RAYS = [
     "y2": 108.42
   }
 ] as const
+/** Ramos diagonais, na ordem em que o traço sai do anel. 5 nós por quadrante. */
+export const SUN_BRANCHES = [
+  [6, 7, 8, 9, 5],
+  [1, 2, 3, 4, 0],
+  [16, 17, 18, 19, 15],
+  [11, 12, 13, 14, 10],
+] as const
+
+export function sunBranchPath(indexes: readonly number[]) {
+  return indexes
+    .map((index, step) => {
+      const node = SUN_NODES[index]
+      return `${step === 0 ? 'M' : 'L'} ${node.x} ${node.y}`
+    })
+    .join(' ')
+}
+
 /** 4 nós das pontas (anel + raios + estes nós = mark-simple). Não entram nos 20. */
 export const SUN_CARDINAL_NODES = [
   {

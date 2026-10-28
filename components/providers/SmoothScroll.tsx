@@ -1,9 +1,7 @@
 'use client'
 
-import Lenis from 'lenis'
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
-import { gsap, registerGSAP, ScrollTrigger } from '@/lib/gsap'
 
 function allowLenis() {
   return (
@@ -19,12 +17,17 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     document.documentElement.classList.add('js')
     if (!allowLenis()) return
 
-    registerGSAP()
-
-    let lenis: Lenis | null = null
     let alive = true
+    let lenis: {
+      destroy: () => void
+      raf: (time: number) => void
+      on: (event: 'scroll', callback: () => void) => void
+      stop: () => void
+      start: () => void
+    } | null = null
     let idleId = 0
     let timeoutId = 0
+    let removeTicker = () => {}
 
     const tick = (time: number) => {
       lenis?.raf(time * 1000)
@@ -43,7 +46,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       cancelIdle()
       if (!alive) return
       alive = false
-      gsap.ticker.remove(tick)
+      removeTicker()
       lenis?.destroy()
       lenis = null
       document.documentElement.classList.remove('lenis', 'lenis-smooth')
@@ -51,19 +54,25 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
     const start = () => {
       if (!alive || !allowLenis() || lenis) return
-      lenis = new Lenis({
-        duration: 1.05,
-        lerp: 0.09,
-        smoothWheel: true,
-        wheelMultiplier: 0.9,
-        touchMultiplier: 1,
+      void Promise.all([import('lenis'), import('@/lib/gsap')]).then(([lenisMod, gsapMod]) => {
+        if (!alive || !allowLenis() || lenis) return
+        gsapMod.registerGSAP()
+        const next = new lenisMod.default({
+          duration: 1.05,
+          lerp: 0.09,
+          smoothWheel: true,
+          wheelMultiplier: 0.9,
+          touchMultiplier: 1,
+        })
+        lenis = next
+        document.documentElement.classList.add('lenis', 'lenis-smooth')
+        next.on('scroll', gsapMod.ScrollTrigger.update)
+        gsapMod.gsap.ticker.add(tick)
+        gsapMod.gsap.ticker.lagSmoothing(0)
+        removeTicker = () => gsapMod.gsap.ticker.remove(tick)
+        gsapMod.ScrollTrigger.refresh()
+        if (document.documentElement.hasAttribute('data-nav-open')) next.stop()
       })
-      document.documentElement.classList.add('lenis', 'lenis-smooth')
-      lenis.on('scroll', ScrollTrigger.update)
-      gsap.ticker.add(tick)
-      gsap.ticker.lagSmoothing(0)
-      ScrollTrigger.refresh()
-      if (document.documentElement.hasAttribute('data-nav-open')) lenis.stop()
     }
 
     const onNav = (event: Event) => {
@@ -97,8 +106,10 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (!allowLenis()) return
-    registerGSAP()
-    ScrollTrigger.refresh()
+    void import('@/lib/gsap').then(({ registerGSAP, ScrollTrigger }) => {
+      registerGSAP()
+      ScrollTrigger.refresh()
+    })
   }, [pathname])
 
   return <>{children}</>

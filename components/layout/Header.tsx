@@ -1,9 +1,17 @@
+import { Rajdhani } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Wordmark } from '@/components/brand/Wordmark'
 import { DesktopNav } from '@/components/layout/MobileNav'
 import { WhatsAppLink } from '@/components/ui/WhatsAppLink'
 import { WHATSAPP_MESSAGES } from '@/lib/whatsapp'
+
+/** Mesma família e o mesmo espaçamento de docs/assets/abmsol_svg.svg (Rajdhani Medium, 0,09375 em). */
+const rajdhani = Rajdhani({
+  subsets: ['latin'],
+  weight: '500',
+  display: 'swap',
+  adjustFontFallback: false,
+})
 
 export function Header() {
   return (
@@ -21,13 +29,16 @@ export function Header() {
           data-cursor-avoid=""
         >
           <Image
-            src="/logo/mark-simple.svg"
+            src="/logo/mark.svg"
             alt=""
             width={32}
             height={32}
             unoptimized
+            className="header-mark object-contain"
           />
-          <Wordmark className="h-4 w-auto" />
+          <span className={`${rajdhani.className} text-base leading-none tracking-[0.09375em] text-mint`}>
+            ABMSOL
+          </span>
         </Link>
         <div className="ml-auto hidden items-center gap-2 lg:flex">
           <DesktopNav />

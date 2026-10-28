@@ -1,0 +1,51 @@
+import { SunEnhance } from '@/components/sun/SunEnhance'
+import { SunFigure } from '@/components/sun/SunFigure'
+import { PageTrail } from '@/components/sun/PageTrail'
+import { WhatsAppLink } from '@/components/ui/WhatsAppLink'
+import { WHATSAPP_MESSAGES } from '@/lib/whatsapp'
+
+const SUN_DRAW_SCRIPT = `(function(){var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;var connection=navigator.connection;if(!reduce&&!(connection&&connection.saveData))document.documentElement.setAttribute('data-sun-draw','pending');})();`
+
+export function Hero() {
+  return (
+    <section
+      id="hero"
+      data-hero=""
+      className="hero"
+      data-cursor-theme="dark"
+    >
+      <script dangerouslySetInnerHTML={{ __html: SUN_DRAW_SCRIPT }} />
+      <SunFigure />
+      <div className="hero-copy">
+        <p className="font-mono text-label uppercase text-mint">
+          01 — Estúdio de tecnologia · Rio Preto (SP)
+        </p>
+        <h1 className="mt-4 font-display text-display text-ink" data-cursor-avoid="">
+          Tecnologia que funciona.
+        </h1>
+        <p className="mt-4 max-w-[28ch] text-lead text-ink" data-cursor-avoid="">
+          Do suporte do dia a dia ao site premium.
+        </p>
+        <p className="mt-3 max-w-[34ch] text-body text-ink-muted">
+          Site, sistema e suporte com um parceiro só.
+        </p>
+        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <WhatsAppLink source="hero" message={WHATSAPP_MESSAGES.site}>
+            Falar no WhatsApp
+          </WhatsAppLink>
+          <a
+            href="#como-trabalhamos"
+            className="inline-flex min-h-12 items-center text-mint"
+            data-cursor="link"
+            data-cursor-label="Como trabalhamos"
+            data-cursor-theme="dark"
+          >
+            Como trabalhamos →
+          </a>
+        </div>
+      </div>
+      <PageTrail />
+      <SunEnhance />
+    </section>
+  )
+}

@@ -1,56 +1,56 @@
 import { BRAND } from '@/lib/brand'
+import { services } from '@/lib/content/services'
 import { SITE_URL } from '@/lib/site'
 
-const OG_IMAGE = '/images/og-image.webp'
+const businessId = `${SITE_URL}/#business`
+const ogImage = `${SITE_URL}/images/og-image.webp`
 
-export function organizationSchema() {
+const areaServed = [
+  {
+    '@type': 'City',
+    name: 'Rio Preto',
+    containedInPlace: { '@type': 'AdministrativeArea', name: 'SP' },
+  },
+  { '@type': 'Country', name: 'Brasil' },
+]
+
+export function siteSchema() {
   return {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'Organization',
-        '@id': `${SITE_URL}/#organization`,
-        name: BRAND.legalName ?? BRAND.name,
+        '@type': 'ProfessionalService',
+        '@id': businessId,
+        name: BRAND.name,
         description: BRAND.description,
         url: SITE_URL,
-        telephone: BRAND.phone?.e164,
-        email: BRAND.email,
-        image: `${SITE_URL}${OG_IMAGE}`,
-        sameAs: BRAND.social
-          ? Object.values(BRAND.social).filter(Boolean)
-          : undefined,
-      },
-    ],
-  }
-}
-
-export function localBusinessSchema(types: string[] = ['LocalBusiness']) {
-  return {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': types,
-        '@id': `${SITE_URL}/#business`,
-        name: BRAND.legalName ?? BRAND.name,
-        description: BRAND.description,
-        url: SITE_URL,
-        telephone: BRAND.phone?.e164,
-        email: BRAND.email,
-        image: `${SITE_URL}${OG_IMAGE}`,
+        image: ogImage,
+        telephone: BRAND.phone.e164,
         address: {
           '@type': 'PostalAddress',
-          streetAddress: BRAND.address?.street,
-          addressLocality: BRAND.address?.city,
-          addressRegion: BRAND.address?.state,
-          postalCode: BRAND.address?.postalCode,
-          addressCountry: BRAND.address?.country ?? 'BR',
+          addressLocality: BRAND.address.city,
+          addressRegion: BRAND.address.state,
+          addressCountry: 'BR',
         },
-        openingHours: BRAND.hours?.label,
-        areaServed: BRAND.seo?.areaServed,
-        sameAs: BRAND.social
-          ? Object.values(BRAND.social).filter(Boolean)
-          : undefined,
+        areaServed,
       },
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        name: BRAND.name,
+        url: SITE_URL,
+        publisher: { '@id': businessId },
+        inLanguage: 'pt-BR',
+      },
+      ...services.map((service) => ({
+        '@type': 'Service',
+        '@id': `${SITE_URL}/#servico-${service.id}`,
+        name: service.title,
+        description: service.body,
+        url: `${SITE_URL}/servicos/`,
+        provider: { '@id': businessId },
+        areaServed,
+      })),
     ],
   }
 }

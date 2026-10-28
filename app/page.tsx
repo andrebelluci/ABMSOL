@@ -1,12 +1,19 @@
-import { SITE_NAME, SITE_TAGLINE } from '@/lib/site'
+import { Concepts } from '@/components/sections/Concepts'
+import { FinalCta } from '@/components/sections/FinalCta'
+import { Hero } from '@/components/sections/Hero'
+import { Plan } from '@/components/sections/Plan'
+import { Process } from '@/components/sections/Process'
+import { Services } from '@/components/sections/Services'
 
-/** Página mínima da Fase 0. Hero e seções entram nas fases 03 e 04. */
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen items-center bg-navy-900 px-6 md:px-[8vw]">
-      <h1 className="text-h2 text-ink">
-        {SITE_NAME} — {SITE_TAGLINE}
-      </h1>
+    <main>
+      <Hero />
+      <Services />
+      <Concepts />
+      <Process />
+      <Plan />
+      <FinalCta />
     </main>
   )
 }

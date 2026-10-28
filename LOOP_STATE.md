@@ -24,10 +24,10 @@ Atualize este arquivo ao fim de cada sessão de agente.
 | Fase 00 upgrade Next 16 | ✅ Next 16.4.2 + React 19.2.9; `docs/qa/baseline-next16.md` | 2026-10-22 |
 | Fase 01 design-system | ✅ tokens, tipo D1, primitivos, `/_design`; wordmark A/B aguarda o André | 2026-10-22 |
 | Fase 02 chrome | ✅ header, Trail Index, rodapé, Lenis condicional, fade de entrada | 2026-10-26 |
-| Fase 03a hero + Sol-Índice (camadas 0/1, lançamento) | ⬜ | |
-| Fase 04 sections-home | ⬜ | |
-| Fase 05 inner-pages | ⬜ | |
-| Fase 06 seo-perf-qa-deploy (fecha o lançamento) | ⬜ | |
+| Fase 03a hero + Sol-Índice (camadas 0/1, lançamento) | ✅ hero tipográfico, sol em camadas 0/1, trilha | 2026-10-26 |
+| Fase 04 sections-home | ✅ serviços, processo, plano e CTA final | 2026-10-27 |
+| Fase 05 inner-pages | ✅ serviços, 3 conceitos, sobre, contato, privacidade, 404; sem blog e sem termos | 2026-10-28 |
+| Fase 06 seo-perf-qa-deploy (fecha o lançamento) | código na branch `fase-00-next16`; a Vercel publica pelo Git (`docs/qa/fase-06.md`) | 2026-10-28 |
 | Fase 03b cursor-nó v2 + sol camada 2 (pós-lançamento) | ⬜ | |
 | Fase 07 pós-lançamento | ⬜ | |
 
@@ -46,8 +46,8 @@ Atualize este arquivo ao fim de cada sessão de agente.
 Lista completa em `docs/INTAKE.md` § Pendências (P1 a P14). Bloqueantes agora:
 
 - ~~P1 logo em vetor~~ recebido (20/10); resta aprovar a versão simplificada na Fase 01 · **P2** fotos do André · **P3** texto de "Quem assina" e diferenciais públicos · **P9** referências do André · **P10** definição do diagnóstico gratuito.
-- Antes da fase 04/05: P6 (checks reais), P7 (serviços), P8 (3 conceitos), P13 (FAQ), P14 (autorização de Bárbara).
-- Antes da fase 06/07: P4 (e-mail e dados legais), P5 (revisão jurídica), P11 (Umami), P12 (nome/domínio).
+- Ainda sem página: **P6** checks reais, **P7** detalhe de cada serviço, **P8** brief real dos 3 conceitos (a fase 05 publicou marcas fictícias), **P13** FAQ, **P14** origem do nome, **P2/P3** foto e texto de quem assina.
+- Seguem para a fase 07, ou para quando o André tiver o dado: P4 (e-mail e dados legais), P5 (revisão jurídica), P11 (Umami), P12 (nome/domínio). A fase 06 não inventou e-mail, FAQ nem id do Umami.
 - ~~Pendência técnica `scene2d.dll`~~ → em quarentena (`D:\andre\quarentena\`). `design-taste-frontend` **não será reinstalada**; `gpt-taste` **vetada** (quarentena); `gsap-core`, `gsap-scrolltrigger` e `vercel-react-best-practices` estão **fora de uso**. **Reinstalar qualquer skill é pendência futura, só com aprovação do André após verificar fonte e hash.**
 - **P22:** AllSucos/LimaCitrus **não** servem de fonte para os projetos conceito (P8) sem auditoria.
 
@@ -70,7 +70,7 @@ Lista completa em `docs/INTAKE.md` § Pendências (P1 a P14). Bloqueantes agora:
 | ID | Status |
 |----|--------|
 | P15 | ✅ BRIEF e rodada 2 aprovados. **Gate condicional (22/10):** Fase 00 só depois dos passos 1–6 e da revisão de `docs/qa/PRE-FASE00.md` |
-| P16 | ⏳ Amostras em `/_design`: **A** Rajdhani latin 8,8 KB · **B** SVG em curvas 3,2 KB (padrão). A escolha final é do André |
+| P16 | ⏳ Header no ar com o desenho oficial e o texto vivo de `abmsol_svg.svg` (Rajdhani Medium). A rota `/_design` saiu na fase 06. O componente de curvas continua em `components/brand/Wordmark.tsx`, sem página. A troca formal continua com o André se ele quiser revisitar |
 | P17 | ✅ Confirmado: cursor v2 e camada 2 do sol na 03b (pós-lançamento) |
 | P18 | 👤 Ação do André (Google Meu Negócio); sem ação do agente |
 | P19 | 👤 Ação do André (Instagram); só entra no rodapé quando existir e tiver conteúdo |
@@ -82,8 +82,13 @@ Lista completa em `docs/INTAKE.md` § Pendências (P1 a P14). Bloqueantes agora:
 
 - 22/10/2026: André autorizou o **Cursor Browser (MCP `cursor-ide-browser`)** para toda validação visual, de teclado, de contraste e de desempenho (CDP: `Emulation.setCPUThrottlingRate`, `Runtime.evaluate`, capturas). Nenhum `@playwright/test`; nada instalado.
 
+## QA
+
+- 28/10/2026: `/qa-static-export` da fase 05. Build PASS (11 páginas, sitemap com 8 URLs). Lint PASS. Não bloqueia a fase 06.
+- 28/10/2026: fase 06. Build PASS (10 páginas, sitemap com 8 URLs, orçamento dentro dos tetos). Lint PASS. `noindex` no export. Publicação pela integração Git da Vercel. Detalhe em `docs/qa/fase-06.md`.
+
 ## Próximo passo
 
-1. Fase 02 concluída na branch `fase-00-next16`. Chrome em todas as rotas; `/servicos/` e `/sobre/` caem no 404 da marca até a fase 05. Prova da fase 01 segue em `/_design` (noindex).
-2. **P16 ainda é do André:** A (Rajdhani, 8,8 KB latin) ou B (curvas, 3,2 KB, padrão já no header). A marca simplificada em 32 px deixa os nós com cerca de 2 px — aprovação visual pendente.
-3. Quando liberar: `/phase-executor` em `docs/phases/03a-hero.md`. Depois 04, 05, 06 e, pós-lançamento, 03b. Não antecipar o cursor-nó.
+1. Fases 03a a 06 na branch `fase-00-next16`, enviadas ao origin para a Vercel publicar. `noindex` segue até o domínio final (`NEXT_PUBLIC_NOINDEX=0` só na fase 07). URL esperada: `https://abmsol.vercel.app`.
+2. O evento no Umami só entra com P11. Lighthouse, axe, Rich Results e Tab real ficam com o André depois que a URL responder.
+3. Quando liberar o domínio: fase 07. A 03b (cursor-nó v2 e sol camada 2) continua depois do lançamento.

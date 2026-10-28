@@ -25,6 +25,7 @@ export function LegalPageLayout({ document, children }: LegalPageLayoutProps) {
               day: '2-digit',
               month: 'long',
               year: 'numeric',
+              timeZone: 'UTC',
             })}
           </p>
         )}
@@ -33,7 +34,13 @@ export function LegalPageLayout({ document, children }: LegalPageLayoutProps) {
         {children}
       </div>
       <p className="is-muted mt-12 text-sm">
-        <Link href="/" className="underline-offset-4 hover:underline">
+        <Link
+          href="/"
+          className="underline-offset-4 hover:underline"
+          data-cursor="link"
+          data-cursor-label="Início"
+          data-cursor-theme="dark"
+        >
           Voltar ao início
         </Link>
       </p>

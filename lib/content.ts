@@ -40,30 +40,3 @@ export function getLegalDocument(slug: LegalSlug): MarkdownDocument {
   return parseMarkdownFile(filePath, slug)
 }
 
-export function getBlogPosts(): MarkdownDocument[] {
-  const blogDir = path.join(contentRoot, 'blog')
-  if (!fs.existsSync(blogDir)) return []
-
-  return fs
-    .readdirSync(blogDir)
-    .filter((file) => file.endsWith('.md'))
-    .map((file) => {
-      const slug = file.replace(/\.md$/, '')
-      return parseMarkdownFile(path.join(blogDir, file), slug)
-    })
-    .sort((a, b) => {
-      const dateA = a.publishedAt ?? a.updatedAt ?? ''
-      const dateB = b.publishedAt ?? b.updatedAt ?? ''
-      return dateB.localeCompare(dateA)
-    })
-}
-
-export function getBlogPost(slug: string): MarkdownDocument | undefined {
-  const filePath = path.join(contentRoot, 'blog', `${slug}.md`)
-  if (!fs.existsSync(filePath)) return undefined
-  return parseMarkdownFile(filePath, slug)
-}
-
-export function getBlogSlugs(): string[] {
-  return getBlogPosts().map((post) => post.slug)
-}

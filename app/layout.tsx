@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 import { Instrument_Sans, JetBrains_Mono, Syne } from 'next/font/google'
+import Script from 'next/script'
 import { AppShell } from '@/components/layout/AppShell'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { SmoothScroll } from '@/components/providers/SmoothScroll'
+import { UMAMI_SRC, UMAMI_WEBSITE_ID, umamiEnabled } from '@/lib/analytics'
 import { createMetadata } from '@/lib/seo'
-import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE } from '@/lib/site'
 import './globals.css'
 
 const syne = Syne({
@@ -28,17 +29,12 @@ const mono = JetBrains_Mono({
   display: 'swap',
 })
 
-const baseMetadata = createMetadata({
-  title: `${SITE_NAME} — ${SITE_TAGLINE}`,
-  description: SITE_DESCRIPTION,
+export const metadata: Metadata = createMetadata({
+  title: 'Site profissional e suporte de TI em Rio Preto | ABMSOL',
+  description:
+    'Sites premium, sistemas sob medida e suporte de TI com um parceiro só. Sediados em Rio Preto (SP), com atendimento online em todo o Brasil. Contato no WhatsApp.',
   path: '/',
 })
-
-export const metadata: Metadata = {
-  ...baseMetadata,
-  // noindex em *.vercel.app até o domínio final (D7). Remover na fase 06/07.
-  robots: { index: false, follow: false },
-}
 
 export default function RootLayout({
   children,
@@ -54,6 +50,9 @@ export default function RootLayout({
           }}
         />
         <JsonLd />
+        {umamiEnabled() ? (
+          <Script src={UMAMI_SRC} data-website-id={UMAMI_WEBSITE_ID} strategy="afterInteractive" />
+        ) : null}
         <SmoothScroll>
           <AppShell>{children}</AppShell>
         </SmoothScroll>

@@ -3,33 +3,34 @@ import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { readFileSync } from 'fs'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
-const root = join(__dirname, '..')
+const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const outDir = join(root, 'public', 'images')
-const site = JSON.parse(readFileSync(join(root, 'site.config.json'), 'utf8'))
+const mark = readFileSync(join(root, 'public/logo/mark.svg'))
+const navy = { r: 0x0b, g: 0x17, b: 0x3f, alpha: 1 }
 
-const width = 1200
-const height = 630
+async function markOnNavy(width, height, markSize) {
+  const drawn = await sharp(mark)
+    .resize(markSize, markSize, {
+      fit: 'contain',
+      background: { r: 0, g: 0, b: 0, alpha: 0 },
+    })
+    .png()
+    .toBuffer()
+  const meta = await sharp(drawn).metadata()
+  const left = Math.round((width - meta.width) / 2)
+  const top = Math.round((height - meta.height) / 2)
+  return sharp({
+    create: { width, height, channels: 4, background: navy },
+  })
+    .composite([{ input: drawn, left, top }])
+    .png()
+    .toBuffer()
+}
 
-const gradientSvg = `
-<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0a0a0a"/>
-      <stop offset="50%" stop-color="#2b2b2b"/>
-      <stop offset="100%" stop-color="#c9a96e"/>
-    </linearGradient>
-  </defs>
-  <rect width="100%" height="100%" fill="url(#g)"/>
-  <ellipse cx="900" cy="120" rx="280" ry="180" fill="#f7f4ef" opacity="0.1"/>
-  <text x="80" y="300" font-family="Georgia, serif" font-size="64" font-weight="600" fill="#f7f4ef">${site.name}</text>
-  <text x="80" y="360" font-family="Arial, sans-serif" font-size="24" fill="#e2c99a">Site premium · Next.js export</text>
-</svg>
-`
+const og = await markOnNavy(1200, 630, 520)
+await sharp(og).webp({ quality: 85 }).toFile(join(outDir, 'og-image.webp'))
+await sharp(og).png({ compressionLevel: 9 }).toFile(join(root, 'public', 'og.png'))
+const poster = await markOnNavy(1200, 1200, 780)
+await sharp(poster).webp({ quality: 85 }).toFile(join(outDir, 'hero-poster.webp'))
 
-const baseBuffer = await sharp(Buffer.from(gradientSvg)).png().toBuffer()
-
-await sharp(baseBuffer).webp({ quality: 85 }).toFile(join(outDir, 'og-image.webp'))
-await sharp(baseBuffer).webp({ quality: 85 }).toFile(join(outDir, 'hero-poster.webp'))
-
-console.log('Generated og-image.webp and hero-poster.webp')
+console.log('Generated og-image.webp, og.png and hero-poster.webp from the mark on the navy plate')

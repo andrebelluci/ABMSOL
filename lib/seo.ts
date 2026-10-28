@@ -3,7 +3,15 @@ import { SITE_NAME, SITE_URL } from '@/lib/site'
 
 export { SITE_NAME, SITE_URL }
 
-export const DEFAULT_OG = '/images/logo/og-default.jpg'
+export const DEFAULT_OG = '/images/og-image.webp'
+
+/**
+ * `NEXT_PUBLIC_NOINDEX=0` libera a indexação no domínio final (fase 07).
+ * Sem a variável, o export fica noindex — o host da Vercel não existe em runtime.
+ */
+export function isNoindex() {
+  return process.env.NEXT_PUBLIC_NOINDEX !== '0'
+}
 
 interface PageMetadataOptions {
   title: string
@@ -19,13 +27,16 @@ export function createMetadata({
   ogImage = DEFAULT_OG,
 }: PageMetadataOptions): Metadata {
   const url = `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`
+  const noindex = isNoindex()
 
   return {
     metadataBase: new URL(SITE_URL),
     title,
     description,
     alternates: { canonical: url },
-    robots: { index: true, follow: true },
+    robots: noindex
+      ? { index: false, follow: false }
+      : { index: true, follow: true },
     openGraph: {
       title,
       description,
