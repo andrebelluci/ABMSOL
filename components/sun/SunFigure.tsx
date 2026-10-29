@@ -10,6 +10,8 @@ export function SunFigure() {
         width={1536}
         height={1548}
         unoptimized
+        priority
+        fetchPriority="high"
         className="h-full w-full object-contain"
       />
     </div>

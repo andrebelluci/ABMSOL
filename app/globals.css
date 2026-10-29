@@ -264,10 +264,6 @@ html[data-nav-open] .whatsapp-bar {
   pointer-events: none;
 }
 
-html[data-sun-draw='pending'] .hero-sun {
-  opacity: 0;
-}
-
 .page-trail {
   position: fixed;
   top: 4.5rem;

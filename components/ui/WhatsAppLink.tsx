@@ -25,7 +25,6 @@ export function WhatsAppLink({
       href={whatsappHref(message)}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Conversar no WhatsApp"
       className={cn(
         variant === 'solid'
           ? 'btn-primary inline-flex min-h-12 min-w-12 items-center justify-center rounded-control bg-gold px-5 font-sans text-body font-medium text-navy-900'

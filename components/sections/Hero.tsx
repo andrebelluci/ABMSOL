@@ -4,8 +4,6 @@ import { PageTrail } from '@/components/sun/PageTrail'
 import { WhatsAppLink } from '@/components/ui/WhatsAppLink'
 import { WHATSAPP_MESSAGES } from '@/lib/whatsapp'
 
-const SUN_DRAW_SCRIPT = `(function(){var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;var connection=navigator.connection;if(!reduce&&!(connection&&connection.saveData))document.documentElement.setAttribute('data-sun-draw','pending');})();`
-
 export function Hero() {
   return (
     <section
@@ -14,7 +12,6 @@ export function Hero() {
       className="hero"
       data-cursor-theme="dark"
     >
-      <script dangerouslySetInnerHTML={{ __html: SUN_DRAW_SCRIPT }} />
       <SunFigure />
       <div className="hero-copy">
         <p className="font-mono text-label uppercase text-mint">

@@ -3,30 +3,17 @@
 import { useEffect } from 'react'
 import { gsap, mountGsap } from '@/lib/gsap'
 
-function revealSun(root: HTMLElement, hero: HTMLElement) {
-  gsap.fromTo(
-    root,
-    { opacity: 0 },
-    {
-      opacity: 1,
-      duration: 0.9,
-      ease: 'power3.out',
-      onComplete: () => {
-        document.documentElement.setAttribute('data-sun-draw', 'done')
-        gsap.set(root, { clearProps: 'opacity' })
-        gsap.to(root, {
-          opacity: 0,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: hero,
-            start: 'bottom 92%',
-            end: 'bottom 40%',
-            scrub: true,
-          },
-        })
-      },
+function fadeSunOnScroll(root: HTMLElement, hero: HTMLElement) {
+  gsap.to(root, {
+    opacity: 0,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: hero,
+      start: 'bottom 92%',
+      end: 'bottom 40%',
+      scrub: true,
     },
-  )
+  })
 }
 
 export function SunCircuit() {
@@ -43,7 +30,7 @@ export function SunCircuit() {
     const release = mountGsap(root, () => {
       const motion = gsap.matchMedia()
       motion.add('(prefers-reduced-motion: no-preference)', () => {
-        revealSun(root, hero)
+        fadeSunOnScroll(root, hero)
       })
     })
 
