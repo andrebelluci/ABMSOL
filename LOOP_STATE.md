@@ -89,6 +89,6 @@ Lista completa em `docs/INTAKE.md` § Pendências (P1 a P14). Bloqueantes agora:
 
 ## Próximo passo
 
-1. O canônico do código é `https://abmsol.com.br` e o export indexa. `abmsol.vercel.app` serve o mesmo HTML. Search Console, `DESIGN.md` e a submissão ficam com o André.
-2. Em 28/10/2026 o DNS público de `abmsol.com.br` (Registro.br, `a.auto.dns.br`) ainda não tinha registro A nem CNAME, e `www` não existia. Os endereços que a Vercel mostra precisam estar salvos nesse DNS para o domínio abrir.
+1. `https://abmsol.com.br` está no ar (29/10/2026) e redireciona para `https://www.abmsol.com.br/`. O HTML indexa, com canônico `https://abmsol.com.br/`. No painel da Vercel, o apex precisa ser o domínio principal para o 200 e o canônico coincidirem.
+2. Search Console, `DESIGN.md` e a submissão ficam com o André. O sitemap passa a ser gerado em `public/sitemap.xml` antes do export (o arquivo só em `out/` não ia para a Vercel). `llms.txt` já responde em `/llms.txt`.
 3. O evento no Umami só entra com P11. Lighthouse, axe, Rich Results e Tab real ficam com o André. A 03b continua depois do lançamento.

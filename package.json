@@ -7,7 +7,7 @@
     "dev:clean": "node -e \"try{require('fs').rmSync('.next',{recursive:true,force:true})}catch(e){}\" && next dev -p 3000",
     "generate:images": "node scripts/generate-images.mjs",
     "prebuild": "npm run generate:images",
-    "build": "next build && node scripts/generate-sitemap.js && node scripts/check-budget.mjs",
+    "build": "node scripts/generate-sitemap.js && next build && node scripts/check-budget.mjs",
     "prestart": "node -e \"try{require('fs').accessSync('out/index.html')}catch(e){console.error('Rode npm run build antes de npm start.');process.exit(1)}\"",
     "start": "npx --yes serve@14 out -l 3000",
     "lint": "eslint .",

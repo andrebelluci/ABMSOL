@@ -1,5 +1,5 @@
 /**
- * Gera sitemap.xml após o build.
+ * Gera public/sitemap.xml antes do build, para o export copiar o arquivo.
  * Oito URLs: home, serviços, três conceitos, sobre, contato, privacidade.
  */
 
@@ -9,12 +9,8 @@ const path = require('path')
 const siteConfig = require('../site.config.json')
 const BASE_URL = siteConfig.url.replace(/\/$/, '')
 
+const publicDir = path.join(__dirname, '..', 'public')
 const outDir = path.join(__dirname, '..', 'out')
-
-if (!fs.existsSync(outDir)) {
-  console.error('Error: /out não encontrado. Rode npm run build primeiro.')
-  process.exit(1)
-}
 
 const paths = [
   '/',
@@ -47,5 +43,9 @@ ${urls
 </urlset>
 `
 
-fs.writeFileSync(path.join(outDir, 'sitemap.xml'), xml, 'utf8')
-console.log(`sitemap.xml gerado (${urls.length} URLs)`)
+fs.mkdirSync(publicDir, { recursive: true })
+fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), xml, 'utf8')
+if (fs.existsSync(outDir)) {
+  fs.writeFileSync(path.join(outDir, 'sitemap.xml'), xml, 'utf8')
+}
+console.log(`sitemap.xml gerado em public/ (${urls.length} URLs)`)
