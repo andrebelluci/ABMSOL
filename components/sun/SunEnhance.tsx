@@ -13,7 +13,7 @@ export function SunEnhance() {
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
-    if (tier !== 1) return
+    if (tier < 1) return
     const start = () => setReady(true)
     if (typeof window.requestIdleCallback === 'function') {
       const id = window.requestIdleCallback(start, { timeout: 300 })
@@ -23,6 +23,6 @@ export function SunEnhance() {
     return () => window.clearTimeout(id)
   }, [tier])
 
-  if (!ready) return null
+  if (tier < 1 || !ready) return null
   return <SunRuntime />
 }

@@ -28,7 +28,7 @@ Atualize este arquivo ao fim de cada sessão de agente.
 | Fase 04 sections-home | ✅ serviços, processo, plano e CTA final | 2026-10-27 |
 | Fase 05 inner-pages | ✅ serviços, 3 conceitos, sobre, contato, privacidade, 404; sem blog e sem termos | 2026-10-28 |
 | Fase 06 seo-perf-qa-deploy (fecha o lançamento) | código na branch `fase-00-next16`; a Vercel publica pelo Git (`docs/qa/fase-06.md`) | 2026-10-28 |
-| Fase 03b cursor-nó v2 + sol camada 2 (pós-lançamento) | ⬜ | |
+| Fase 03b cursor-nó v2 + sol camada 2 (pós-lançamento) | ✅ no desktop ≥ 1280; sonda de FPS no código; CPU 4×/6× ainda com o André (`docs/qa/fase-03b.md`) | 2026-10-29 |
 | Fase 07 pós-lançamento | URL canônica `https://abmsol.com.br` no código; Search Console ainda com o André | 2026-10-28 |
 
 ## Fase 0 — o que foi feito
@@ -86,9 +86,10 @@ Lista completa em `docs/INTAKE.md` § Pendências (P1 a P14). Bloqueantes agora:
 
 - 28/10/2026: `/qa-static-export` da fase 05. Build PASS (11 páginas, sitemap com 8 URLs). Lint PASS. Não bloqueia a fase 06.
 - 28/10/2026: fase 06. Build PASS (10 páginas, sitemap com 8 URLs, orçamento dentro dos tetos). Lint PASS. `noindex` no export. Publicação pela integração Git da Vercel. Detalhe em `docs/qa/fase-06.md`.
+- 29/10/2026: fase 03b. Build PASS, lint PASS, orçamento dentro dos tetos. Cursor-nó e sol camada 2 só no desktop. Detalhe em `docs/qa/fase-03b.md`.
 
 ## Próximo passo
 
 1. `https://abmsol.com.br` está no ar (29/10/2026) e redireciona para `https://www.abmsol.com.br/`. O HTML indexa, com canônico `https://abmsol.com.br/`. No painel da Vercel, o apex precisa ser o domínio principal para o 200 e o canônico coincidirem.
 2. Search Console, `DESIGN.md` e a submissão ficam com o André. O sitemap passa a ser gerado em `public/sitemap.xml` antes do export (o arquivo só em `out/` não ia para a Vercel). `llms.txt` já responde em `/llms.txt`.
-3. O evento no Umami só entra com P11. Lighthouse, axe, Rich Results e Tab real ficam com o André. A 03b continua depois do lançamento.
+3. O evento no Umami só entra com P11. Lighthouse, axe, Rich Results e Tab real ficam com o André. A 03b está no código local; falta o commit, o push e a conferência do André com CPU 4×/6× no desktop.

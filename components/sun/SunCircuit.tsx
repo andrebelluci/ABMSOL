@@ -1,7 +1,13 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
+import { useSunTier } from '@/components/sun/useSunTier'
 import { gsap, mountGsap } from '@/lib/gsap'
+
+const SunLayer2 = dynamic(() => import('@/components/sun/SunLayer2').then((mod) => mod.SunLayer2), {
+  ssr: false,
+})
 
 function fadeSunOnScroll(root: HTMLElement, hero: HTMLElement) {
   gsap.to(root, {
@@ -17,6 +23,8 @@ function fadeSunOnScroll(root: HTMLElement, hero: HTMLElement) {
 }
 
 export function SunCircuit() {
+  const tier = useSunTier()
+
   useEffect(() => {
     const root = document.querySelector<HTMLElement>('[data-sun-root]')
     const hero = document.querySelector<HTMLElement>('[data-hero]')
@@ -40,5 +48,6 @@ export function SunCircuit() {
     }
   }, [])
 
-  return null
+  if (tier !== 2) return null
+  return <SunLayer2 />
 }

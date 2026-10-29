@@ -1,3 +1,4 @@
+import { CursorMount } from '@/components/cursor/CursorMount'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { MobileNav } from '@/components/layout/MobileNav'
@@ -22,6 +23,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <Footer />
       </div>
       <WhatsAppBar />
+      <CursorMount />
     </>
   )
 }
