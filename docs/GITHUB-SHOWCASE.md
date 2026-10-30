@@ -1,8 +1,19 @@
 # GitHub & showcase — apresentação profissional
 
-> Categoria **4** do ecossistema Awwwards: o código não basta — a **entrega** conta para GitHub, portfólio, recrutadores e jurados.
+> Checklist pós-projeto. No caso da ABMSOL, a submissão ao Awwwards foi recusada em 29/10/2026: o trabalho seguinte é refinar o site no ar.
 
 Isso **não** é skill de desenvolvimento. É checklist **pós-projeto** (após fase 06).
+
+## Status ABMSOL (29/10/2026)
+
+| Item | Estado |
+|------|--------|
+| Domínio `abmsol.com.br` como principal | feito no painel |
+| Sitemap no Search Console | enviado |
+| `docs/DESIGN.md` | preenchido |
+| Submissão Awwwards | não será feita |
+| README com captura e GIF | ainda não |
+| Vídeo de 30–60 s | ainda não. Serve ao refino, não a um júri |
 
 ## Para que serve
 
@@ -31,11 +42,11 @@ Isso **não** é skill de desenvolvimento. É checklist **pós-projeto** (após 
 
 ### docs/DESIGN.md
 
-- [ ] Preencher template `docs/DESIGN.md`
-- [ ] Conceito nomeado (não "site moderno")
-- [ ] Tabela de referências com URLs
-- [ ] Chrome explicado (cursor, hero, motion)
-- [ ] Decisões técnicas (por que static export)
+- [x] Preencher template `docs/DESIGN.md`
+- [x] Conceito nomeado (não "site moderno")
+- [x] Tabela de referências com URLs
+- [x] Chrome explicado (cursor, hero, motion)
+- [x] Decisões técnicas (por que static export)
 
 ### Vídeo / GIF demo
 
@@ -52,13 +63,9 @@ Isso **não** é skill de desenvolvimento. É checklist **pós-projeto** (após 
 - [ ] Licença clara se código público
 - [ ] **Não** commitar assets pesados sem LFS — WebP comprimido
 
-### Awwwards (se submeter)
+### Awwwards
 
-- [ ] URL live estável
-- [ ] Case study: conceito, desafio, solução, stack
-- [ ] Créditos de equipe
-- [ ] Mobile testado em dispositivo real
-- [ ] Performance aceitável (não precisa 100, mas sem jank)
+Fora do plano da ABMSOL. O André decidiu refinar o site em vez de submeter.
 
 ---
 
