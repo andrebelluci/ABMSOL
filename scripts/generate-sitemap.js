@@ -1,6 +1,6 @@
 /**
  * Gera public/sitemap.xml antes do build, para o export copiar o arquivo.
- * Oito URLs: home, serviços, três conceitos, sobre, contato, privacidade.
+ * Nove URLs: home, serviços, projetos, três conceitos, sobre, contato, privacidade.
  */
 
 const fs = require('fs')

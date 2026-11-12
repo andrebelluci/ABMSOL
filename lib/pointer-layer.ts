@@ -15,9 +15,8 @@ export function isPointerDegraded() {
   return degraded
 }
 
-/** Camada 2 e cursor-nó: desktop com ponteiro fino, sem os fallbacks do F8. */
-export function pointerLayerAllowed() {
-  if (typeof window === 'undefined' || degraded) return false
+function desktopMotionAllowed() {
+  if (typeof window === 'undefined') return false
   if (!window.matchMedia('(pointer: fine) and (hover: hover) and (min-width: 1280px)').matches) {
     return false
   }
@@ -28,6 +27,17 @@ export function pointerLayerAllowed() {
   return true
 }
 
+/** O sol 3D fica no desktop mesmo se o cursor-nó for rebaixado por FPS. */
+export function plateLayerAllowed() {
+  return desktopMotionAllowed()
+}
+
+/** Camada 2 e cursor-nó: desktop com ponteiro fino, sem os fallbacks do F8. */
+export function pointerLayerAllowed() {
+  if (degraded) return false
+  return desktopMotionAllowed()
+}
+
 export function degradePointerLayer() {
   if (degraded) return
   degraded = true
@@ -35,7 +45,7 @@ export function degradePointerLayer() {
   listeners.forEach((listener) => listener())
 }
 
-/** Frame médio acima de 24 ms por 500 ms rebaixa a camada e devolve o cursor nativo. */
+/** Depois de 2 s de aquecimento, frame médio acima de 24 ms por 500 ms rebaixa a camada. */
 export function startFpsProbe() {
   if (typeof window === 'undefined') return () => {}
   users += 1
@@ -44,7 +54,7 @@ export function startFpsProbe() {
     let origin = last
     let acc = 0
     let frames = 0
-    let primed = false
+      let warmup = 4
     const tick = () => {
       if (document.hidden) {
         last = performance.now()
@@ -63,8 +73,8 @@ export function startFpsProbe() {
       origin = now
       acc = 0
       frames = 0
-      if (!primed) {
-        primed = true
+      if (warmup > 0) {
+        warmup -= 1
         return
       }
       if (count >= 8 && avg > 24) degradePointerLayer()

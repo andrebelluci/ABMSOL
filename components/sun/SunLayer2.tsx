@@ -11,7 +11,7 @@ const VB_H = 1547.5811
 
 const SUN_TARGETS = [
   { id: 'servicos', href: '/servicos/', label: '01 SERVIÇOS', place: 'n', node: SUN_CARDINAL_NODES[0], ray: SUN_RAYS[0] },
-  { id: 'projetos', href: '/#projetos', label: '02 PROJETOS', place: 'e', node: SUN_CARDINAL_NODES[1], ray: SUN_RAYS[1] },
+  { id: 'projetos', href: '/projetos/', label: '02 PROJETOS', place: 'e', node: SUN_CARDINAL_NODES[1], ray: SUN_RAYS[1] },
   { id: 'sobre', href: '/sobre/', label: '04 SOBRE', place: 'w', node: SUN_CARDINAL_NODES[2], ray: SUN_RAYS[2] },
   { id: 'como', href: '/#como-trabalhamos', label: '03 COMO TRABALHAMOS', place: 's', node: SUN_CARDINAL_NODES[3], ray: SUN_RAYS[3] },
 ] as const
@@ -49,6 +49,7 @@ export function SunLayer2() {
     let box = sun.getBoundingClientRect()
 
     const cache = () => {
+      if (sun.classList.contains('is-plate')) return
       box = sun.getBoundingClientRect()
       const scale = Math.min(box.width / VB_W, box.height / VB_H)
       if (scale <= 0) return

@@ -1,3 +1,4 @@
+import { Behind } from '@/components/pages/Behind'
 import { aboutPage, aboutSteps } from '@/lib/content/about'
 import { createMetadata } from '@/lib/seo'
 

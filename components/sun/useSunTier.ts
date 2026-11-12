@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react'
-import { pointerLayerAllowed, subscribePointerLayer } from '@/lib/pointer-layer'
+import { plateLayerAllowed, pointerLayerAllowed, subscribePointerLayer } from '@/lib/pointer-layer'
 
 export type SunTier = 0 | 1 | 2
 
@@ -37,4 +37,8 @@ function subscribeSunTier(onChange: () => void) {
 
 export function useSunTier() {
   return useSyncExternalStore(subscribeSunTier, resolveSunTier, () => 0 as SunTier)
+}
+
+export function usePlateLayer() {
+  return useSyncExternalStore(subscribeSunTier, plateLayerAllowed, () => false)
 }

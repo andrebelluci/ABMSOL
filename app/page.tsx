@@ -1,4 +1,6 @@
+import { MarkField } from '@/components/brand/MarkField'
 import { Concepts } from '@/components/sections/Concepts'
+import { SectionPass } from '@/components/sections/SectionPass'
 import { FinalCta } from '@/components/sections/FinalCta'
 import { Hero } from '@/components/sections/Hero'
 import { Plan } from '@/components/sections/Plan'
@@ -9,6 +11,8 @@ export default function HomePage() {
   return (
     <main>
       <Hero />
+      <MarkField />
+      <SectionPass />
       <Services />
       <Concepts />
       <Process />

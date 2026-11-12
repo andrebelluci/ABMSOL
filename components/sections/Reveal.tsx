@@ -2,6 +2,18 @@
 
 import { useEffect, useRef } from 'react'
 
+function place(progress: number) {
+  if (progress < 0.2) {
+    const t = progress / 0.2
+    return { opacity: t, y: 48 * (1 - t) }
+  }
+  if (progress > 0.78) {
+    const t = (progress - 0.78) / 0.22
+    return { opacity: 1 - t, y: -36 * t }
+  }
+  return { opacity: 1, y: 0 }
+}
+
 export function Reveal({ children }: { children: React.ReactNode }) {
   const scope = useRef<HTMLDivElement>(null)
 
@@ -17,21 +29,20 @@ export function Reveal({ children }: { children: React.ReactNode }) {
         const motion = gsap.matchMedia()
         motion.add('(prefers-reduced-motion: no-preference)', () => {
           gsap.utils.toArray<HTMLElement>('[data-reveal]', root).forEach((item) => {
-            gsap.fromTo(
-              item,
-              { opacity: 0, y: 28 },
-              {
-                opacity: 1,
-                y: 0,
-                duration: 0.45,
-                ease: 'power3.out',
-                scrollTrigger: {
-                  trigger: item,
-                  start: 'top 85%',
-                  toggleActions: 'play none none none',
-                },
+            gsap.set(item, { opacity: 0, y: 48 })
+            const proxy = { p: 0 }
+            const tween = gsap.to(proxy, {
+              p: 1,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: item,
+                start: 'top 96%',
+                end: 'bottom 4%',
+                scrub: true,
               },
-            )
+              onUpdate: () => gsap.set(item, place(proxy.p)),
+            })
+            gsap.set(item, place(tween.scrollTrigger?.progress ?? 0))
           })
         })
       })

@@ -7,6 +7,7 @@ const nextConfig = {
   images: { unoptimized: true },
   basePath,
   assetPrefix: basePath ? `${basePath}/` : undefined,
+  agentRules: false,
 }
 
 module.exports = nextConfig

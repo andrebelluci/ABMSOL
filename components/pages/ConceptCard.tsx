@@ -5,6 +5,7 @@ export function ConceptCard({ concept }: { concept: Concept }) {
   return (
     <article
       className="concept-row"
+      data-reveal
       data-cursor="card"
       data-cursor-label="Ver o conceito"
       data-cursor-theme="dark"

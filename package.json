@@ -6,7 +6,7 @@
     "dev": "next dev -p 3000",
     "dev:clean": "node -e \"try{require('fs').rmSync('.next',{recursive:true,force:true})}catch(e){}\" && next dev -p 3000",
     "generate:images": "node scripts/generate-images.mjs",
-    "prebuild": "npm run generate:images",
+    "prebuild": "npm run generate:images && node scripts/prepare-sun-models.mjs",
     "build": "node scripts/generate-sitemap.js && next build && node scripts/check-budget.mjs",
     "prestart": "node -e \"try{require('fs').accessSync('out/index.html')}catch(e){console.error('Rode npm run build antes de npm start.');process.exit(1)}\"",
     "start": "npx --yes serve@14 out -l 3000",
@@ -29,12 +29,14 @@
     "react": "19.2.9",
     "react-dom": "19.2.9",
     "react-markdown": "^10.1.0",
-    "tailwind-merge": "^3.6.0"
+    "tailwind-merge": "^3.6.0",
+    "three": "^0.187.0"
   },
   "devDependencies": {
     "@types/node": "^20.14.9",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.7",
+    "@types/three": "^0.187.0",
     "autoprefixer": "^10.4.19",
     "eslint": "10.13.0",
     "eslint-config-next": "16.4.2",

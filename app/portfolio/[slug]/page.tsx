@@ -49,10 +49,13 @@ export default async function ConceptPage({ params }: PageProps) {
           {concept.challenge}
         </p>
         <p className="is-muted mt-6 max-w-2xl text-body" data-cursor-avoid="">
+          {concept.approach}
+        </p>
+        <p className="is-muted mt-6 max-w-2xl text-body" data-cursor-avoid="">
           Esta peça mostra um caminho de design. Não houve cliente, depoimento nem número de resultado.
         </p>
         <Link
-          href="/#projetos"
+          href="/projetos/"
           className="mt-10 inline-flex min-h-12 items-center text-mint"
           data-cursor="link"
           data-cursor-label="Projetos"
