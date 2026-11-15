@@ -16,13 +16,11 @@ export function HeroFlowResult({
   needId,
   onBack,
   onRedo,
-  onClose,
 }: {
   profileId: ProfileId
   needId: NeedId
   onBack: () => void
   onRedo: () => void
-  onClose: () => void
 }) {
   const profile = getProfile(profileId)
   const need = getNeed(needId)
@@ -56,9 +54,6 @@ export function HeroFlowResult({
         </button>
         <button type="button" className="hero-flow-text-btn" onClick={onRedo}>
           {heroFlowUi.redoLabel}
-        </button>
-        <button type="button" className="hero-flow-text-btn" onClick={onClose}>
-          {heroFlowUi.closeLabel}
         </button>
       </div>
     </div>

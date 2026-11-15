@@ -333,11 +333,19 @@ html[data-nav-open] .whatsapp-bar {
   pointer-events: none;
 }
 
-/* H1 permanece visível, mas em escala de fluxo para caber painel + Nó no 1º viewport. */
+/* H1 permanece no DOM, compacto, para caber painel + Nó no shell rolável. */
 .hero[data-hero-flow='1'] .hero-title {
-  font-size: clamp(2.1rem, 3.6vw, 3.35rem);
+  font-size: clamp(1.65rem, 3.2vw, 2.75rem);
   line-height: 1.05;
   max-width: 14ch;
+}
+
+@media (max-height: 700px) {
+  .hero[data-hero-flow='1'] .hero-title {
+    font-size: clamp(1.25rem, 2.4vw, 1.85rem);
+    line-height: 1.08;
+    max-width: 16ch;
+  }
 }
 
 /* Lead/body/CTA cedem espaço ao painel; eyebrow + H1 ficam. */
@@ -357,13 +365,47 @@ html[data-nav-open] .whatsapp-bar {
   display: none;
 }
 
-/* Shell portaled: acima de sol (0) e mark-ray (0–1); abaixo do header (40). */
+html[data-scroll-lock] {
+  overflow: hidden;
+  scrollbar-gutter: stable;
+}
+
+/* Shell fixed sob o header: rolagem interna; Tab ainda alcança o menu. */
 .hero-flow-shell {
-  position: absolute;
-  inset: 0;
+  position: fixed;
+  top: 3.5rem;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 4;
-  padding-top: 7.25rem; /* abaixo de eyebrow + H1 */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-top: 0;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   pointer-events: none;
+}
+
+.hero-flow-exit {
+  position: fixed;
+  top: calc(3.5rem + 0.75rem);
+  right: 1rem;
+  z-index: 5;
+  display: inline-flex;
+  min-height: 3rem;
+  min-width: 3rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--c-gold) 55%, transparent);
+  background: color-mix(in srgb, var(--c-navy-900) 88%, transparent);
+  color: var(--c-ink);
+  font-size: 0.9rem;
+  pointer-events: auto;
+}
+
+.hero-flow-exit:focus-visible {
+  outline: 2px solid var(--c-mint);
+  outline-offset: 3px;
 }
 
 .hero-flow-scrim {
@@ -389,15 +431,15 @@ html[data-nav-open] .whatsapp-bar {
   width: min(100%, 40rem);
   max-width: 46rem;
   margin-top: 0;
-  padding: 0.25rem 1.25rem 2rem 2.25rem;
+  padding: 0.25rem 1.25rem 2rem 1.25rem;
   pointer-events: auto;
-  scroll-margin-top: 3.5rem;
 }
 
 .hero-flow-panel {
   position: relative;
   z-index: 2;
   opacity: 1;
+  padding-right: 0.25rem;
 }
 
 /* Mobile: palco ~164–180px sob o H1 (ordem: stage depois do título no fluxo = acima dos cards). */
@@ -420,14 +462,14 @@ html[data-nav-open] .whatsapp-bar {
 
 .no-stroke {
   stroke: var(--c-gold);
-  stroke-width: 1.6;
+  stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: none;
 }
 
 .no-joint {
-  fill: transparent;
+  fill: var(--c-navy-900);
   stroke: var(--c-gold);
   stroke-width: 1.2;
 }
@@ -457,9 +499,15 @@ html[data-nav-open] .whatsapp-bar {
 
 .hero-flow-options {
   margin-top: 1.25rem;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 0.75rem;
+}
+
+@media (min-width: 1024px) {
+  .hero-flow-options {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .hero-flow-card {
@@ -953,6 +1001,15 @@ html[data-nav-open] .whatsapp-bar {
   .hero-flow-layout {
     scroll-margin-top: 4rem; /* header lg:h-16 */
   }
+
+  .hero-flow-shell {
+    top: 4rem;
+  }
+
+  .hero-flow-exit {
+    top: calc(4rem + 1rem);
+    right: 1.5rem;
+  }
 }
 
 @media (min-width: 1280px) {
@@ -987,10 +1044,6 @@ html[data-nav-open] .whatsapp-bar {
     max-width: none;
     padding: 0 4rem 2rem 4.5rem;
     margin-top: 0;
-  }
-
-  .hero-flow-shell {
-    padding-top: 8.5rem;
   }
 
   .hero-flow-panel {

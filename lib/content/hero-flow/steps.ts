@@ -4,8 +4,8 @@ export const heroFlowUi = {
   stepNeed: { index: '02', title: 'O que você mais precisa agora?' },
   resultEyebrow: '03 — Seu caminho',
   resultNote: 'Comece por um diagnóstico gratuito.',
-  backLabel: 'Voltar',
-  closeLabel: 'Fechar',
+  backLabel: '← Voltar',
+  closeLabel: 'Voltar ao site',
   redoLabel: 'Refazer',
   whatsappResultLabel: 'Continuar no WhatsApp',
 } as const

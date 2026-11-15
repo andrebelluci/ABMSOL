@@ -3,119 +3,98 @@
 import { useEffect, useRef, type RefObject } from 'react'
 
 import type { NoPose } from '@/components/hero-flow/NoCharacter'
+import { POSES, paintPose, type Pose } from '@/components/hero-flow/rig'
 
-type TweenVars = Record<string, number | string>
+type TweenVars = Record<string, unknown>
 type GsapApi = {
   set: (target: object, vars: TweenVars) => void
-  to: (target: object, vars: TweenVars & { duration?: number; ease?: string }) => { kill: () => void }
-  timeline: (vars?: { repeat?: number; yoyo?: boolean }) => {
-    to: (
-      target: object,
-      vars: TweenVars & { duration?: number; ease?: string },
-      position?: number | string,
-    ) => unknown
+  to: (target: object, vars: TweenVars) => { kill: () => void }
+  timeline: (vars?: TweenVars) => {
+    to: (target: object, vars: TweenVars, position?: number | string) => unknown
     kill: () => void
   }
   killTweensOf: (target: object) => void
 }
 
-const POSES: Record<NoPose, Record<string, number>> = {
-  idle: {
-    'data-no-torso': 0,
-    'data-no-neck': 0,
-    'data-no-arm-l': 0,
-    'data-no-arm-r': 0,
-    'data-no-elbow-l': 0,
-    'data-no-elbow-r': 0,
-    'data-no-forearm-l': 0,
-    'data-no-forearm-r': 0,
-    'data-no-leg-l': 0,
-    'data-no-leg-r': 0,
-    'data-no-knee-l': 0,
-    'data-no-knee-r': 0,
-  },
-  wave: {
-    'data-no-torso': -2,
-    'data-no-neck': 6,
-    'data-no-arm-l': 8,
-    'data-no-arm-r': -28,
-    'data-no-elbow-l': 4,
-    'data-no-elbow-r': -70,
-    'data-no-forearm-l': 0,
-    'data-no-forearm-r': -40,
-    'data-no-leg-l': 4,
-    'data-no-leg-r': -4,
-    'data-no-knee-l': 0,
-    'data-no-knee-r': 0,
-  },
-  walk: {
-    'data-no-torso': 3,
-    'data-no-neck': -2,
-    'data-no-arm-l': 22,
-    'data-no-arm-r': -22,
-    'data-no-elbow-l': 18,
-    'data-no-elbow-r': 18,
-    'data-no-forearm-l': 8,
-    'data-no-forearm-r': 8,
-    'data-no-leg-l': -18,
-    'data-no-leg-r': 16,
-    'data-no-knee-l': 14,
-    'data-no-knee-r': -8,
-  },
-  arrive: {
-    'data-no-torso': 0,
-    'data-no-neck': 0,
-    'data-no-arm-l': 6,
-    'data-no-arm-r': -6,
-    'data-no-elbow-l': 10,
-    'data-no-elbow-r': 10,
-    'data-no-forearm-l': 0,
-    'data-no-forearm-r': 0,
-    'data-no-leg-l': -2,
-    'data-no-leg-r': 2,
-    'data-no-knee-l': 4,
-    'data-no-knee-r': 4,
-  },
-}
-
-const JOINT_ATTRS = Object.keys(POSES.idle)
-
-function killStageTweens(gsap: GsapApi, root: HTMLElement) {
+function killStageTweens(gsap: GsapApi, root: HTMLElement, cur: Pose) {
+  gsap.killTweensOf(cur)
   gsap.killTweensOf(root)
-  JOINT_ATTRS.forEach((attr) => {
-    const el = root.querySelector(`[${attr}]`)
-    if (el) gsap.killTweensOf(el)
-  })
-  root.querySelectorAll('[data-no-seed-trail], [data-no-seed-knot], [data-no-seed-node]').forEach((el) => {
-    gsap.killTweensOf(el)
-  })
+  root
+    .querySelectorAll('[data-no-seed-trail], [data-no-seed-knot], [data-no-seed-node]')
+    .forEach((el) => gsap.killTweensOf(el))
 }
 
-function applyPose(gsap: GsapApi, root: HTMLElement, pose: NoPose, reduced: boolean) {
-  const map = POSES[pose]
-  const duration = reduced ? 0 : 0.55
-  Object.entries(map).forEach(([attr, rotation]) => {
-    const el = root.querySelector(`[${attr}]`)
-    if (!el) return
-    gsap.killTweensOf(el)
-    const vars = { rotation, transformOrigin: '0px 0px' }
-    if (reduced || duration === 0) gsap.set(el, vars)
-    else gsap.to(el, { ...vars, duration, ease: 'power2.out' })
-  })
-}
+// Devolve a função que para tudo. Sem rotation/transformOrigin/scale do GSAP nos membros.
+function runPose(gsap: GsapApi, root: HTMLElement, cur: Pose, pose: NoPose, reduced: boolean) {
+  const paint = () => paintPose(root, cur)
+  const stop = () => gsap.killTweensOf(cur)
+  gsap.killTweensOf(cur)
 
-function startIdleBreath(gsap: GsapApi, root: HTMLElement, reduced: boolean) {
-  const torso = root.querySelector('[data-no-torso]')
-  const neck = root.querySelector('[data-no-neck]')
-  if (!torso || reduced) return () => undefined
-  const tl = gsap.timeline({ repeat: -1, yoyo: true })
-  tl.to(torso, { scaleY: 1.03, duration: 1.4, ease: 'sine.inOut', transformOrigin: '0px 0px' }, 0)
-  if (neck) tl.to(neck, { y: -1.2, duration: 1.4, ease: 'sine.inOut' }, 0)
-  return () => {
-    tl.kill()
-    gsap.set(torso, { scaleY: 1, y: 0 })
-    if (neck) gsap.set(neck, { y: 0 })
+  const breathe = (base: Pose) =>
+    gsap.to(cur, {
+      armL: base.armL + 2,
+      armR: base.armR - 2,
+      duration: 1.2,
+      ease: 'sine.inOut',
+      yoyo: true,
+      repeat: -1,
+      onUpdate: paint,
+    })
+
+  if (reduced) {
+    Object.assign(cur, pose === 'walk' ? POSES.idle : POSES[pose])
+    paint()
+    return stop
   }
+
+  if (pose === 'wave') {
+    gsap.to(cur, {
+      ...POSES.wave,
+      duration: 0.55,
+      ease: 'power2.out',
+      onUpdate: paint,
+      onComplete: () =>
+        gsap.to(cur, {
+          elbowR: 0,
+          duration: 0.4,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: 5,
+          onUpdate: paint,
+        }),
+    })
+  } else if (pose === 'walk') {
+    let n = 0
+    const step = (to: Pose) =>
+      gsap.to(cur, {
+        ...to,
+        duration: 0.45,
+        ease: 'sine.inOut',
+        onUpdate: paint,
+        onComplete: () => {
+          if (++n < 6) step(to === POSES.walkA ? POSES.walkB : POSES.walkA)
+          else
+            gsap.to(cur, {
+              ...POSES.idle,
+              duration: 0.5,
+              ease: 'power2.out',
+              onUpdate: paint,
+              onComplete: () => breathe(POSES.idle),
+            })
+        },
+      })
+    step(POSES.walkA)
+  } else {
+    const target = POSES[pose]
+    gsap.to(cur, {
+      ...target,
+      duration: 0.55,
+      ease: 'power2.out',
+      onUpdate: paint,
+      onComplete: () => breathe(target),
+    })
+  }
+  return stop
 }
 
 function playSeedScene(gsap: GsapApi, root: HTMLElement, reduced: boolean) {
@@ -143,35 +122,34 @@ function playSeedScene(gsap: GsapApi, root: HTMLElement, reduced: boolean) {
 }
 
 /**
- * GSAP só via import dinâmico no fluxo.
- * Idle (breath) e tweens do palco são kill ao desmontar, ao fechar o fluxo
- * e quando o palco sai de vista (IntersectionObserver).
+ * GSAP só via import dinâmico. Poses via proxy (atributo transform=rotate),
+ * kill ao desmontar / fora de vista; seed mantém o tween de cena.
  */
 export function useNoPose(stageRef: RefObject<HTMLElement | null>, pose: NoPose, showSeed: boolean) {
-  const breathStop = useRef<(() => void) | null>(null)
+  const poseStop = useRef<(() => void) | null>(null)
   const seedStop = useRef<(() => void) | null>(null)
   const gsapRef = useRef<GsapApi | null>(null)
   const visibleRef = useRef(true)
   const poseRef = useRef(pose)
-  poseRef.current = pose
+  const curRef = useRef<Pose>({ ...POSES.idle })
+
+  useEffect(() => {
+    poseRef.current = pose
+  }, [pose])
 
   const stopAll = (root: HTMLElement | null) => {
-    breathStop.current?.()
-    breathStop.current = null
+    poseStop.current?.()
+    poseStop.current = null
     seedStop.current?.()
     seedStop.current = null
-    if (root && gsapRef.current) killStageTweens(gsapRef.current, root)
+    if (root && gsapRef.current) killStageTweens(gsapRef.current, root, curRef.current)
   }
 
-  const runPose = (api: GsapApi, root: HTMLElement) => {
+  const startPose = (api: GsapApi, root: HTMLElement) => {
     if (!visibleRef.current) return
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    breathStop.current?.()
-    breathStop.current = null
-    applyPose(api, root, poseRef.current, reduced)
-    if (poseRef.current === 'idle' || poseRef.current === 'arrive') {
-      breathStop.current = startIdleBreath(api, root, reduced)
-    }
+    poseStop.current?.()
+    poseStop.current = runPose(api, root, curRef.current, poseRef.current, reduced)
   }
 
   useEffect(() => {
@@ -184,12 +162,12 @@ export function useNoPose(stageRef: RefObject<HTMLElement | null>, pose: NoPose,
       registerGSAP()
       const api = gsap as unknown as GsapApi
       gsapRef.current = api
-      runPose(api, stageRef.current)
+      startPose(api, stageRef.current)
     })
 
     return () => {
       alive = false
-      stopAll(stageRef.current)
+      stopAll(root)
       gsapRef.current = null
     }
   }, [pose, stageRef])
@@ -217,7 +195,6 @@ export function useNoPose(stageRef: RefObject<HTMLElement | null>, pose: NoPose,
     }
   }, [showSeed, stageRef])
 
-  // Pausa idle/tweens quando o palco sai da viewport; retoma ao voltar.
   useEffect(() => {
     const root = stageRef.current
     if (!root) return
@@ -233,7 +210,7 @@ export function useNoPose(stageRef: RefObject<HTMLElement | null>, pose: NoPose,
           stopAll(root)
           return
         }
-        runPose(api, root)
+        startPose(api, root)
         if (showSeed) {
           const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
           seedStop.current?.()

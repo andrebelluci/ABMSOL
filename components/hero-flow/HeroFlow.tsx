@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useSyncExternalStore } from 'react'
 import { createPortal } from 'react-dom'
 
 import { HeroFlowOptions } from '@/components/hero-flow/HeroFlowOptions'
@@ -21,40 +21,36 @@ function stepTitle(state: ReturnType<typeof useHeroFlow>['state']) {
   return null
 }
 
+function useHeroHost() {
+  return useSyncExternalStore(
+    () => () => undefined,
+    () => document.querySelector<HTMLElement>('[data-hero]'),
+    () => null,
+  )
+}
+
 /**
- * Painel + palco sobem via portal para [data-hero], irmãos do sol —
- * nunca descendentes de .hero-copy (GSAP aplica opacity no scroll).
+ * Painel + palco em portal fixed (modo foco). placeShell usa h1.bottom - shell.top.
  */
 export function HeroFlow() {
-  const { state, open, close, back, redo, chooseProfile, chooseNeed } = useHeroFlow()
-  const layoutRef = useRef<HTMLDivElement>(null)
+  const { state, open, close, back, redo, chooseProfile, chooseNeed, openBtnRef } = useHeroFlow()
   const titleRef = useRef<HTMLHeadingElement>(null)
-  const [heroHost, setHeroHost] = useState<HTMLElement | null>(null)
-
-  useEffect(() => {
-    setHeroHost(document.querySelector<HTMLElement>('[data-hero]'))
-  }, [])
+  const heroHost = useHeroHost()
 
   useEffect(() => {
     if (state.step === 'idle') return
-    const hero = heroHost
-    if (!hero) return
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    // Alinha o hero abaixo do header (scroll-margin), mantendo o H1 na vista.
-    hero.scrollIntoView({ block: 'start', behavior: reduced ? 'auto' : 'smooth' })
-
-    // Shell começa logo abaixo do H1 (evita o display cruzar cartões/Nó).
     const placeShell = () => {
       const shell = document.querySelector<HTMLElement>('[data-hero-flow-shell]')
-      const h1 = hero.querySelector<HTMLElement>('.hero-title')
+      const h1 = document.querySelector<HTMLElement>('.hero-title')
       if (!shell || !h1) return
-      const gap = window.matchMedia('(min-width: 1280px)').matches ? 20 : 12
-      const top = h1.getBoundingClientRect().bottom - hero.getBoundingClientRect().top + gap
+      const gap = window.matchMedia('(min-width: 1280px)').matches ? 16 : 10
+      // Relativo ao shell (fixed), não à hero: h1.bottom - shell.top.
+      const top = h1.getBoundingClientRect().bottom - shell.getBoundingClientRect().top + gap
       shell.style.paddingTop = `${Math.max(0, Math.round(top))}px`
     }
     placeShell()
     const raf = requestAnimationFrame(placeShell)
-    const h1 = hero.querySelector('.hero-title')
+    const h1 = document.querySelector('.hero-title')
     const ro = h1 ? new ResizeObserver(placeShell) : null
     if (h1 && ro) ro.observe(h1)
     window.addEventListener('resize', placeShell)
@@ -64,21 +60,25 @@ export function HeroFlow() {
       ro?.disconnect()
       window.removeEventListener('resize', placeShell)
     }
-  }, [state.step, heroHost])
+  }, [state.step])
 
   const title = stepTitle(state)
   const active = state.step !== 'idle'
 
   const panel = active ? (
     <div className="hero-flow-shell" data-hero-flow-shell="">
-      {/* Scrim: azul da página → transparente; não cobre o sol à direita. */}
       <div className="hero-flow-scrim" aria-hidden="true" />
-      <div
-        ref={layoutRef}
-        className="hero-flow-layout"
-        role="region"
-        aria-labelledby="hero-flow-title"
+      <button
+        type="button"
+        className="hero-flow-exit"
+        onClick={close}
+        data-cursor="link"
+        data-cursor-label={heroFlowUi.closeLabel}
+        data-cursor-theme="dark"
       >
+        {heroFlowUi.closeLabel}
+      </button>
+      <div className="hero-flow-layout" role="region" aria-labelledby="hero-flow-title">
         <div className="hero-flow-panel">
           {title ? (
             <header>
@@ -96,17 +96,10 @@ export function HeroFlow() {
           ) : null}
 
           {state.step === 'profile' ? (
-            <>
-              <HeroFlowOptions
-                options={profiles}
-                onChoose={(id) => chooseProfile(id as ProfileId)}
-              />
-              <div className="mt-6">
-                <button type="button" className="hero-flow-text-btn" onClick={close}>
-                  {heroFlowUi.closeLabel}
-                </button>
-              </div>
-            </>
+            <HeroFlowOptions
+              options={profiles}
+              onChoose={(id) => chooseProfile(id as ProfileId)}
+            />
           ) : null}
 
           {state.step === 'need' ? (
@@ -115,12 +108,9 @@ export function HeroFlow() {
                 options={needs}
                 onChoose={(id) => chooseNeed(id as NeedId)}
               />
-              <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3">
+              <div className="mt-6">
                 <button type="button" className="hero-flow-text-btn" onClick={back}>
                   {heroFlowUi.backLabel}
-                </button>
-                <button type="button" className="hero-flow-text-btn" onClick={close}>
-                  {heroFlowUi.closeLabel}
                 </button>
               </div>
             </>
@@ -142,7 +132,6 @@ export function HeroFlow() {
                 needId={state.needId}
                 onBack={back}
                 onRedo={redo}
-                onClose={close}
               />
             </>
           ) : null}
@@ -157,6 +146,7 @@ export function HeroFlow() {
     <>
       {state.step === 'idle' ? (
         <button
+          ref={openBtnRef}
           type="button"
           className="inline-flex min-h-12 items-center text-mint"
           data-cursor="link"

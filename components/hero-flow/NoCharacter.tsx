@@ -1,25 +1,44 @@
 'use client'
 
-/**
- * Stick “Nó”: rig por <g> aninhados (rotação nas juntas), sem morph de path.
- * Cabeça = anel aberto ~320°. Traço dourado; juntas acendem menta por progresso.
- */
-export type NoPose = 'idle' | 'wave' | 'walk' | 'arrive'
+import { GEO, HEAD_PATH, POSES, litFor, type Pose } from '@/components/hero-flow/rig'
 
+export type NoPose = 'idle' | 'wave' | 'walk' | 'arrive'
 export type NoJointProgress = 'profile' | 'need' | 'result'
 
-type NoCharacterProps = {
-  progress: NoJointProgress
+const jointClass = (on: boolean) => (on ? 'no-joint is-on' : 'no-joint')
+
+// Cada membro: <g translate(ombro/quadril)> <g data-rot=superior> linha
+//   <g translate(0 comprimento)> <g data-rot=inferior> linha </g> <junta/> </g> </g> </g>
+function Limb({
+  y,
+  up,
+  lo,
+  keys,
+  lit,
+}: {
+  y: number
+  up: number
+  lo: number
+  keys: [keyof Pose, keyof Pose]
+  lit: boolean
+}) {
+  return (
+    <g transform={`translate(0 ${y})`}>
+      <g data-rot={keys[0]} transform={`rotate(${POSES.idle[keys[0]]})`}>
+        <line className="no-stroke" x1={0} y1={0} x2={0} y2={up} />
+        <g transform={`translate(0 ${up})`}>
+          <g data-rot={keys[1]} transform={`rotate(${POSES.idle[keys[1]]})`}>
+            <line className="no-stroke" x1={0} y1={0} x2={0} y2={lo} />
+          </g>
+          <circle className={jointClass(lit)} cx={0} cy={0} r={2.8} />
+        </g>
+      </g>
+    </g>
+  )
 }
 
-function jointClass(on: boolean) {
-  return on ? 'no-joint is-on' : 'no-joint'
-}
-
-export function NoCharacter({ progress }: NoCharacterProps) {
-  const elbowsOn = progress === 'need' || progress === 'result'
-  const kneesOn = progress === 'result'
-
+export function NoCharacter({ progress }: { progress: NoJointProgress }) {
+  const lit = litFor(progress === 'profile' ? 1 : progress === 'need' ? 2 : 3)
   return (
     <svg
       className="no-character"
@@ -28,63 +47,17 @@ export function NoCharacter({ progress }: NoCharacterProps) {
       height="100%"
       fill="none"
       aria-hidden="true"
+      style={{ overflow: 'visible' }}
     >
-      <g data-no-root transform="translate(60 28)">
-        <g data-no-hip>
-          <circle className={jointClass(true)} cx="0" cy="52" r="3.2" />
-
-          <g data-no-torso transform="translate(0 52)">
-            <line className="no-stroke" x1="0" y1="0" x2="0" y2="-40" />
-
-            <g data-no-neck transform="translate(0 -40)">
-              <circle className={jointClass(true)} cx="0" cy="0" r="3.2" />
-              <g data-no-head transform="translate(0 -14)">
-                {/* Anel aberto ~320° (vão no topo) */}
-                <path className="no-stroke no-head" d="M 8.4 -4.2 A 9 9 0 1 1 -8.4 -4.2" />
-              </g>
-            </g>
-
-            <g data-no-arm-l transform="translate(0 -34)">
-              <line className="no-stroke" x1="0" y1="0" x2="-16" y2="6" />
-              <g data-no-elbow-l transform="translate(-16 6)">
-                <circle className={jointClass(elbowsOn)} cx="0" cy="0" r="2.8" />
-                <g data-no-forearm-l>
-                  <line className="no-stroke" x1="0" y1="0" x2="-10" y2="16" />
-                </g>
-              </g>
-            </g>
-
-            <g data-no-arm-r transform="translate(0 -34)">
-              <line className="no-stroke" x1="0" y1="0" x2="16" y2="6" />
-              <g data-no-elbow-r transform="translate(16 6)">
-                <circle className={jointClass(elbowsOn)} cx="0" cy="0" r="2.8" />
-                <g data-no-forearm-r>
-                  <line className="no-stroke" x1="0" y1="0" x2="10" y2="16" />
-                </g>
-              </g>
-            </g>
-          </g>
-
-          <g data-no-leg-l transform="translate(0 52)">
-            <line className="no-stroke" x1="0" y1="0" x2="-10" y2="22" />
-            <g data-no-knee-l transform="translate(-10 22)">
-              <circle className={jointClass(kneesOn)} cx="0" cy="0" r="2.8" />
-              <g data-no-shin-l>
-                <line className="no-stroke" x1="0" y1="0" x2="-4" y2="24" />
-              </g>
-            </g>
-          </g>
-
-          <g data-no-leg-r transform="translate(0 52)">
-            <line className="no-stroke" x1="0" y1="0" x2="10" y2="22" />
-            <g data-no-knee-r transform="translate(10 22)">
-              <circle className={jointClass(kneesOn)} cx="0" cy="0" r="2.8" />
-              <g data-no-shin-r>
-                <line className="no-stroke" x1="0" y1="0" x2="4" y2="24" />
-              </g>
-            </g>
-          </g>
-        </g>
+      <g transform="translate(60 84)">
+        <line className="no-stroke" x1={0} y1={0} x2={0} y2={-GEO.torso} />
+        <path className="no-stroke" d={HEAD_PATH} />
+        <Limb y={GEO.shoulderY} up={GEO.upper} lo={GEO.fore} keys={['armL', 'elbowL']} lit={lit.elbL} />
+        <Limb y={GEO.shoulderY} up={GEO.upper} lo={GEO.fore} keys={['armR', 'elbowR']} lit={lit.elbR} />
+        <Limb y={0} up={GEO.thigh} lo={GEO.shin} keys={['legL', 'kneeL']} lit={lit.knL} />
+        <Limb y={0} up={GEO.thigh} lo={GEO.shin} keys={['legR', 'kneeR']} lit={lit.knR} />
+        <circle className={jointClass(lit.neck)} cx={0} cy={-GEO.torso} r={3.2} />
+        <circle className={jointClass(lit.hip)} cx={0} cy={0} r={3.2} />
       </g>
     </svg>
   )

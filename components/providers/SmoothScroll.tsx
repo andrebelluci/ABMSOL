@@ -71,14 +71,25 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
         gsapMod.gsap.ticker.lagSmoothing(0)
         removeTicker = () => gsapMod.gsap.ticker.remove(tick)
         gsapMod.ScrollTrigger.refresh()
-        if (document.documentElement.hasAttribute('data-nav-open')) next.stop()
+        if (
+          document.documentElement.hasAttribute('data-nav-open') ||
+          document.documentElement.hasAttribute('data-scroll-lock')
+        ) {
+          next.stop()
+        }
       })
     }
 
     const onNav = (event: Event) => {
       if (!(event instanceof CustomEvent) || !lenis) return
       if (event.detail === true) lenis.stop()
-      else lenis.start()
+      else if (!document.documentElement.hasAttribute('data-scroll-lock')) lenis.start()
+    }
+
+    const onLock = (event: Event) => {
+      if (!(event instanceof CustomEvent) || !lenis) return
+      if (event.detail === true) lenis.stop()
+      else if (!document.documentElement.hasAttribute('data-nav-open')) lenis.start()
     }
 
     if (typeof window.requestIdleCallback === 'function') {
@@ -95,11 +106,13 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     pointer.addEventListener('change', stopIfNeeded)
     motion.addEventListener('change', stopIfNeeded)
     window.addEventListener('abmsol:nav', onNav)
+    window.addEventListener('abmsol:scroll-lock', onLock)
 
     return () => {
       pointer.removeEventListener('change', stopIfNeeded)
       motion.removeEventListener('change', stopIfNeeded)
       window.removeEventListener('abmsol:nav', onNav)
+      window.removeEventListener('abmsol:scroll-lock', onLock)
       destroy()
     }
   }, [])

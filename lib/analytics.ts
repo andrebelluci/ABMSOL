@@ -34,8 +34,8 @@ export function reportWhatsAppClick(source: string, service?: string) {
   umamiTrack('whatsapp_click', detail)
 }
 
-export function trackHeroFlowStart() {
-  trackEvent('hero_flow_start')
+export function trackHeroFlowStart(entry: 'button' | 'link') {
+  trackEvent('hero_flow_start', { entry })
 }
 
 export function trackHeroFlowProfile(profile: string) {
