@@ -5,6 +5,10 @@ import { Box3, Group, PerspectiveCamera, Vector3 } from 'three'
 
 import { PLATE_TILT, SUN_DEPTH_URL, fitCamera, lightStage, loadSun, makeRenderer, resizeRenderer } from '@/components/sun/sun-stage'
 
+function flowPaused(hero: HTMLElement | null) {
+  return hero?.getAttribute('data-hero-flow') === '1'
+}
+
 export function SunPlate() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
@@ -58,7 +62,11 @@ export function SunPlate() {
       const pointer = { x: 0, y: 0 }
       const tilt = { x: PLATE_TILT.x, y: PLATE_TILT.y }
       let visible = true
+      let paused = false
+      let framesDrawn = 0
       const hero = root.closest<HTMLElement>('[data-hero]')
+      root.dataset.sunPaused = '0'
+      root.dataset.sunFrames = '0'
 
       const onPointer = (event: PointerEvent) => {
         pointer.x = event.clientX / window.innerWidth - 0.5
@@ -67,6 +75,7 @@ export function SunPlate() {
 
       const render = (now: number) => {
         if (dead) return
+        if (paused) return
         frame = requestAnimationFrame(render)
         if (!visible || document.hidden) return
         const time = now / 1000
@@ -80,7 +89,30 @@ export function SunPlate() {
         world.rotation.z = Math.sin(time * 0.38) * 0.08
         world.position.y = Math.sin(time * 0.5) * 36 - scroll * 90
         renderer.render(stage, camera)
+        framesDrawn += 1
+        root.dataset.sunFrames = String(framesDrawn)
       }
+
+      const startLoop = () => {
+        if (dead || paused) return
+        cancelAnimationFrame(frame)
+        frame = requestAnimationFrame(render)
+      }
+
+      const stopLoop = () => {
+        cancelAnimationFrame(frame)
+        frame = 0
+      }
+
+      const applyPause = (next: boolean) => {
+        if (paused === next) return
+        paused = next
+        root.dataset.sunPaused = paused ? '1' : '0'
+        if (paused) stopLoop()
+        else startLoop()
+      }
+
+      const syncFlowPause = () => applyPause(flowPaused(hero))
 
       resizeRenderer(renderer, camera, canvas)
       world.rotation.set(PLATE_TILT.x, PLATE_TILT.y, 0)
@@ -93,14 +125,27 @@ export function SunPlate() {
         visible = entry.isIntersecting
       })
       if (hero) seen.observe(hero)
+
+      const flowWatch = hero
+        ? new MutationObserver(() => syncFlowPause())
+        : null
+      if (hero && flowWatch) {
+        flowWatch.observe(hero, { attributes: true, attributeFilter: ['data-hero-flow'] })
+      }
+      const onFlowEvent = () => syncFlowPause()
+      window.addEventListener('hero-flow-change', onFlowEvent)
+
       window.addEventListener('pointermove', onPointer, { passive: true })
-      frame = requestAnimationFrame(render)
+      syncFlowPause()
+      if (!paused) startLoop()
 
       bag.stop = () => {
-        cancelAnimationFrame(frame)
+        stopLoop()
         observer.disconnect()
         seen.disconnect()
+        flowWatch?.disconnect()
         window.removeEventListener('pointermove', onPointer)
+        window.removeEventListener('hero-flow-change', onFlowEvent)
         root.classList.remove('is-plate')
         renderer.dispose()
       }

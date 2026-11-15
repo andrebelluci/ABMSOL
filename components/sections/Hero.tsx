@@ -1,4 +1,5 @@
 import { MarkRay } from '@/components/brand/MarkRay'
+import { HeroFlowMount } from '@/components/hero-flow/HeroFlowMount'
 import { SunEnhance } from '@/components/sun/SunEnhance'
 import { SunFigure } from '@/components/sun/SunFigure'
 import { PageTrail } from '@/components/sun/PageTrail'
@@ -29,18 +30,12 @@ export function Hero() {
           Site, sistema e suporte com um parceiro só.
         </p>
         <div className="hero-line hero-line-cta mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-          <WhatsAppLink source="hero" message={WHATSAPP_MESSAGES.site}>
-            Falar no WhatsApp
-          </WhatsAppLink>
-          <a
-            href="#como-trabalhamos"
-            className="inline-flex min-h-12 items-center text-mint"
-            data-cursor="link"
-            data-cursor-label="Como trabalhamos"
-            data-cursor-theme="dark"
-          >
-            Como trabalhamos →
-          </a>
+          <div className="hero-cta-whatsapp">
+            <WhatsAppLink source="hero" message={WHATSAPP_MESSAGES.site}>
+              Falar no WhatsApp
+            </WhatsAppLink>
+          </div>
+          <HeroFlowMount />
         </div>
       </div>
       <PageTrail />

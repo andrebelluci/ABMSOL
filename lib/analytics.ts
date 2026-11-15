@@ -14,10 +14,38 @@ type UmamiWindow = Window & {
   umami?: { track: (event: string, data?: Record<string, string>) => void }
 }
 
+function umamiTrack(name: string, data?: Record<string, string>) {
+  if (typeof window === 'undefined') return
+  const umami = (window as UmamiWindow).umami
+  umami?.track(name, data)
+}
+
+/** Evento genérico: CustomEvent no window + Umami quando P11 existir. */
+export function trackEvent(name: string, data?: Record<string, string>) {
+  if (typeof window === 'undefined') return
+  window.dispatchEvent(new CustomEvent(name, { detail: data ?? {} }))
+  umamiTrack(name, data)
+}
+
 export function reportWhatsAppClick(source: string, service?: string) {
   if (typeof window === 'undefined') return
   const detail = { source, service: service ?? '' }
   window.dispatchEvent(new CustomEvent('whatsapp_click', { detail }))
-  const umami = (window as UmamiWindow).umami
-  umami?.track('whatsapp_click', detail)
+  umamiTrack('whatsapp_click', detail)
+}
+
+export function trackHeroFlowStart() {
+  trackEvent('hero_flow_start')
+}
+
+export function trackHeroFlowProfile(profile: string) {
+  trackEvent('hero_flow_profile', { profile })
+}
+
+export function trackHeroFlowNeed(profile: string, need: string) {
+  trackEvent('hero_flow_need', { profile, need })
+}
+
+export function trackHeroFlowWhatsAppClick(profile: string, need: string) {
+  trackEvent('hero_flow_whatsapp_click', { profile, need })
 }

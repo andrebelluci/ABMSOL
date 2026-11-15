@@ -245,6 +245,8 @@ html[data-nav-open] .whatsapp-bar {
   align-items: flex-start;
   overflow: hidden;
   padding: 2.5rem 1.25rem 7rem 2.25rem;
+  /* Header fixo h-14; evita o fluxo/H1 sob o header no scrollIntoView. */
+  scroll-margin-top: 3.5rem;
 }
 
 .hero-copy {
@@ -298,6 +300,207 @@ html[data-nav-open] .whatsapp-bar {
   width: min(64vw, 260px);
   aspect-ratio: 1;
   pointer-events: none;
+  transition: opacity 280ms ease;
+}
+
+/*
+ * Dim só nas camadas de fundo (3D + circuito). O painel/palco vivem no
+ * .hero-flow-shell (portal), irmão de .hero-sun — nunca sob opacity ancestral.
+ */
+.hero[data-hero-flow='1'] .hero-sun {
+  opacity: 0.3 !important; /* !important: GSAP escreve opacity inline no sol */
+}
+
+.hero[data-hero-flow='1'] .mark-ray.is-hero,
+.hero[data-hero-flow='1'] .page-trail {
+  z-index: 0;
+  opacity: 0.3;
+}
+
+/*
+ * Fluxo aberto: hero no topo (não centrado) para o H1 não cruzar o painel.
+ * .hero-copy acima do scrim; opacity/y do ScrollTrigger anulados.
+ */
+.hero[data-hero-flow='1'] {
+  align-items: flex-start;
+}
+
+.hero[data-hero-flow='1'] .hero-copy {
+  z-index: 5;
+  opacity: 1 !important;
+  transform: none !important;
+  background: transparent;
+  pointer-events: none;
+}
+
+/* H1 permanece visível, mas em escala de fluxo para caber painel + Nó no 1º viewport. */
+.hero[data-hero-flow='1'] .hero-title {
+  font-size: clamp(2.1rem, 3.6vw, 3.35rem);
+  line-height: 1.05;
+  max-width: 14ch;
+}
+
+/* Lead/body/CTA cedem espaço ao painel; eyebrow + H1 ficam. */
+.hero[data-hero-flow='1'] .hero-line-lead,
+.hero[data-hero-flow='1'] .hero-line-body,
+.hero[data-hero-flow='1'] .hero-line-cta {
+  display: none;
+}
+
+@media (max-width: 1279px) {
+  .hero[data-hero-flow='1'] .hero-sun {
+    opacity: 0 !important;
+  }
+}
+
+.hero[data-hero-flow-result='1'] .hero-cta-whatsapp {
+  display: none;
+}
+
+/* Shell portaled: acima de sol (0) e mark-ray (0–1); abaixo do header (40). */
+.hero-flow-shell {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  padding-top: 7.25rem; /* abaixo de eyebrow + H1 */
+  pointer-events: none;
+}
+
+.hero-flow-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    var(--c-navy-900) 0%,
+    var(--c-navy-900) 38%,
+    color-mix(in srgb, var(--c-navy-900) 55%, transparent) 62%,
+    transparent 88%
+  );
+}
+
+.hero-flow-layout {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: min(100%, 40rem);
+  max-width: 46rem;
+  margin-top: 0;
+  padding: 0.25rem 1.25rem 2rem 2.25rem;
+  pointer-events: auto;
+  scroll-margin-top: 3.5rem;
+}
+
+.hero-flow-panel {
+  position: relative;
+  z-index: 2;
+  opacity: 1;
+}
+
+/* Mobile: palco ~164–180px sob o H1 (ordem: stage depois do título no fluxo = acima dos cards). */
+.no-stage {
+  position: relative;
+  z-index: 3;
+  order: -1;
+  width: min(180px, 48vw);
+  height: 168px;
+  margin: 0.25rem 0 0.5rem;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.no-stage .no-character,
+.no-stage .no-scene-seed {
+  position: absolute;
+  inset: 0;
+}
+
+.no-stroke {
+  stroke: var(--c-gold);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.no-joint {
+  fill: transparent;
+  stroke: var(--c-gold);
+  stroke-width: 1.2;
+}
+
+.no-joint.is-on {
+  fill: var(--c-mint);
+  stroke: var(--c-mint);
+}
+
+.no-seed-knot {
+  fill: var(--c-gold);
+  stroke: none;
+}
+
+.no-seed-trail {
+  stroke: var(--c-mint);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.no-seed-node {
+  fill: var(--c-mint);
+  stroke: none;
+}
+
+.hero-flow-options {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hero-flow-card {
+  display: flex;
+  min-height: 3rem;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--c-gold) 45%, transparent);
+  background: transparent;
+  padding: 0.9rem 1rem;
+  text-align: left;
+  color: var(--c-ink);
+  transition: border-color 220ms ease, background-color 220ms ease;
+}
+
+.hero-flow-card-label {
+  font-family: var(--font-syne), sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.hero-flow-text-btn {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  color: var(--c-mint);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .hero-flow-card:hover {
+    border-color: var(--c-mint);
+    background: color-mix(in srgb, var(--c-navy-800) 70%, transparent);
+  }
+}
+
+.hero-flow-card:focus-visible,
+.hero-flow-text-btn:focus-visible {
+  outline: 2px solid var(--c-mint);
+  outline-offset: 3px;
 }
 
 .hero-sun > img {
@@ -745,6 +948,13 @@ html[data-nav-open] .whatsapp-bar {
   }
 }
 
+@media (min-width: 1024px) {
+  .hero,
+  .hero-flow-layout {
+    scroll-margin-top: 4rem; /* header lg:h-16 */
+  }
+}
+
 @media (min-width: 1280px) {
   .hero {
     min-height: calc(100dvh - 4rem);
@@ -765,6 +975,48 @@ html[data-nav-open] .whatsapp-bar {
     width: min(72vw, 920px);
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 16%);
     mask-image: linear-gradient(90deg, transparent 0%, #000 16%);
+  }
+
+  /* Desktop: cartões à esquerda, Nó à direita sobre o sol dimado (~280–340px). */
+  .hero-flow-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 28rem) minmax(280px, 340px);
+    align-items: start;
+    gap: 2.5rem 3rem;
+    width: min(100%, 72rem);
+    max-width: none;
+    padding: 0 4rem 2rem 4.5rem;
+    margin-top: 0;
+  }
+
+  .hero-flow-shell {
+    padding-top: 8.5rem;
+  }
+
+  .hero-flow-panel {
+    grid-column: 1;
+    max-width: 34rem;
+  }
+
+  .no-stage {
+    order: 0;
+    grid-column: 2;
+    justify-self: end;
+    width: min(340px, 32vw);
+    height: min(340px, 32vw);
+    min-width: 280px;
+    min-height: 280px;
+    margin: 1.5rem 0 0;
+  }
+
+  .hero-flow-scrim {
+    background: linear-gradient(
+      90deg,
+      var(--c-navy-900) 0%,
+      var(--c-navy-900) 34%,
+      color-mix(in srgb, var(--c-navy-900) 70%, transparent) 52%,
+      transparent 78%
+    );
   }
 }
 
