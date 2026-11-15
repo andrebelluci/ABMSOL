@@ -1,7 +1,7 @@
 export const heroFlowUi = {
   openLabel: 'Descobrir meu caminho →',
-  stepProfile: { index: '01', title: 'Quem é você?' },
-  stepNeed: { index: '02', title: 'O que você mais precisa agora?' },
+  stepProfile: { index: 'Passo 1 de 2', title: 'Quem é você?' },
+  stepNeed: { index: 'Passo 2 de 2', title: 'O que você mais precisa agora?' },
   resultEyebrow: '03 — Seu caminho',
   resultNote: 'Comece por um diagnóstico gratuito.',
   backLabel: '← Voltar',

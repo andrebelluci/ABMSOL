@@ -44,8 +44,12 @@ export function HeroFlow() {
       const h1 = document.querySelector<HTMLElement>('.hero-title')
       if (!shell || !h1) return
       const gap = window.matchMedia('(min-width: 1280px)').matches ? 16 : 10
-      // Relativo ao shell (fixed), não à hero: h1.bottom - shell.top.
-      const top = h1.getBoundingClientRect().bottom - shell.getBoundingClientRect().top + gap
+      // H1 em coords de documento (+ scrollY): independente do scroll no momento do cálculo.
+      const top =
+        h1.getBoundingClientRect().bottom +
+        window.scrollY -
+        shell.getBoundingClientRect().top +
+        gap
       shell.style.paddingTop = `${Math.max(0, Math.round(top))}px`
     }
     placeShell()
@@ -54,11 +58,14 @@ export function HeroFlow() {
     const ro = h1 ? new ResizeObserver(placeShell) : null
     if (h1 && ro) ro.observe(h1)
     window.addEventListener('resize', placeShell)
+    window.addEventListener('hero-flow-change', placeShell)
+    void document.fonts.ready.then(placeShell)
     titleRef.current?.focus()
     return () => {
       cancelAnimationFrame(raf)
       ro?.disconnect()
       window.removeEventListener('resize', placeShell)
+      window.removeEventListener('hero-flow-change', placeShell)
     }
   }, [state.step])
 
@@ -106,6 +113,7 @@ export function HeroFlow() {
             <>
               <HeroFlowOptions
                 options={needs}
+                grid
                 onChoose={(id) => chooseNeed(id as NeedId)}
               />
               <div className="mt-6">

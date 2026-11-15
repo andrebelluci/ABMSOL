@@ -81,8 +81,17 @@ function clearHeroFlags() {
   window.dispatchEvent(new CustomEvent('hero-flow-change', { detail: { active: false, step: 'idle' } }))
 }
 
+/** Ignora scroll-behavior: smooth do CSS (html e data-scroll-behavior). */
+function jumpTo(y: number) {
+  const html = document.documentElement
+  const prev = html.style.scrollBehavior
+  html.style.scrollBehavior = 'auto'
+  window.scrollTo(0, y)
+  html.style.scrollBehavior = prev
+}
+
 function lockScroll() {
-  window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  jumpTo(0)
   document.documentElement.setAttribute('data-scroll-lock', '')
   window.dispatchEvent(new CustomEvent('abmsol:scroll-lock', { detail: true }))
 }
@@ -146,9 +155,9 @@ export function useHeroFlow() {
     ignoreHash.current = true
     clearHash()
     dispatch({ type: 'close' })
-    // Lenis recomeça no unlock; dois rAF + fallback garantem o scrollTo após o start.
+    // Lenis recomeça no unlock; dois rAF + fallback garantem o jumpTo após o start.
     const restore = () => {
-      window.scrollTo({ top: y, left: 0, behavior: 'auto' })
+      jumpTo(y)
       void import('@/lib/gsap').then(({ ScrollTrigger }) => {
         ScrollTrigger.refresh()
       })

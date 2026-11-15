@@ -41,6 +41,12 @@
     @apply font-display;
   }
 
+  /* Syne ss04: g fechado (alternativa tipográfica). */
+  .font-display,
+  .hero-flow-card-label {
+    font-feature-settings: 'ss04' 1;
+  }
+
   a,
   button {
     -webkit-tap-highlight-color: transparent;
@@ -247,6 +253,11 @@ html[data-nav-open] .whatsapp-bar {
   padding: 2.5rem 1.25rem 7rem 2.25rem;
   /* Header fixo h-14; evita o fluxo/H1 sob o header no scrollIntoView. */
   scroll-margin-top: 3.5rem;
+}
+
+/* H1 só da Hero: escala com viewport para o CTA caber sem rolar. */
+.hero-title {
+  font-size: clamp(2.5rem, min(7vw + 1rem, 12.5dvh), 6.5rem);
 }
 
 .hero-copy {
@@ -505,7 +516,7 @@ html[data-scroll-lock] {
 }
 
 @media (min-width: 1024px) {
-  .hero-flow-options {
+  .hero-flow-options--grid {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -529,6 +540,7 @@ html[data-scroll-lock] {
   font-family: var(--font-syne), sans-serif;
   font-size: 1.05rem;
   font-weight: 600;
+  font-feature-settings: 'ss04' 1;
 }
 
 .hero-flow-text-btn {
@@ -773,6 +785,7 @@ html[data-scroll-lock] {
 
 .service-index {
   font-family: var(--font-syne), sans-serif;
+  font-feature-settings: 'ss04' 1;
   font-size: clamp(4.5rem, 14vw, 9rem);
   font-weight: 700;
   line-height: 0.8;
@@ -867,6 +880,7 @@ html[data-scroll-lock] {
   border-top: 1px solid var(--c-line);
   padding-top: 0.75rem;
   font-family: var(--font-syne), sans-serif;
+  font-feature-settings: 'ss04' 1;
   font-size: clamp(1.25rem, 2vw, 1.75rem);
 }
 
@@ -936,6 +950,7 @@ html[data-scroll-lock] {
 .prose-legal h2 {
   margin-top: 2rem;
   font-family: var(--font-syne), sans-serif;
+  font-feature-settings: 'ss04' 1;
   font-size: clamp(1.5rem, 2vw, 2rem);
   font-weight: 600;
 }
@@ -1016,7 +1031,8 @@ html[data-scroll-lock] {
   .hero {
     min-height: calc(100dvh - 4rem);
     align-items: center;
-    padding: 3rem 4rem 4rem 4.5rem;
+    padding-inline: 4rem 4.5rem;
+    padding-block: clamp(1.25rem, 4dvh, 3rem) clamp(1.5rem, 6dvh, 4rem);
   }
 
   .hero-copy {

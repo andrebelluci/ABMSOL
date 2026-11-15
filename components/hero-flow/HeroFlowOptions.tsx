@@ -9,12 +9,15 @@ type Option = {
 export function HeroFlowOptions({
   options,
   onChoose,
+  grid = false,
 }: {
   options: readonly Option[]
   onChoose: (id: string) => void
+  /** Grade 2x2 só no passo 02 (needs), desktop >=1024. */
+  grid?: boolean
 }) {
   return (
-    <ul className="hero-flow-options">
+    <ul className={grid ? 'hero-flow-options hero-flow-options--grid' : 'hero-flow-options'}>
       {options.map((option) => (
         <li key={option.id}>
           <button
