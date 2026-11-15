@@ -370,6 +370,11 @@ html[data-nav-open] .whatsapp-bar {
   .hero[data-hero-flow='1'] .hero-sun {
     opacity: 0 !important;
   }
+
+  /* H1/eyebrow somem visualmente; shell rola sem sobreposição. Continuam no DOM. */
+  .hero[data-hero-flow='1'] .hero-copy {
+    opacity: 0 !important;
+  }
 }
 
 .hero[data-hero-flow-result='1'] .hero-cta-whatsapp {
@@ -396,11 +401,20 @@ html[data-scroll-lock] {
   pointer-events: none;
 }
 
+/* Mobile: barra sticky no topo do shell; desktop (>=1280) usa display:contents + exit fixed. */
+.hero-flow-bar {
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5rem 1rem 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, var(--c-navy-900) 70%, transparent);
+}
+
 .hero-flow-exit {
-  position: fixed;
-  top: calc(3.5rem + 0.75rem);
-  right: 1rem;
-  z-index: 5;
+  position: static;
   display: inline-flex;
   min-height: 3rem;
   min-width: 3rem;
@@ -453,13 +467,13 @@ html[data-scroll-lock] {
   padding-right: 0.25rem;
 }
 
-/* Mobile: palco ~164–180px sob o H1 (ordem: stage depois do título no fluxo = acima dos cards). */
+/* Mobile: palco compacto; ordem acima dos cards. */
 .no-stage {
   position: relative;
   z-index: 3;
   order: -1;
   width: min(180px, 48vw);
-  height: 168px;
+  height: clamp(120px, 20dvh, 168px);
   margin: 0.25rem 0 0.5rem;
   pointer-events: none;
   opacity: 1;
@@ -1020,14 +1034,20 @@ html[data-scroll-lock] {
   .hero-flow-shell {
     top: 4rem;
   }
-
-  .hero-flow-exit {
-    top: calc(4rem + 1rem);
-    right: 1.5rem;
-  }
 }
 
 @media (min-width: 1280px) {
+  .hero-flow-bar {
+    display: contents;
+  }
+
+  .hero-flow-exit {
+    position: fixed;
+    top: calc(4rem + 1rem);
+    right: 1.5rem;
+    z-index: 5;
+  }
+
   .hero {
     min-height: calc(100dvh - 4rem);
     align-items: center;

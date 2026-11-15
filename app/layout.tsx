@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
-import { Instrument_Sans, JetBrains_Mono, Syne } from 'next/font/google'
+import { Instrument_Sans, JetBrains_Mono } from 'next/font/google'
+import localFont from 'next/font/local'
 import Script from 'next/script'
 import { AppShell } from '@/components/layout/AppShell'
 import { JsonLd } from '@/components/seo/JsonLd'
@@ -8,11 +9,13 @@ import { UMAMI_SRC, UMAMI_WEBSITE_ID, umamiEnabled } from '@/lib/analytics'
 import { createMetadata } from '@/lib/seo'
 import './globals.css'
 
-const syne = Syne({
-  subsets: ['latin'],
-  weight: ['600', '700'],
+// Syne local (OFL): Google Fonts remove ss04; woff2 guarda o g fechado.
+const syne = localFont({
+  src: './fonts/Syne-latin.woff2',
+  weight: '600 700',
   variable: '--font-syne',
   display: 'swap',
+  adjustFontFallback: 'Arial',
 })
 
 const instrument = Instrument_Sans({

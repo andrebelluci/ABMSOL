@@ -41,9 +41,15 @@ export function HeroFlow() {
     if (state.step === 'idle') return
     const placeShell = () => {
       const shell = document.querySelector<HTMLElement>('[data-hero-flow-shell]')
+      if (!shell) return
+      // Mobile: H1 some (opacity 0); shell começa no topo sem medir o H1.
+      if (window.matchMedia('(max-width: 1279px)').matches) {
+        shell.style.paddingTop = '0'
+        return
+      }
       const h1 = document.querySelector<HTMLElement>('.hero-title')
-      if (!shell || !h1) return
-      const gap = window.matchMedia('(min-width: 1280px)').matches ? 16 : 10
+      if (!h1) return
+      const gap = 16
       // H1 em coords de documento (+ scrollY): independente do scroll no momento do cálculo.
       const top =
         h1.getBoundingClientRect().bottom +
@@ -74,17 +80,19 @@ export function HeroFlow() {
 
   const panel = active ? (
     <div className="hero-flow-shell" data-hero-flow-shell="">
+      <div className="hero-flow-bar">
+        <button
+          type="button"
+          className="hero-flow-exit"
+          onClick={close}
+          data-cursor="link"
+          data-cursor-label={heroFlowUi.closeLabel}
+          data-cursor-theme="dark"
+        >
+          {heroFlowUi.closeLabel}
+        </button>
+      </div>
       <div className="hero-flow-scrim" aria-hidden="true" />
-      <button
-        type="button"
-        className="hero-flow-exit"
-        onClick={close}
-        data-cursor="link"
-        data-cursor-label={heroFlowUi.closeLabel}
-        data-cursor-theme="dark"
-      >
-        {heroFlowUi.closeLabel}
-      </button>
       <div className="hero-flow-layout" role="region" aria-labelledby="hero-flow-title">
         <div className="hero-flow-panel">
           {title ? (
