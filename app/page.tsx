@@ -1,4 +1,5 @@
 import { MarkField } from '@/components/brand/MarkField'
+import { BehindTeaser } from '@/components/sections/BehindTeaser'
 import { Concepts } from '@/components/sections/Concepts'
 import { SectionPass } from '@/components/sections/SectionPass'
 import { FinalCta } from '@/components/sections/FinalCta'
@@ -17,6 +18,7 @@ export default function HomePage() {
       <Concepts />
       <Process />
       <Plan />
+      <BehindTeaser />
       <FinalCta />
     </main>
   )

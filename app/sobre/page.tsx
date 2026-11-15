@@ -3,12 +3,12 @@ import { aboutPage, aboutSteps } from '@/lib/content/about'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-    title: 'O método do estúdio de tecnologia em Rio Preto | ABMSOL',
-    description:
-      'Site, sistema e suporte com o mesmo parceiro. Seis etapas, do diagnóstico ao cuidado contínuo, para quem está em Rio Preto ou chama de outro lugar.',
-    path: '/sobre/',
-    ogImage: '/images/og-image.webp',
-  })
+  title: 'O método do estúdio de tecnologia em Rio Preto | ABMSOL',
+  description:
+    'Site, sistema e suporte com o mesmo parceiro. Seis etapas, do diagnóstico ao cuidado contínuo, e quem assina o trabalho da ABMSOL.',
+  path: '/sobre/',
+  ogImage: '/images/og-image.webp',
+})
 
 export default function SobrePage() {
   return (
@@ -30,6 +30,8 @@ export default function SobrePage() {
             </li>
           ))}
         </ol>
+
+        <Behind />
       </div>
     </main>
   )

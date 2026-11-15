@@ -905,7 +905,9 @@ html[data-scroll-lock] {
 
 .portrait-slot {
   display: grid;
-  min-height: 20rem;
+  aspect-ratio: 1;
+  width: min(100%, 18rem);
+  min-height: 0;
   place-items: end start;
   border: 1px solid var(--c-gold);
   padding: 1rem;
@@ -914,6 +916,53 @@ html[data-scroll-lock] {
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--c-navy-800) 80%, transparent),
+    transparent 70%
+  );
+}
+
+.portrait-frame {
+  aspect-ratio: 1;
+  width: min(100%, 18rem);
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--c-gold) 55%, transparent);
+}
+
+.portrait-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.behind-teaser {
+  display: grid;
+  gap: 2rem 3rem;
+  align-items: end;
+}
+
+.behind-teaser-photo {
+  width: min(100%, 14rem);
+}
+
+@media (min-width: 768px) {
+  .behind-teaser {
+    grid-template-columns: minmax(12rem, 14rem) minmax(0, 1fr);
+  }
+}
+
+.footer-grid {
+  display: grid;
+  gap: 2.5rem 3rem;
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr) minmax(0, 0.9fr);
+    align-items: start;
+  }
 }
 
 .portrait-note {

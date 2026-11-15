@@ -1,6 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
+
 import { FooterWhatsApp } from '@/components/layout/FooterWhatsApp'
+import { NAV_ITEMS } from '@/lib/nav'
+
+const year = new Date().getFullYear()
 
 export function Footer() {
   return (
@@ -9,31 +13,80 @@ export function Footer() {
       data-cursor-theme="dark"
       data-cta-final=""
     >
-      <div className="mx-auto flex w-full max-w-page flex-col items-start xl:max-w-page-wide">
-        <div className="flex items-end gap-4" aria-hidden>
-          <span className="mb-4 h-16 w-px bg-gold" />
-          <Image
-            src="/logo/mark.svg"
-            alt=""
-            width={48}
-            height={48}
-            unoptimized
-            className="object-contain"
-          />
+      <div className="mx-auto w-full max-w-page xl:max-w-page-wide">
+        <div className="footer-grid">
+          <div className="footer-brand">
+            <div className="flex items-end gap-4" aria-hidden>
+              <span className="mb-3 h-14 w-px bg-gold" />
+              <Image
+                src="/logo/mark.svg"
+                alt=""
+                width={48}
+                height={48}
+                unoptimized
+                className="object-contain"
+              />
+            </div>
+            <p className="mt-5 font-display text-lead font-semibold text-ink">ABMSOL</p>
+            <p className="is-muted mt-2 max-w-[28ch] text-body">
+              Site, sistema e suporte com um parceiro só.
+            </p>
+            <FooterWhatsApp />
+          </div>
+
+          <nav className="footer-nav" aria-label="Rodapé">
+            <p className="font-mono text-label uppercase text-mint">Índice</p>
+            <ul className="mt-4 space-y-1">
+              {NAV_ITEMS.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="inline-flex min-h-12 items-center gap-3 text-ink"
+                    data-cursor="link"
+                    data-cursor-label={item.label}
+                    data-cursor-theme="dark"
+                  >
+                    <span className="font-mono text-label text-mint">{item.index}</span>
+                    <span>{item.label}</span>
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link
+                  href="/contato/"
+                  className="inline-flex min-h-12 items-center gap-3 text-ink"
+                  data-cursor="link"
+                  data-cursor-label="Contato"
+                  data-cursor-theme="dark"
+                >
+                  <span className="font-mono text-label text-mint">05</span>
+                  <span>Contato</span>
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
+          <div className="footer-meta">
+            <p className="font-mono text-label uppercase text-mint">Onde</p>
+            <p className="mt-4 text-body text-ink">
+              Rio Preto (SP)
+              <span className="is-muted mt-1 block">atendimento online em todo o Brasil</span>
+            </p>
+            <Link
+              href="/privacidade/"
+              className="mt-6 inline-flex min-h-12 items-center text-mint"
+              data-cursor="link"
+              data-cursor-label="Privacidade"
+              data-cursor-theme="dark"
+            >
+              Privacidade
+            </Link>
+          </div>
         </div>
-        <FooterWhatsApp />
-        <p className="mt-6 text-body text-ink">
-          Rio Preto (SP) · atendimento online em todo o Brasil
+
+        <p className="is-muted mt-14 border-t border-line pt-6 font-mono text-label">
+          © {year} ABMSOL
         </p>
-        <Link
-          href="/privacidade/"
-          className="mt-4 inline-flex min-h-12 items-center text-mint"
-          data-cursor="link"
-          data-cursor-label="Privacidade"
-          data-cursor-theme="dark"
-        >
-          Privacidade
-        </Link>
       </div>
     </footer>
   )
