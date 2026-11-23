@@ -1,6 +1,6 @@
 /**
  * Gera public/sitemap.xml antes do build, para o export copiar o arquivo.
- * Nove URLs: home, serviços, projetos, três conceitos, sobre, contato, privacidade.
+ * Home, serviços, projetos, cases publicados, sobre, contato, privacidade.
  */
 
 const fs = require('fs')
@@ -12,12 +12,19 @@ const BASE_URL = siteConfig.url.replace(/\/$/, '')
 const publicDir = path.join(__dirname, '..', 'public')
 const outDir = path.join(__dirname, '..', 'out')
 
+const caseSlugs = [
+  'agency-os',
+  'cardflow',
+  'vobelluci',
+  'beatriz-tiago',
+  'participantes-ici',
+]
+
 const paths = [
   '/',
   '/servicos/',
-  '/portfolio/atelier-norte/',
-  '/portfolio/casa-vertice/',
-  '/portfolio/painel-serra/',
+  '/projetos/',
+  ...caseSlugs.map((slug) => `/portfolio/${slug}/`),
   '/sobre/',
   '/contato/',
   '/privacidade/',

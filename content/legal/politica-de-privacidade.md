@@ -16,6 +16,10 @@ Quando a medição de visitas está ligada, usamos o Umami: contagem agregada de
 
 Se a medição estiver desligada neste ambiente, nenhuma dessas contagens acontece.
 
+## Assistente no site
+
+O site pode carregar um assistente de conversa (Agency OS). A conversa roda num painel embutido; o navegador pode guardar um identificador local só para manter o fio da conversa nesta visita. O conteúdo da conversa fica no serviço do assistente, não é vendido por nós.
+
 ## O que não fazemos
 
 Não vendemos dados. Não pedimos acesso a sistemas para uma primeira conversa. Não há formulário de captura neste site.

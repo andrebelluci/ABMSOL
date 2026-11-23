@@ -31,7 +31,7 @@ const pages = [
   'index.html',
   'servicos/index.html',
   'sobre/index.html',
-  'portfolio/atelier-norte/index.html',
+  'portfolio/agency-os/index.html',
 ]
 
 function gzipSize(buffer) {

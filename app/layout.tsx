@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Instrument_Sans, JetBrains_Mono } from 'next/font/google'
 import localFont from 'next/font/local'
 import Script from 'next/script'
+import { AgencyOsWidget } from '@/components/AgencyOsWidget'
 import { AppShell } from '@/components/layout/AppShell'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { SmoothScroll } from '@/components/providers/SmoothScroll'
@@ -33,9 +34,9 @@ const mono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = createMetadata({
-  title: 'Site profissional e suporte de TI em Rio Preto | ABMSOL',
+  title: 'Apareça no Google e nas IAs | ABMSOL Rio Preto',
   description:
-    'Sites premium, sistemas sob medida e suporte de TI com um parceiro só. Sediados em Rio Preto (SP), com atendimento online em todo o Brasil. Contato no WhatsApp.',
+    'Site, conteúdo e presença para sua empresa ser encontrada no Google Brasil e nas respostas de IA. Estúdio em Rio Preto (SP), atendimento online no Brasil. Contato no WhatsApp.',
   path: '/',
 })
 
@@ -45,8 +46,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-BR" data-scroll-behavior="smooth" className={`${syne.variable} ${instrument.variable} ${mono.variable}`}>
+    <html
+      lang="pt-BR"
+      data-scroll-behavior="smooth"
+      className={`${syne.variable} ${instrument.variable} ${mono.variable}`}
+      suppressHydrationWarning
+    >
       <body>
+        {/* Classe `js` no <html> antes da hidratação (CSS progressivo). suppressHydrationWarning acima cobre o mismatch. */}
         <script
           dangerouslySetInnerHTML={{
             __html: `document.documentElement.classList.add('js')`,
@@ -56,6 +63,7 @@ export default function RootLayout({
         {umamiEnabled() ? (
           <Script src={UMAMI_SRC} data-website-id={UMAMI_WEBSITE_ID} strategy="afterInteractive" />
         ) : null}
+        <AgencyOsWidget />
         <SmoothScroll>
           <AppShell>{children}</AppShell>
         </SmoothScroll>

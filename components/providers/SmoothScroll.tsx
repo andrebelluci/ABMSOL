@@ -15,7 +15,6 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     document.documentElement.classList.add('js')
-    if (!allowLenis()) return
 
     let alive = true
     let lenis: {
@@ -24,6 +23,10 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       on: (event: 'scroll', callback: () => void) => void
       stop: () => void
       start: () => void
+      scrollTo: (
+        target: number | string | HTMLElement,
+        options?: { immediate?: boolean },
+      ) => void
     } | null = null
     let idleId = 0
     let timeoutId = 0
@@ -44,8 +47,6 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
     const destroy = () => {
       cancelIdle()
-      if (!alive) return
-      alive = false
       removeTicker()
       lenis?.destroy()
       lenis = null
@@ -92,6 +93,25 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       else if (!document.documentElement.hasAttribute('data-nav-open')) lenis.start()
     }
 
+    const onScrollTo = (event: Event) => {
+      if (!(event instanceof CustomEvent)) return
+      const top = typeof event.detail?.top === 'number' ? event.detail.top : 0
+      if (lenis) {
+        lenis.scrollTo(top)
+        return
+      }
+      window.scrollTo({ top, behavior: 'smooth' })
+    }
+
+    window.addEventListener('abmsol:scroll-to', onScrollTo)
+
+    if (!allowLenis()) {
+      return () => {
+        alive = false
+        window.removeEventListener('abmsol:scroll-to', onScrollTo)
+      }
+    }
+
     if (typeof window.requestIdleCallback === 'function') {
       idleId = window.requestIdleCallback(start)
     } else {
@@ -109,10 +129,12 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     window.addEventListener('abmsol:scroll-lock', onLock)
 
     return () => {
+      alive = false
       pointer.removeEventListener('change', stopIfNeeded)
       motion.removeEventListener('change', stopIfNeeded)
       window.removeEventListener('abmsol:nav', onNav)
       window.removeEventListener('abmsol:scroll-lock', onLock)
+      window.removeEventListener('abmsol:scroll-to', onScrollTo)
       destroy()
     }
   }, [])

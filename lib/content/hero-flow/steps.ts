@@ -1,9 +1,10 @@
 export const heroFlowUi = {
-  openLabel: 'Descobrir meu caminho →',
+  openLabel: 'Quero aparecer →',
   stepProfile: { index: 'Passo 1 de 2', title: 'Quem é você?' },
-  stepNeed: { index: 'Passo 2 de 2', title: 'O que você mais precisa agora?' },
-  resultEyebrow: '03 — Seu caminho',
-  resultNote: 'Comece por um diagnóstico gratuito.',
+  stepNeed: { index: 'Passo 2 de 2', title: 'Por onde começar?' },
+  resultEyebrow: '03 · Seu caminho',
+  resultNote:
+    'Comece por um diagnóstico gratuito. Depois entram suporte, plano mensal e, se fizer sentido, uma ajuda básica no Instagram: perfil, bio, links e destaques, sem criação de conteúdo.',
   backLabel: '← Voltar',
   closeLabel: 'Voltar ao site',
   redoLabel: 'Refazer',
@@ -23,27 +24,40 @@ export const profiles = [
     id: 'site-fraco',
     scene: 'window',
     label: 'Tenho site, mas não rende',
-    body: 'Está antigo, lento ou difícil de usar.',
-    wa: 'tenho um site, mas ele não está rendendo (antigo, lento ou difícil de usar)',
-    headline: 'Dá para aproveitar o que existe e consertar o que trava.',
+    body: 'Existe, mas quase ninguém te acha no Google ou na IA.',
+    wa: 'tenho um site, mas quase ninguém me acha no Google ou nas IAs',
+    headline:
+      'Dá para aproveitar o que existe e fazer o site e a presença trabalharem de novo.',
   },
   {
     id: 'negocio-solido',
     scene: 'shop',
     label: 'Meu negócio é sólido',
-    body: 'Mas o site ficou parado.',
-    wa: 'meu negócio já é consolidado, mas o site ficou parado',
-    headline: 'Seu negócio já provou valor. Falta o site acompanhar.',
+    body: 'Mas na busca e nas IAs o negócio quase não aparece.',
+    wa: 'meu negócio já é consolidado, mas quase não apareço no Google nem nas IAs',
+    headline:
+      'Seu negócio já provou valor. Falta aparecer onde o cliente pergunta.',
   },
 ] as const
 
+/**
+ * Grade 2x2: prioriza Site e Presença; sistema em seguida; “ainda não sei” fecha.
+ * Suporte e Instagram ficam no resultNote (fora do topo da oferta).
+ */
 export const needs = [
   {
     id: 'site',
-    label: 'Um site que passe confiança',
-    body: 'Para o cliente me levar a sério.',
-    wa: 'um site que passe confiança',
-    next: 'Próximo passo: um site que mostre o que você faz com o acabamento que merece.',
+    label: 'Um site',
+    body: 'Novo ou reformado, feito para ser encontrado.',
+    wa: 'um site (novo ou reformado)',
+    next: 'Próximo passo: alinhar o site (estrutura, conteúdo e dados) para o Google e as IAs conseguirem te ler, sem promessa de ranking.',
+  },
+  {
+    id: 'presenca',
+    label: 'Aparecer no Google e nas IAs',
+    body: 'SEO, Google Meu Negócio e sinais de presença.',
+    wa: 'presença no Google (SEO e Meu Negócio) e nas respostas de IA',
+    next: 'Próximo passo: um diagnóstico de presença. Site, busca local e sinais que as IAs olham.',
   },
   {
     id: 'sistema',
@@ -53,18 +67,11 @@ export const needs = [
     next: 'Próximo passo: entender sua rotina e desenhar o sistema em cima dela.',
   },
   {
-    id: 'suporte',
-    label: 'Suporte de TI',
-    body: 'Sem dor de cabeça no dia a dia.',
-    wa: 'suporte de TI',
-    next: 'Próximo passo: ver o que trava hoje e montar um suporte que funcione.',
-  },
-  {
     id: 'nao-sei',
     label: 'Ainda não sei',
     body: 'Tudo bem, a gente descobre junto.',
-    wa: 'ainda não sei, quero ajuda para descobrir',
-    next: 'Próximo passo: um diagnóstico gratuito para achar o ponto certo de começar.',
+    wa: 'ainda não sei, quero ajuda para descobrir por onde começar',
+    next: 'Próximo passo: um diagnóstico gratuito para achar o ponto certo. Em geral começamos por site e presença.',
   },
 ] as const
 

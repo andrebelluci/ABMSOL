@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { FooterWhatsApp } from '@/components/layout/FooterWhatsApp'
+import { socialChannels } from '@/lib/contact'
 import { NAV_ITEMS } from '@/lib/nav'
 
 const year = new Date().getFullYear()
@@ -84,7 +85,36 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="is-muted mt-14 border-t border-line pt-6 font-mono text-label">
+        <div className="footer-signals">
+          <p className="footer-signals-label" id="footer-signals-label">
+            Sinais
+          </p>
+          <ul className="footer-signals-list" aria-labelledby="footer-signals-label">
+            {socialChannels.map((channel) => (
+              <li key={channel.id}>
+                <a
+                  href={channel.href}
+                  className="footer-signal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="link"
+                  data-cursor-label={channel.label}
+                  data-cursor-theme="dark"
+                >
+                  <span className="footer-signal-id" aria-hidden>
+                    {channel.id}
+                  </span>
+                  <span className="footer-signal-handle">{channel.handle}</span>
+                  <span className="sr-only">
+                    {channel.label} (abre em nova aba)
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <p className="is-muted mt-10 border-t border-line pt-6 font-mono text-label">
           © {year} ABMSOL
         </p>
       </div>

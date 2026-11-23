@@ -7,6 +7,7 @@ import { Hero } from '@/components/sections/Hero'
 import { Plan } from '@/components/sections/Plan'
 import { Process } from '@/components/sections/Process'
 import { Services } from '@/components/sections/Services'
+import { Visibility } from '@/components/sections/Visibility'
 
 export default function HomePage() {
   return (
@@ -14,6 +15,7 @@ export default function HomePage() {
       <Hero />
       <MarkField />
       <SectionPass />
+      <Visibility />
       <Services />
       <Concepts />
       <Process />

@@ -1,26 +1,46 @@
 import { WHATSAPP_MESSAGES } from '@/lib/whatsapp'
 
 export const servicesSection = {
-  index: '02',
+  index: '03',
   label: 'Serviços',
-  title: 'Site, sistema ou suporte.',
-  lead: 'Três grupos. O plano mensal fecha a lista e tem seção própria.',
+  title: 'Site e presença primeiro.',
+  lead: 'Ordem clara: site, Google e IAs, depois sistemas, suporte e, por último, uma ajuda básica no Instagram. O detalhe está na página de serviços.',
 } as const
 
 export const services = [
   {
-    id: 'sites',
+    id: 'site',
     index: '01',
-    title: 'Sites e sistemas',
-    body: 'Sites e sistemas sob medida, com um parceiro só do começo à entrega.',
+    title: 'Site',
+    body: 'Site sob medida, legível para o Google e para as IAs, com um parceiro só do começo à entrega.',
     cta: 'Pedir uma proposta',
     message: WHATSAPP_MESSAGES.sites,
-    service: 'sites',
+    service: 'site',
+    align: 'start',
+  },
+  {
+    id: 'presenca',
+    index: '02',
+    title: 'Presença no Google e nas IAs',
+    body: 'SEO, Google Meu Negócio e sinais para você aparecer quando alguém pergunta na busca ou no ChatGPT.',
+    cta: 'Pedir diagnóstico',
+    message: WHATSAPP_MESSAGES.presenca,
+    service: 'presenca',
+    align: 'end',
+  },
+  {
+    id: 'sistemas',
+    index: '03',
+    title: 'Sistemas',
+    body: 'Sistema sob medida para a rotina: menos planilha, mais processo no lugar.',
+    cta: 'Pedir uma proposta',
+    message: WHATSAPP_MESSAGES.sistemas,
+    service: 'sistemas',
     align: 'start',
   },
   {
     id: 'suporte',
-    index: '02',
+    index: '04',
     title: 'Suporte de TI',
     body: 'Suporte do dia a dia, em Rio Preto e online em todo o Brasil.',
     cta: 'Pedir uma proposta',
@@ -30,11 +50,21 @@ export const services = [
   },
   {
     id: 'plano',
-    index: '03',
+    index: '05',
     title: 'Plano mensal',
-    body: 'Hospedagem, SSL, backup e pequenas alterações, ligados ao suporte.',
+    body: 'Hospedagem, SSL, backup e pequenas alterações. O site não some de novo na busca.',
     cta: 'Ver o plano mensal',
     href: '#plano',
     align: 'start',
+  },
+  {
+    id: 'instagram',
+    index: '06',
+    title: 'Instagram (básico)',
+    body: 'Padronização de perfil, bio, links e destaques. Sem criação de conteúdo.',
+    cta: 'Pedir essa ajuda',
+    message: WHATSAPP_MESSAGES.instagram,
+    service: 'instagram',
+    align: 'end',
   },
 ] as const

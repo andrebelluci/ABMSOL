@@ -1,7 +1,7 @@
 import { WHATSAPP_MESSAGES } from '@/lib/whatsapp'
 
 export const planSection = {
-  index: '05',
+  index: '06',
   label: 'Plano mensal',
   title: 'O site continua no ar.',
   lead: 'Cuidado contínuo, ligado ao suporte. A proposta segue na conversa.',

@@ -1,5 +1,5 @@
 export const processSection = {
-  index: '04',
+  index: '05',
   label: 'Como trabalhamos',
   title: 'Do diagnóstico ao cuidado contínuo.',
   lead: 'Seis etapas, nesta ordem. O nó passa de dourado a menta quando a etapa entra.',
@@ -9,7 +9,7 @@ export const processSteps = [
   {
     index: '01',
     title: 'Diagnóstico',
-    body: 'Vemos o que você tem hoje e o que está travando.',
+    body: 'Vemos o que você tem hoje, o que está travando e se você aparece na busca e nas IAs.',
   },
   {
     index: '02',

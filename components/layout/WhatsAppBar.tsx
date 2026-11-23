@@ -35,6 +35,7 @@ export function WhatsAppBar() {
       className="whatsapp-bar fixed inset-x-0 bottom-0 z-30 border-t border-line bg-navy-900 p-3 md:hidden"
       hidden={!visible}
       data-cursor-theme="dark"
+      data-aos-offset-ignore="true"
     >
       <WhatsAppLink source="bar" message={WHATSAPP_MESSAGES.site} className="w-full" />
     </div>

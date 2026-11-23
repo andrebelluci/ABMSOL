@@ -4,15 +4,25 @@ export const contactPage = {
   title: 'Diga o que você precisa.',
   lead: 'Escolha o assunto e, se quiser, escreva o contexto. A mensagem abre no WhatsApp. Não há formulário neste site.',
   contextLabel: 'Contexto',
-  contextHint: 'Opcional. Algumas linhas sobre o site ou o suporte.',
+  contextHint: 'Opcional. Algumas linhas sobre o site, a presença ou o suporte.',
   send: 'Abrir no WhatsApp',
 } as const
 
 export const contactOptions = [
   {
-    id: 'sites',
-    label: 'Sites e sistemas',
+    id: 'presenca',
+    label: 'Presença no Google e nas IAs',
+    message: WHATSAPP_MESSAGES.presenca,
+  },
+  {
+    id: 'site',
+    label: 'Site',
     message: WHATSAPP_MESSAGES.sites,
+  },
+  {
+    id: 'sistemas',
+    label: 'Sistemas',
+    message: WHATSAPP_MESSAGES.sistemas,
   },
   {
     id: 'suporte',
@@ -23,6 +33,11 @@ export const contactOptions = [
     id: 'plano',
     label: 'Plano mensal',
     message: WHATSAPP_MESSAGES.plano,
+  },
+  {
+    id: 'instagram',
+    label: 'Instagram (básico)',
+    message: WHATSAPP_MESSAGES.instagram,
   },
   {
     id: 'diagnostico',

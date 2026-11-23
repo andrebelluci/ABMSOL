@@ -18,20 +18,20 @@ export function Hero() {
       <MarkRay place="hero" />
       <div className="hero-copy">
         <p className="hero-line font-mono text-label uppercase text-mint">
-          01 — Estúdio de tecnologia · Rio Preto (SP)
+          01 · Presença digital · Rio Preto (SP)
         </p>
         <h1 className="hero-title mt-4 font-display text-display text-ink" data-cursor-avoid="">
-          Tecnologia que funciona.
+          Sua empresa some no Google e nas IAs?
         </h1>
-        <p className="hero-line hero-line-lead mt-4 max-w-[28ch] text-lead text-ink" data-cursor-avoid="">
-          Do suporte do dia a dia ao site premium.
+        <p className="hero-line hero-line-lead mt-4 max-w-[34ch] text-lead text-ink" data-cursor-avoid="">
+          Se a busca e o ChatGPT não te citam, o cliente também não te acha.
         </p>
-        <p className="hero-line hero-line-body mt-3 max-w-[34ch] text-body text-ink-muted">
-          Site, sistema e suporte com um parceiro só.
+        <p className="hero-line hero-line-body mt-3 max-w-[38ch] text-body text-ink-muted">
+          Site, conteúdo e presença para você aparecer onde a pessoa pergunta, no Brasil e nas ferramentas que ela já usa.
         </p>
         <div className="hero-line hero-line-cta mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
           <div className="hero-cta-whatsapp">
-            <WhatsAppLink source="hero" message={WHATSAPP_MESSAGES.site}>
+            <WhatsAppLink source="hero" message={WHATSAPP_MESSAGES.presenca}>
               Falar no WhatsApp
             </WhatsAppLink>
           </div>
