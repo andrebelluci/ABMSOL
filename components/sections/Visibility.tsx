@@ -39,6 +39,9 @@ export function Visibility() {
                     <span className="sr-only">{fact.value} </span>
                     {fact.label}
                   </p>
+                  <p className="visibility-fact-scope text-ink-muted" data-cursor-avoid="">
+                    {fact.scope}
+                  </p>
                   <a
                     href={fact.sourceUrl}
                     target="_blank"
@@ -48,12 +51,20 @@ export function Visibility() {
                     data-cursor-label="Fonte"
                     data-cursor-theme="dark"
                   >
-                    Fonte: {fact.source}
+                    Fonte: {fact.source}, {fact.date}
                   </a>
                 </div>
               </li>
             ))}
           </ul>
+          <p
+            className="visibility-facts-note is-muted mt-8 max-w-2xl"
+            data-reveal
+            data-cursor-avoid=""
+          >
+            Estudos de mercado; cada um mede uma amostra diferente. Não são
+            resultados de clientes da ABMSOL.
+          </p>
 
           <div className="visibility-levers mt-16" data-reveal>
             <p className="font-mono text-label uppercase text-mint">

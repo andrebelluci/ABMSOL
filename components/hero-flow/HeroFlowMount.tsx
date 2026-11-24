@@ -2,14 +2,22 @@
 
 import dynamic from 'next/dynamic'
 
+import { heroFlowUi } from '@/lib/content/hero-flow/steps'
+
 const HeroFlow = dynamic(
   () => import('@/components/hero-flow/HeroFlow').then((mod) => mod.HeroFlow),
   {
     ssr: false,
     loading: () => (
-      <span className="inline-flex min-h-12 items-center text-mint opacity-70">
-        Descobrir meu caminho →
-      </span>
+      <button
+        type="button"
+        className="hero-flow-open-btn"
+        disabled
+        aria-hidden="true"
+        tabIndex={-1}
+      >
+        {heroFlowUi.openLabel}
+      </button>
     ),
   },
 )

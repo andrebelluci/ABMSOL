@@ -582,11 +582,27 @@ html[data-scroll-lock] .aos-embed-launcher {
   font-size: inherit;
   font-weight: 500;
   line-height: 1.25;
+  transition: background-color 160ms ease;
+}
+
+.hero-flow-open-btn:disabled {
+  opacity: 1;
+  cursor: default;
 }
 
 .hero-flow-open-btn:focus-visible {
   outline: 2px solid var(--c-mint);
   outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  .hero-flow-open-btn:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--c-mint) 12%, transparent);
+  }
+
+  .hero-flow-open-btn:active:not(:disabled) {
+    background: color-mix(in srgb, var(--c-mint) 18%, transparent);
+  }
 }
 
 .hero-flow-text-btn {
@@ -1184,6 +1200,18 @@ html[data-scroll-lock] .aos-embed-launcher {
   max-width: 40rem;
 }
 
+.visibility-fact-scope {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+.visibility-facts-note {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
 .visibility-fact-source {
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.75rem;
@@ -1426,6 +1454,14 @@ html[data-scroll-lock] .aos-embed-launcher {
       color-mix(in srgb, var(--c-navy-900) 70%, transparent) 52%,
       transparent 78%
     );
+  }
+}
+
+/* Telas largas: H1 em menos linhas sem invadir o 3D. */
+@media (min-width: 1536px) {
+  .hero-copy {
+    max-width: 60rem;
+    padding-right: 4%;
   }
 }
 
