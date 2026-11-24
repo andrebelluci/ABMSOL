@@ -542,6 +542,18 @@ html[data-scroll-lock] .aos-embed-launcher {
 @media (min-width: 1024px) {
   .hero-flow-options--grid {
     grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+
+  /* Desktop: card curto acompanha a altura do vizinho da mesma linha (sem buraco). */
+  .hero-flow-options--grid > li {
+    display: flex;
+  }
+
+  .hero-flow-options--grid .hero-flow-card {
+    flex: 1 1 auto;
+    height: 100%;
+    justify-content: flex-start;
   }
 }
 
