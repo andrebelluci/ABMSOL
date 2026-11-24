@@ -255,9 +255,9 @@ html[data-nav-open] .whatsapp-bar {
   scroll-margin-top: 3.5rem;
 }
 
-/* H1 só da Hero: escala com viewport para o CTA caber sem rolar. */
+/* H1 só da Hero: escala com viewport (4 linhas) para o CTA caber sem rolar. */
 .hero-title {
-  font-size: clamp(2.5rem, min(7vw + 1rem, 12.5dvh), 6.5rem);
+  font-size: clamp(2.5rem, min(7vw + 1rem, 10dvh), 6.5rem);
 }
 
 .hero-copy {
@@ -281,11 +281,11 @@ html[data-nav-open] .whatsapp-bar {
     animation-delay: 0.28s;
   }
 
-  html.js .hero-line-body {
+  html.js .hero-line-cta {
     animation-delay: 0.38s;
   }
 
-  html.js .hero-line-cta {
+  html.js .hero-line-body {
     animation-delay: 0.5s;
   }
 }
@@ -384,6 +384,16 @@ html[data-nav-open] .whatsapp-bar {
 html[data-scroll-lock] {
   overflow: hidden;
   scrollbar-gutter: stable;
+}
+
+html[data-scroll-lock] .widget-teaser,
+html[data-scroll-lock] .back-to-top {
+  display: none;
+}
+
+html[data-scroll-lock] .aos-embed-launcher {
+  visibility: hidden;
+  pointer-events: none;
 }
 
 /* Shell fixed sob o header: rolagem interna; Tab ainda alcança o menu. */
@@ -555,6 +565,28 @@ html[data-scroll-lock] {
   font-size: 1.05rem;
   font-weight: 600;
   font-feature-settings: 'ss04' 1;
+}
+
+.hero-flow-open-btn {
+  display: inline-flex;
+  min-height: 3rem;
+  min-width: 3rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--c-mint) 55%, transparent);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--c-mint);
+  font-family: var(--font-instrument), sans-serif;
+  font-size: inherit;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.hero-flow-open-btn:focus-visible {
+  outline: 2px solid var(--c-mint);
+  outline-offset: 3px;
 }
 
 .hero-flow-text-btn {

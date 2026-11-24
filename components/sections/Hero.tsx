@@ -26,10 +26,7 @@ export function Hero() {
         <p className="hero-line hero-line-lead mt-4 max-w-[34ch] text-lead text-ink" data-cursor-avoid="">
           Se a busca e o ChatGPT não te citam, o cliente também não te acha.
         </p>
-        <p className="hero-line hero-line-body mt-3 max-w-[38ch] text-body text-ink-muted">
-          Site, conteúdo e presença para você aparecer onde a pessoa pergunta, no Brasil e nas ferramentas que ela já usa.
-        </p>
-        <div className="hero-line hero-line-cta mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+        <div className="hero-line hero-line-cta mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
           <div className="hero-cta-whatsapp">
             <WhatsAppLink source="hero" message={WHATSAPP_MESSAGES.presenca}>
               Falar no WhatsApp
@@ -37,6 +34,9 @@ export function Hero() {
           </div>
           <HeroFlowMount />
         </div>
+        <p className="hero-line hero-line-body mt-6 max-w-[38ch] text-body text-ink-muted">
+          Site, conteúdo e presença para você aparecer onde a pessoa pergunta, no Brasil e nas ferramentas que ela já usa.
+        </p>
       </div>
       <PageTrail />
       <SunEnhance />

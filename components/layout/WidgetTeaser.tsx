@@ -4,6 +4,8 @@ import { useEffect, useState, type MouseEvent } from 'react'
 
 const STORAGE_KEY = 'abmsol-widget-teaser-seen'
 const SHOW_AFTER_MS = 4500
+const POLL_LIMIT_MS = 15000
+const POLL_EVERY_MS = 400
 
 function openAgencyOsChat() {
   const widget = window.AgencyOSWidget
@@ -22,7 +24,10 @@ export function WidgetTeaser() {
     let cancelled = false
     let showTimer = 0
     let pollTimer = 0
+    let launcherReady = false
+    let delayDone = false
     let launcherObserver: MutationObserver | null = null
+    const pollStartedAt = Date.now()
 
     try {
       if (sessionStorage.getItem(STORAGE_KEY) === '1') return
@@ -43,9 +48,18 @@ export function WidgetTeaser() {
       if (!cancelled) setVisible(false)
     }
 
-    const bindLauncher = () => {
-      const launcher = document.querySelector('.aos-embed-launcher')
-      if (!launcher || launcherObserver) return
+    const tryShow = () => {
+      if (cancelled || !launcherReady || !delayDone) return
+      try {
+        if (sessionStorage.getItem(STORAGE_KEY) === '1') return
+      } catch {
+        /* private mode */
+      }
+      setVisible(true)
+    }
+
+    const bindLauncher = (launcher: Element) => {
+      if (launcherObserver) return
 
       const sync = () => {
         const open = launcher.getAttribute('aria-expanded') === 'true'
@@ -62,19 +76,21 @@ export function WidgetTeaser() {
     }
 
     const waitForWidget = () => {
-      bindLauncher()
-      if (document.querySelector('.aos-embed-launcher')) return
-      pollTimer = window.setTimeout(waitForWidget, 400)
+      if (cancelled) return
+      const launcher = document.querySelector('.aos-embed-launcher')
+      if (launcher) {
+        launcherReady = true
+        bindLauncher(launcher)
+        tryShow()
+        return
+      }
+      if (Date.now() - pollStartedAt >= POLL_LIMIT_MS) return
+      pollTimer = window.setTimeout(waitForWidget, POLL_EVERY_MS)
     }
 
     showTimer = window.setTimeout(() => {
-      if (cancelled) return
-      try {
-        if (sessionStorage.getItem(STORAGE_KEY) === '1') return
-      } catch {
-        /* private mode */
-      }
-      setVisible(true)
+      delayDone = true
+      tryShow()
     }, SHOW_AFTER_MS)
 
     waitForWidget()

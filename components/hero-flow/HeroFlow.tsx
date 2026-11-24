@@ -164,7 +164,7 @@ export function HeroFlow() {
         <button
           ref={openBtnRef}
           type="button"
-          className="inline-flex min-h-12 items-center text-mint"
+          className="hero-flow-open-btn"
           data-cursor="link"
           data-cursor-label={heroFlowUi.openLabel}
           data-cursor-theme="dark"

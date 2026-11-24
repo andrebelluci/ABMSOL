@@ -100,7 +100,8 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
         lenis.scrollTo(top)
         return
       }
-      window.scrollTo({ top, behavior: 'smooth' })
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' })
     }
 
     window.addEventListener('abmsol:scroll-to', onScrollTo)
