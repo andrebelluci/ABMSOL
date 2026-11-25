@@ -7,7 +7,7 @@
 
 | Rota | Arquivo | Observações |
 |------|---------|-------------|
-| `/servicos/` | `app/servicos/page.tsx` | 3 grupos em detalhe + suporte local (Rio Preto), sem preço |
+| `/servicos/` | `app/servicos/page.tsx` | 3 grupos em detalhe + suporte local (São José do Rio Preto), sem preço |
 | `/portfolio/<slug>/` ×3 | `app/portfolio/[slug]/page.tsx` | `generateStaticParams()` obrigatório; 1 premium, 1 institucional, 1 sistema/painel (P8); rótulo "Projeto conceito" na página e no card |
 | `/sobre/` | `app/sobre/page.tsx` | Quem assina (P2/P3), origem do nome A·B·M + SOL **só com autorização de Bárbara (P14)** e sem foto/nome completo do Miguel (D5), método |
 | `/contato/` | `app/contato/page.tsx` | Compositor de mensagem de WhatsApp (serviço + contexto, sem formulário/servidor); e-mail alternativo só se P4 |

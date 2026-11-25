@@ -9,7 +9,7 @@
 |---------|------|
 | `lib/seo.ts` | `createMetadata()` por página (título 50–60, descrição 140–160), canonical, OG 1200×630, Twitter; `noindex` controlado por variável de build (ex.: `NEXT_PUBLIC_NOINDEX=1` em `*.vercel.app`; o export estático não enxerga o host em runtime) |
 | `app/layout.tsx` | Metadata global; remover `robots` fixo `noindex` apenas quando o domínio final for ativado (fase 07) |
-| `lib/schema.ts`, `components/seo/JsonLd.tsx` | `ProfessionalService` (`areaServed` Rio Preto/SP + Brasil online), `Service` por serviço, `FAQPage` na home, `WebSite`; **sem** `Review` |
+| `lib/schema.ts`, `components/seo/JsonLd.tsx` | `ProfessionalService` (`areaServed` São José do Rio Preto/SP + Brasil online), `Service` por serviço, `FAQPage` na home, `WebSite`; **sem** `Review` |
 | `public/robots.txt`, `public/llms.txt` | Atualizar com dados finais |
 | `scripts/generate-sitemap.js` | 8 URLs |
 | `public/og.png` | Imagem OG (marinho + sol) |

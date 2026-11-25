@@ -29,7 +29,7 @@
 | P15 | Aprovar esta rodada e o BRIEF | André |
 | P16 | Escolher wordmark A (Rajdhani texto vivo) ou B (SVG em curvas) após amostras na Fase 01 | André |
 | P17 | Confirmar que cursor-nó v2 e camada 2 do sol ficam na 03b (pós-lançamento) | André |
-| P18 | Criar perfil no Google Meu Negócio (Rio Preto, SP) | André (fora do site) |
+| P18 | Criar perfil no Google Meu Negócio (São José do Rio Preto, SP) | André (fora do site) |
 | P19 | Definir/criar Instagram para o link do rodapé | André (fora do site) |
 | P20 | Repositório público? Se sim, decidir limpeza dos nomes de clientes em docs herdados | André |
 | P21 | `components/legal/scene2d.dll` (remover?) e obter (ou dispensar) a skill `design-taste-frontend` | André |

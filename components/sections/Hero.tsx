@@ -18,7 +18,7 @@ export function Hero() {
       <MarkRay place="hero" />
       <div className="hero-copy">
         <p className="hero-line font-mono text-label uppercase text-mint">
-          01 · Presença digital · Rio Preto (SP)
+          01 · Presença digital · São José do Rio Preto (SP)
         </p>
         <h1 className="hero-title mt-4 font-display text-display text-ink" data-cursor-avoid="">
           Sua empresa some no Google e nas IAs?

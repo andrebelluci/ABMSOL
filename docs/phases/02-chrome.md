@@ -9,7 +9,7 @@
 |---------|------|
 | `components/layout/Header.tsx` | **Criar**: barra fina sólida, `mark-simple` (≥ 28–32 px) + wordmark SVG, atributos `data-cursor-*`, 4 links + botão WhatsApp, nó menta no link ativo |
 | `components/layout/MobileNav.tsx` | **Criar** (client): Trail Index sheet (ver DIFFERENTIATION), focus trap, `Esc`, retorno de foco |
-| `components/layout/Footer.tsx` | **Criar**: assinatura da trilha, WhatsApp, "Rio Preto (SP) · atendimento online", link `/privacidade/`; e-mail só se P4 |
+| `components/layout/Footer.tsx` | **Criar**: assinatura da trilha, WhatsApp, "São José do Rio Preto (SP) · atendimento online", link `/privacidade/`; e-mail só se P4 |
 | (cursor) | **Não implementar o cursor nesta fase** (vai para a 03b). Remover o `CustomCursor` do boilerplate do `AppShell` se ainda houver referência. Apenas **adicionar atributos `data-cursor`, `data-cursor-label`, `data-cursor-theme`, `data-cursor-avoid`** em links, botões, menu, WhatsApp e seções |
 | `components/layout/WhatsAppBar.tsx` | **Criar** (client): barra inferior no mobile, surge depois do hero e some no CTA final; sem widget flutuante |
 | `components/ui/WhatsAppLink.tsx` | **Criar** (client leve): link `wa.me` com `?text=` e evento `whatsapp_click` (stub até a fase 06) |

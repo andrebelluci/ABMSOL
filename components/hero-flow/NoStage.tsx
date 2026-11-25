@@ -4,8 +4,12 @@ import { useMemo, useRef } from 'react'
 
 import { NoCharacter, type NoJointProgress, type NoPose } from '@/components/hero-flow/NoCharacter'
 import { NoSceneSeed } from '@/components/hero-flow/NoSceneSeed'
+import { NoSceneShop } from '@/components/hero-flow/NoSceneShop'
+import { NoSceneWindow } from '@/components/hero-flow/NoSceneWindow'
 import { useNoPose } from '@/components/hero-flow/useNoPose'
 import type { HeroFlowState } from '@/components/hero-flow/useHeroFlow'
+
+export type NoSceneId = 'seed' | 'window' | 'shop' | 'none'
 
 function poseFor(state: HeroFlowState): NoPose {
   if (state.step === 'profile') return 'wave'
@@ -21,12 +25,15 @@ function progressFor(state: HeroFlowState): NoJointProgress {
 }
 
 /**
- * Cena SVG só para “começando” (Etapa 3).
- * site-fraco / negocio-solido: mesmo Nó (pose + juntas), sem semente/trilha.
+ * Cena SVG por perfil nos passos need/result (Etapa 4).
+ * seed = comecando · window = site-fraco · shop = negocio-solido.
  */
-function showSeedScene(state: HeroFlowState): boolean {
-  if (state.step !== 'need' && state.step !== 'result') return false
-  return state.profileId === 'comecando'
+function sceneFor(state: HeroFlowState): NoSceneId {
+  if (state.step !== 'need' && state.step !== 'result') return 'none'
+  if (state.profileId === 'comecando') return 'seed'
+  if (state.profileId === 'site-fraco') return 'window'
+  if (state.profileId === 'negocio-solido') return 'shop'
+  return 'none'
 }
 
 /** Palco do Nó: mesmo SVG em desktop/mobile, acima do sol dimado. */
@@ -34,13 +41,13 @@ export function NoStage({ state }: { state: HeroFlowState }) {
   const ref = useRef<HTMLDivElement>(null)
   const pose = useMemo(() => poseFor(state), [state])
   const progress = useMemo(() => progressFor(state), [state])
-  const withSeed = useMemo(() => showSeedScene(state), [state])
+  const scene = useMemo(() => sceneFor(state), [state])
 
-  useNoPose(ref, pose, withSeed)
+  useNoPose(ref, pose, scene)
 
   if (state.step === 'idle') return null
 
-  const scene =
+  const profile =
     state.step === 'need' || state.step === 'result' ? state.profileId : 'none'
 
   return (
@@ -49,10 +56,12 @@ export function NoStage({ state }: { state: HeroFlowState }) {
       className="no-stage"
       data-no-stage
       data-no-pose={pose}
-      data-no-scene={withSeed ? 'seed' : 'none'}
-      data-no-profile={scene}
+      data-no-scene={scene}
+      data-no-profile={profile}
     >
-      {withSeed ? <NoSceneSeed /> : null}
+      {scene === 'seed' ? <NoSceneSeed /> : null}
+      {scene === 'window' ? <NoSceneWindow /> : null}
+      {scene === 'shop' ? <NoSceneShop /> : null}
       <NoCharacter progress={progress} />
     </div>
   )

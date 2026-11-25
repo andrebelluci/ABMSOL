@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://abmsol.com.br/sitemap.xml
+
+# Visão curada para agentes e LLMs (especificação https://llmstxt.org/):
+# https://abmsol.com.br/llms.txt

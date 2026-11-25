@@ -10,9 +10,9 @@ export const servicesPage = {
   offerTitle: 'O que entregamos',
   offerLead:
     'Seis itens, nesta ordem. O detalhe da proposta sai na conversa, sem preço nesta página.',
-  localTitle: 'Rio Preto e o restante do Brasil',
+  localTitle: 'São José do Rio Preto e o restante do Brasil',
   localBody:
-    'O suporte do dia a dia em Rio Preto (SP) fica com a gente. Fora da cidade, o atendimento é online, em todo o Brasil.',
+    'O suporte do dia a dia em São José do Rio Preto (SP) fica com a gente. Fora da cidade, o atendimento é online, em todo o Brasil.',
   cta: 'Quero um diagnóstico de presença',
   message: WHATSAPP_MESSAGES.presenca,
 } as const
@@ -46,7 +46,7 @@ export const serviceDetails = [
     id: 'suporte',
     index: '04',
     title: 'Suporte de TI',
-    body: 'O suporte do dia a dia, para quem está em Rio Preto e para quem chama de outro lugar. Máquina e operação estáveis.',
+    body: 'O suporte do dia a dia, para quem está em São José do Rio Preto e para quem chama de outro lugar. Máquina e operação estáveis.',
     message: WHATSAPP_MESSAGES.suporte,
     cta: 'Pedir uma proposta de suporte',
   },

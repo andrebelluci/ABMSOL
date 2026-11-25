@@ -40,7 +40,7 @@ export const BRAND = {
     facebook: '',
   },
   seo: {
-    areaServed: 'Rio Preto (SP) e Brasil (online)',
+    areaServed: 'São José do Rio Preto (SP) e Brasil (online)',
   },
   url: SITE_URL,
 } as const

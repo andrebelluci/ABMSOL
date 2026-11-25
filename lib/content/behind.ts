@@ -34,7 +34,7 @@ export const behindTimeline = [
   {
     period: '2007 a 2012',
     title: 'Arte final e Engenharia da Computação',
-    body: 'Trabalhei com arte final, adesivos e impressão de banner enquanto cursava Engenharia da Computação. No meio do caminho, estagiei em suporte no Hospital de Base, em Rio Preto.',
+    body: 'Trabalhei com arte final, adesivos e impressão de banner enquanto cursava Engenharia da Computação. No meio do caminho, estagiei em suporte no Hospital de Base, em São José do Rio Preto.',
   },
   {
     period: '2012 a 2017',

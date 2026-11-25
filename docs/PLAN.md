@@ -36,7 +36,7 @@ Conversão: conhecer → entender → confiar → contatar. Todo caminho termina
 
 ```
 /                      Home (narrativa única, 9 blocos)
-/servicos/             Detalhe dos 3 grupos de serviço (+ seção Rio Preto / suporte local)
+/servicos/             Detalhe dos 3 grupos de serviço (+ seção São José do Rio Preto / suporte local)
 /portfolio/<slug>/     3 projetos conceito (generateStaticParams)
 /sobre/                Quem assina + origem do nome + método
 /contato/              Compositor de mensagem de WhatsApp + e-mail como alternativa
@@ -60,7 +60,7 @@ Navegação (máx. 4 itens + CTA): **Serviços · Projetos · Como trabalhamos �
 | 6 | **Plano mensal** | Vender recorrência | Hospedagem, SSL, backup, pequenas alterações, ligado ao suporte. Sem preço. | WhatsApp ("Quero saber do plano mensal") |
 | 7 | **Quem assina** | Confiança pessoal | Foto e texto do André; formação e experiência só se confirmadas. | WhatsApp |
 | 8 | **FAQ** | Remover objeções | 5 perguntas, accordion, 1 aberta. | — |
-| 9 | **CTA final + rodapé** | Fechar | Headline curta, botão WhatsApp, e-mail como alternativa, Rio Preto, link de privacidade. | **WhatsApp** |
+| 9 | **CTA final + rodapé** | Fechar | Headline curta, botão WhatsApp, e-mail como alternativa, São José do Rio Preto, link de privacidade. | **WhatsApp** |
 
 Regras de densidade (herdadas do `site-brand-ux`): ≤ 200 palavras por seção, ≤ 3 blocos por seção, nunca duas seções do mesmo tipo seguidas.
 
@@ -281,7 +281,7 @@ HTML semântico (`header/nav/main/section/footer`, um `h1` por página, sem pula
 
 ### 4.6 SEO
 
-`createMetadata()` por página (título único de 50 a 60 caracteres, descrição de 140 a 160), canonical, OG 1200×630 e Twitter card; **JSON-LD:** `ProfessionalService` com `areaServed` (Rio Preto/SP + Brasil, online) e `Service` por serviço; `FAQPage` na home; `WebSite`; **sem `Review`/`AggregateRating`** (não há clientes). `sitemap.xml` gerado por `scripts/generate-sitemap.js`, `robots.txt`, `llms.txt`. Foco local (Rio Preto) em `/servicos` e no rodapé, sem keyword stuffing. Nome da marca centralizado em `lib/brand.ts` para troca segura. `noindex` em `*.vercel.app` até o domínio final (evita duplicidade).
+`createMetadata()` por página (título único de 50 a 60 caracteres, descrição de 140 a 160), canonical, OG 1200×630 e Twitter card; **JSON-LD:** `ProfessionalService` com `areaServed` (São José do Rio Preto/SP + Brasil, online) e `Service` por serviço; `FAQPage` na home; `WebSite`; **sem `Review`/`AggregateRating`** (não há clientes). `sitemap.xml` gerado por `scripts/generate-sitemap.js`, `robots.txt`, `llms.txt`. Foco local (São José do Rio Preto) em `/servicos` e no rodapé, sem keyword stuffing. Nome da marca centralizado em `lib/brand.ts` para troca segura. `noindex` em `*.vercel.app` até o domínio final (evita duplicidade).
 
 ### 4.7 Analytics e privacidade
 

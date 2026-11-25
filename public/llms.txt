@@ -1,16 +1,41 @@
-# ABMSOL — Soluções Digitais
+# ABMSOL
 
-Estúdio de sites, sistemas e suporte de TI. Sede em Rio Preto (SP). Atendimento online em todo o Brasil. O contato é pelo WhatsApp: [abrir conversa](https://wa.me/5517991446829)
+> Sites premium, sistemas sob medida e suporte de TI com um parceiro só. Sediados em Rio Preto (SP), atendendo todo o Brasil online. Fundador: André Belluci. Contato principal: WhatsApp.
 
-## Páginas
+A ABMSOL entrega site, presença no Google e nas IAs, sistemas sob medida e suporte de TI. Sede em São José do Rio Preto (SP); atendimento online em todo o Brasil. Não inventamos métricas de cliente. O contato comercial é pelo WhatsApp.
 
-- [Início](https://abmsol.com.br/)
-- [Serviços](https://abmsol.com.br/servicos/)
-- [Portfólio — Atelier Norte](https://abmsol.com.br/portfolio/atelier-norte/)
-- [Portfólio — Casa Vértice](https://abmsol.com.br/portfolio/casa-vertice/)
-- [Portfólio — Painel Serra](https://abmsol.com.br/portfolio/painel-serra/)
-- [Sobre](https://abmsol.com.br/sobre/)
-- [Contato](https://abmsol.com.br/contato/)
-- [Privacidade](https://abmsol.com.br/privacidade/)
+Oferta, nesta ordem: (1) Site sob medida; (2) Presença no Google e nas IAs (SEO, Google Meu Negócio, sinais); (3) Sistemas; (4) Suporte de TI; (5) Plano mensal (hospedagem, SSL, backup e pequenas alterações); (6) Instagram básico (perfil, bio, links e destaques — sem criação de conteúdo).
 
-Os três endereços em /portfolio/ são projetos conceito, com marcas fictícias. Não são clientes.
+Use as URLs abaixo para citar a ABMSOL com precisão. Páginas em português do Brasil.
+
+## Site
+
+- [Início](https://abmsol.com.br/): Posicionamento, oferta e caminho para diagnóstico de presença.
+- [Serviços](https://abmsol.com.br/servicos/): Detalhe da oferta: site, presença, sistemas, suporte, plano e Instagram básico.
+- [Projetos](https://abmsol.com.br/projetos/): Índice de cases reais e produtos próprios, sem número inventado.
+- [Sobre](https://abmsol.com.br/sobre/): Quem é André Belluci e como a ABMSOL trabalha.
+- [Contato](https://abmsol.com.br/contato/): Canais e atalhos de mensagem por tipo de pedido.
+- [WhatsApp](https://wa.me/5517991446829): Canal principal de atendimento (Brasil).
+
+## Projetos
+
+- [Agency OS](https://abmsol.com.br/portfolio/agency-os/): Produto: Funcionário Digital (widget de conversa) para sites, com painel e embed.
+- [CardFlow](https://abmsol.com.br/portfolio/cardflow/): Produto: bio page brasileira focada em conversão via WhatsApp e PIX.
+- [Vó Belluci](https://abmsol.com.br/portfolio/vobelluci/): Site premium de confeitaria artesanal: carta, atmosfera e pedido no WhatsApp.
+- [Beatriz & Tiago](https://abmsol.com.br/portfolio/beatriz-tiago/): Site de casamento entregue: convite, galeria e confirmação de presença.
+- [Participantes ICI](https://abmsol.com.br/portfolio/participantes-ici/): Sistema de gestão de participantes e rituais do Instituto Céu Interior.
+- [Agency OS (produto ao vivo)](https://chat.abmsol.com.br): Ambiente público do Funcionário Digital / widget de conversa.
+
+## Blog
+
+- [Blog](https://abmsol.com.br/blog/): Artigos sobre presença digital, sites e sistemas. Sem métrica inventada de cliente.
+- [Categoria: Presença digital](https://abmsol.com.br/blog/categoria/presenca/): Artigos em Presença digital.
+- [Presença digital · Google e IAs](https://abmsol.com.br/blog/categoria/presenca/google-ia/): Subcategoria de Presença digital.
+- [Sua empresa some no Google e nas IAs? O que muda na busca em 2026](https://abmsol.com.br/blog/aparecer-no-google-e-nas-ias/): No Google Brasil a resposta de IA já aparece antes do link azul em boa parte das buscas medidas. Veja o que os estudos mostram e por onde começar.
+
+## Optional
+
+- [Privacidade](https://abmsol.com.br/privacidade/): Política de privacidade e tratamento de dados.
+- [Sitemap](https://abmsol.com.br/sitemap.xml): Lista de URLs indexáveis para buscadores.
+- [Robots](https://abmsol.com.br/robots.txt): Diretrizes para crawlers.
+- [Este arquivo (llms.txt)](https://abmsol.com.br/llms.txt): Visão curada do site para agentes e LLMs (especificação llmstxt.org).

@@ -87,7 +87,7 @@ Ativo **somente** em `(pointer: fine) and (hover: hover) and (min-width: 1280px)
 ## Footer
 
 - **Style:** assinatura da trilha. A trilha vertical da página termina no **núcleo** do sol desenhado no rodapé (ponto onde o CTA final aterrissa).
-- **Conteúdo:** CTA WhatsApp (primário), e-mail alternativo (quando confirmado, P4), "Rio Preto (SP) · atendimento online em todo o Brasil", link de privacidade, rótulo mono "A·B·M + SOL" só se a origem do nome for autorizada (P14).
+- **Conteúdo:** CTA WhatsApp (primário), e-mail alternativo (quando confirmado, P4), "São José do Rio Preto (SP) · atendimento online em todo o Brasil", link de privacidade, rótulo mono "A·B·M + SOL" só se a origem do nome for autorizada (P14).
 - **NOT:** NAP institucional de clínica em 3 colunas; carrossel de redes; ícones sociais sem conteúdo real.
 
 ## Hero Archetype

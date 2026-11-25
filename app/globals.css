@@ -490,7 +490,9 @@ html[data-scroll-lock] .aos-embed-launcher {
 }
 
 .no-stage .no-character,
-.no-stage .no-scene-seed {
+.no-stage .no-scene-seed,
+.no-stage .no-scene-window,
+.no-stage .no-scene-shop {
   position: absolute;
   inset: 0;
 }
@@ -530,6 +532,46 @@ html[data-scroll-lock] .aos-embed-launcher {
 .no-seed-node {
   fill: var(--c-mint);
   stroke: none;
+}
+
+.no-window-frame,
+.no-window-line,
+.no-shop-stroke,
+.no-shop-sign {
+  stroke: var(--c-gold);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.no-window-dot {
+  fill: var(--c-gold);
+  stroke: var(--c-gold);
+  stroke-width: 0.6;
+}
+
+.no-window-line {
+  stroke: var(--c-mint);
+}
+
+.no-shop-dust {
+  fill: var(--c-gold);
+  stroke: none;
+  opacity: 0.7;
+}
+
+.no-shop-lamp {
+  fill: none;
+  stroke: var(--c-gold);
+  stroke-width: 1.4;
+}
+
+.no-shop-halo {
+  fill: none;
+  stroke: var(--c-mint);
+  stroke-width: 1;
+  opacity: 0;
 }
 
 .hero-flow-options {
@@ -1815,4 +1857,185 @@ html[data-nav-open] .widget-teaser {
     animation: none;
   }
 }
+
+/* Blog */
+.blog-breadcrumbs-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--c-ink-muted);
+}
+
+.blog-breadcrumbs-item:not(:last-child)::after {
+  content: '/';
+  margin-left: 0.5rem;
+  color: color-mix(in srgb, var(--c-ink) 35%, transparent);
+}
+
+.blog-breadcrumbs a {
+  color: var(--c-mint);
+  text-decoration: none;
+}
+
+.blog-layout {
+  display: grid;
+  gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .blog-layout {
+    grid-template-columns: minmax(0, 1fr) 15rem;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .blog-layout-aside {
+    position: sticky;
+    top: 6rem;
+  }
+}
+
+.blog-card {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .blog-card {
+    grid-template-columns: minmax(12rem, 18rem) minmax(0, 1fr);
+    gap: 1.75rem;
+    align-items: start;
+  }
+}
+
+.blog-card-media {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--c-line);
+}
+
+.blog-card-image,
+.blog-cover-image,
+.blog-author-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.blog-cover {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--c-line);
+}
+
+.blog-author {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  align-items: start;
+}
+
+.blog-author-photo {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--c-line);
+}
+
+.blog-source-link {
+  color: var(--c-mint);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.8125rem;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.blog-source-link:hover,
+.blog-source-link:focus-visible {
+  border-bottom-color: color-mix(in srgb, var(--c-mint) 55%, transparent);
+}
+
+.blog-related-card {
+  display: block;
+  height: 100%;
+  padding: 1rem 0;
+  border-top: 1px solid var(--c-line);
+  text-decoration: none;
+}
+
+.blog-category-nav a {
+  display: inline-flex;
+  min-height: 2.5rem;
+  align-items: center;
+  text-decoration: none;
+}
+
+.prose-blog {
+  color: var(--c-ink);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.prose-blog > :first-child {
+  margin-top: 0;
+}
+
+.prose-blog p,
+.prose-blog ul,
+.prose-blog ol {
+  margin: 0 0 1.15rem;
+}
+
+.prose-blog h2 {
+  margin: 2.25rem 0 0.85rem;
+  font-family: var(--font-syne), sans-serif;
+  font-feature-settings: 'ss04' 1;
+  font-size: clamp(1.45rem, 2vw, 1.85rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.prose-blog h3 {
+  margin: 1.75rem 0 0.65rem;
+  font-family: var(--font-syne), sans-serif;
+  font-feature-settings: 'ss04' 1;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.prose-blog a {
+  color: var(--c-mint);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.prose-blog ul,
+.prose-blog ol {
+  padding-left: 1.25rem;
+}
+
+.prose-blog li + li {
+  margin-top: 0.4rem;
+}
+
+.prose-blog strong {
+  color: var(--c-ink);
+  font-weight: 600;
+}
+
+.blog-page code {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.9em;
+  color: var(--c-mint);
+}
+
 

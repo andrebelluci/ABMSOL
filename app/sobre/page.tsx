@@ -3,7 +3,7 @@ import { aboutPage, aboutSteps } from '@/lib/content/about'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'O método do estúdio de tecnologia em Rio Preto | ABMSOL',
+  title: 'O método do estúdio de tecnologia em São José do Rio Preto | ABMSOL',
   description:
     'Site, sistema e suporte com o mesmo parceiro. Seis etapas, do diagnóstico ao cuidado contínuo, e quem assina o trabalho da ABMSOL.',
   path: '/sobre/',

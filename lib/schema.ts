@@ -8,7 +8,7 @@ const ogImage = `${SITE_URL}/images/og-image.webp`
 const areaServed = [
   {
     '@type': 'City',
-    name: 'Rio Preto',
+    name: 'São José do Rio Preto',
     containedInPlace: { '@type': 'AdministrativeArea', name: 'SP' },
   },
   { '@type': 'Country', name: 'Brasil' },

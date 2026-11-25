@@ -34,9 +34,9 @@ const mono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = createMetadata({
-  title: 'Apareça no Google e nas IAs | ABMSOL Rio Preto',
+  title: 'Apareça no Google e nas IAs | ABMSOL São José do Rio Preto',
   description:
-    'Site, conteúdo e presença para sua empresa ser encontrada no Google Brasil e nas respostas de IA. Estúdio em Rio Preto (SP), atendimento online no Brasil. Contato no WhatsApp.',
+    'Site, conteúdo e presença para sua empresa ser encontrada no Google Brasil e nas respostas de IA. Estúdio em São José do Rio Preto (SP), atendimento online no Brasil. Contato no WhatsApp.',
   path: '/',
 })
 

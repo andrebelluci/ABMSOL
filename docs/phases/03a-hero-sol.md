@@ -35,7 +35,7 @@
 ```
 ┌────────────────────────────── 100dvh ─────────────────────────────────┐
 │ [Header: marca · 4 links · WhatsApp]                                   │
-│  01 ─ ESTÚDIO DE TECNOLOGIA · RIO PRETO (SP)             ╭─·──·       │
+│  01 ─ ESTÚDIO DE TECNOLOGIA · São José do Rio Preto (SP)             ╭─·──·       │
 │  Tecnologia que funciona.                              ──◉═══●═══●─   │
 │  Do suporte do dia a dia ao site premium.   (h1 > sol)   ╰─·──·       │
 │  Site, sistema e suporte com um parceiro só.      (sol sangra à dir.) │

@@ -9,7 +9,7 @@ import { createMetadata } from '@/lib/seo'
 export const metadata = createMetadata({
   title: 'Aparecer no Google e nas IAs | Serviços ABMSOL',
   description:
-    'Site, presença no Google (SEO e Meu Negócio) e nas IAs, sistemas, suporte, plano mensal e ajuda básica no Instagram. Rio Preto e online no Brasil.',
+    'Site, presença no Google (SEO e Meu Negócio) e nas IAs, sistemas, suporte, plano mensal e ajuda básica no Instagram. São José do Rio Preto e online no Brasil.',
   path: '/servicos/',
   ogImage: '/images/og-image.webp',
 })

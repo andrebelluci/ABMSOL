@@ -9,7 +9,7 @@
 - **Nicho:** servicos (estúdio de sites/sistemas + suporte de TI)
 - **URL atual (redesign):** site antigo `dharmalabs` (somente leitura, referência). Não será reaproveitado visualmente.
 - **URL temporária:** `https://abmsol.vercel.app`, com `noindex` até o domínio final (D7).
-- **Cidade / SEO local:** Rio Preto (SP). Suporte de TI com foco local; sites e sistemas para o Brasil todo, online.
+- **Cidade / SEO local:** São José do Rio Preto (SP). Suporte de TI com foco local; sites e sistemas para o Brasil todo, online.
 - **Ambição visual:** `awwwards` (decisão do André em 20/10/2026: "tem que ser Awwwards"). Mira Site of the Day; Menção Honrosa (6,5+) é o piso. Publicar primeiro, submeter depois. **Dentro do teto técnico do plano** (SVG + GSAP + canvas 2D, sem WebGL, sem registries pagos): o impacto vem da execução do Sol-Índice, da tipografia e do chrome, não de efeitos pesados. Pesos: Design 40, Usabilidade 30, Criatividade 20, Conteúdo 10.
 
 ---
@@ -48,7 +48,7 @@ Referências **analisadas pelo architect** (via navegador, 20/10/2026) estão em
 ## Análise externa (resumo do brief e do plano)
 
 - **Serviços:** (A) Sites e sistemas: Presença (one page), Institucional (3 a 6 páginas), Premium sob medida, Sistemas e automação. (B) Suporte de TI: residencial (celular/computador, remoto e visita) e empresas (manutenção e contrato mensal). (C) Plano mensal: hospedagem, SSL, backup, pequenas alterações, ligado ao suporte.
-- **Público:** amplo. PMEs e profissionais liberais (principal); residências em Rio Preto e região (secundário). Decisão por confiança e entrega previsível, não jargão; muitos acessam por celular intermediário.
+- **Público:** amplo. PMEs e profissionais liberais (principal); residências em São José do Rio Preto e região (secundário). Decisão por confiança e entrega previsível, não jargão; muitos acessam por celular intermediário.
 - **Posicionamento:** estúdio com acabamento de design e rigor de engenharia. Quatro pilares: qualidade verificável, visual premium, um parceiro só, cuidado contínuo.
 - **Prova:** sem clientes vendidos. Portfólio = 3 projetos conceito, marcas fictícias, rótulo "Projeto conceito". Proibido inventar depoimento, métrica, cliente ou logo.
 - **Tom:** profissional, direto, humano, PT-BR, confiante sem exagero, frases curtas, sem jargão.
@@ -137,7 +137,7 @@ Componentes específicos a **não** reutilizar:
 - **Scrollbar:** fina; trilho marinho, thumb dourado.
 - **Nav mobile:** painel de tela cheia marinho, 4 itens grandes, trilha como separador, botão WhatsApp fixo no rodapé do painel (detalhe e diferenciação do Projeto A em DIFFERENTIATION).
 - **Header:** barra fina, marca-sol à esquerda (colapsa do hero), 4 links + botão. Sem glassmorphism.
-- **Footer:** assinatura da trilha terminando no núcleo; WhatsApp primário, e-mail alternativo (quando confirmado), Rio Preto, link de privacidade.
+- **Footer:** assinatura da trilha terminando no núcleo; WhatsApp primário, e-mail alternativo (quando confirmado), São José do Rio Preto, link de privacidade.
 - **Hero archetype:** `typographic-statement` com o Sol-Índice como assinatura.
 - **Sem** tela de loading, **sem** widget de chat, **sem** banner de cookies.
 
@@ -195,8 +195,8 @@ Restrições: só `transform`, `opacity`, `clip-path`, `stroke-dashoffset`; sem 
 
 ## SEO
 
-- **Palavra-chave principal:** "site profissional e suporte de TI em Rio Preto" (família: criação de sites, sistemas sob medida, suporte de TI). Foco local sem prejudicar o alcance nacional.
-- **Cidade/região:** Rio Preto (SP) + Brasil (online).
+- **Palavra-chave principal:** "site profissional e suporte de TI em São José do Rio Preto" (família: criação de sites, sistemas sob medida, suporte de TI). Foco local sem prejudicar o alcance nacional.
+- **Cidade/região:** São José do Rio Preto (SP) + Brasil (online).
 - **Schema:** `ProfessionalService` (+ `Service`, `FAQPage`, `WebSite`). Sem `Review`/`AggregateRating`.
 
 ## Legal e features

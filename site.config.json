@@ -8,7 +8,7 @@
   "city": "Rio Preto",
   "state": "SP",
   "features": {
-    "blog": false,
+    "blog": true,
     "localSeoStrong": false
   }
 }

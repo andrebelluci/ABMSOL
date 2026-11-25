@@ -8,7 +8,7 @@
 
 - **Marca:** ABMSOL — Soluções Digitais
 - **Quem somos:** André Bárbara e Miguel `[CONFIRMAR: dois sócios ou uma pessoa? Define se o texto usa "nós" ou "eu" e como fica a página Sobre]`
-- **Base:** Rio Preto (SP). Suporte de TI com foco local; sites e sistemas para o Brasil todo, online.
+- **Base:** São José do Rio Preto (SP). Suporte de TI com foco local; sites e sistemas para o Brasil todo, online.
 - **O que vamos fazer:** refazer **por completo** o site atual (antigo, `dharmalabs`) para a nova marca, com posicionamento profissional e execução de nível Awwwards.
 - **Prioridade:** o site precisa **converter** (contatos via WhatsApp) e, ao mesmo tempo, funcionar como vitrine do nosso nível de craft.
 
@@ -43,7 +43,7 @@
 ## 4. Público
 
 - **Principal (hipótese):** pequenas empresas e profissionais liberais que precisam de site profissional e de alguém de confiança para cuidar da tecnologia. `[DECIDIR: nicho prioritário, se houver]`
-- **Secundário:** residências (suporte de celular e computador), em Rio Preto e região.
+- **Secundário:** residências (suporte de celular e computador), em São José do Rio Preto e região.
 - **Perfil de decisão:** quem contrata busca **confiança e entrega previsível**, não jargão. Muitos acessam pelo celular, em aparelhos intermediários.
 
 ## 5. Posicionamento
@@ -106,7 +106,7 @@
 - **Reaproveitar** o que fizer sentido do `dharmalabs` após auditoria; descartar o resto sem apego.
 - **Performance (mobile primeiro):** Core Web Vitals na faixa "boa" (LCP ≤ 2,5 s, INP ≤ 200 ms, CLS ≤ 0,1); Lighthouse mobile alto. Animação pesada precisa de **fallback** para celular intermediário.
 - **Acessibilidade:** respeitar `prefers-reduced-motion`; navegação por teclado; contraste AA; HTML semântico.
-- **SEO:** metadados, Open Graph, dados estruturados do negócio, foco local (Rio Preto) sem prejudicar o alcance nacional.
+- **SEO:** metadados, Open Graph, dados estruturados do negócio, foco local (São José do Rio Preto) sem prejudicar o alcance nacional.
 - **Developer Award (critérios para mirar):** semântica e SEO, animações e transições, acessibilidade, performance, responsividade, marcação e metadados.
 - **LGPD:** formulário e analytics com aviso e consentimento adequados `[DECIDIR: analytics e cookies]`.
 - **Hospedagem e domínio:** `[DECIDIR]`. O nome ABMSOL ainda passa por verificação (INPI, domínio e @); **evitar gravar o nome em itens difíceis de mudar** até concluir.

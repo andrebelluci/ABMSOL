@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import { FooterWhatsApp } from '@/components/layout/FooterWhatsApp'
 import { socialChannels } from '@/lib/contact'
-import { NAV_ITEMS } from '@/lib/nav'
+import { CONTACT_NAV_INDEX, NAV_ITEMS } from '@/lib/nav'
 
 const year = new Date().getFullYear()
 
@@ -60,7 +60,7 @@ export function Footer() {
                   data-cursor-label="Contato"
                   data-cursor-theme="dark"
                 >
-                  <span className="font-mono text-label text-mint">05</span>
+                  <span className="font-mono text-label text-mint">{CONTACT_NAV_INDEX}</span>
                   <span>Contato</span>
                 </Link>
               </li>
@@ -70,7 +70,7 @@ export function Footer() {
           <div className="footer-meta">
             <p className="font-mono text-label uppercase text-mint">Onde</p>
             <p className="mt-4 text-body text-ink">
-              Rio Preto (SP)
+              São José do Rio Preto (SP)
               <span className="is-muted mt-1 block">atendimento online em todo o Brasil</span>
             </p>
             <Link

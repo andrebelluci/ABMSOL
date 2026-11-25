@@ -36,6 +36,6 @@ Fonte: `docs/brief-original.md` §5 e §6, `docs/PLAN.md` §1.4, §2.5. Conteúd
 
 ## SEO e dados estruturados
 - `createMetadata()` por página: título 50 a 60 caracteres, descrição 140 a 160.
-- JSON-LD: `ProfessionalService` com `areaServed` (Rio Preto/SP + Brasil online), `Service`, `FAQPage`, `WebSite`. Sem `Review`.
+- JSON-LD: `ProfessionalService` com `areaServed` (São José do Rio Preto/SP + Brasil online), `Service`, `FAQPage`, `WebSite`. Sem `Review`.
 - `noindex` em `*.vercel.app` até o domínio final. Alt text escrito como se a foto final já existisse.
 - Verificação antes de entregar: `rg -i "lorem|placeholder|cliente x|cliente base"` = 0 resultados.

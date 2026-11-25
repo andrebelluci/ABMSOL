@@ -75,7 +75,7 @@ Lenis só com ponteiro fino e sem redução de movimento. Reduced-motion deixa o
 
 ## Créditos
 
-- **Estúdio:** ABMSOL — Soluções Digitais, Rio Preto (SP)
+- **Estúdio:** ABMSOL — Soluções Digitais, São José do Rio Preto (SP)
 - **Desenvolvimento:** André Belluci
 - **Fotos:** ainda sem foto de quem assina. O site não usa imagem de estoque no lugar.
 

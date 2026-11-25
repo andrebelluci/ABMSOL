@@ -42,7 +42,7 @@ export const services = [
     id: 'suporte',
     index: '04',
     title: 'Suporte de TI',
-    body: 'Suporte do dia a dia, em Rio Preto e online em todo o Brasil.',
+    body: 'Suporte do dia a dia, em São José do Rio Preto e online em todo o Brasil.',
     cta: 'Pedir uma proposta',
     message: WHATSAPP_MESSAGES.suporte,
     service: 'suporte',

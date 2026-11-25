@@ -107,7 +107,7 @@ Este hero **não** é split cream genérico: fundo marinho, headline em Syne ocu
 ┌────────────────────────────── 100dvh ─────────────────────────────────┐
 │ ◉ ABMSOL      Serviços  Projetos  Como trabalhamos  Sobre  [WhatsApp] │
 │                                                                       │
-│  01 ─ ESTÚDIO DE TECNOLOGIA · RIO PRETO (SP)            ╭──·───·      │
+│  01 ─ ESTÚDIO DE TECNOLOGIA · São José do Rio Preto (SP)            ╭──·───·      │
 │                                                       ╱╱  ╲╲  ╲       │
 │  Tecnologia que funciona.                           ──◉═══●═══●──     │
 │  Do suporte do dia a dia                              ╲╲  ╱╱  ╱  (sol │
@@ -140,7 +140,7 @@ O boilerplate exige termos, privacidade e banner de cookies. Para a ABMSOL, o **
 "features": { "blog": false, "localSeoStrong": false }
 ```
 
-- `localSeoStrong: false` (foco local sem prejudicar o alcance nacional). O JSON-LD `ProfessionalService` com `areaServed` (Rio Preto/SP + Brasil online) é entregue na fase 06 de qualquer forma.
+- `localSeoStrong: false` (foco local sem prejudicar o alcance nacional). O JSON-LD `ProfessionalService` com `areaServed` (São José do Rio Preto/SP + Brasil online) é entregue na fase 06 de qualquer forma.
 - Nome da marca **só** em `site.config.json` (INPI em verificação). URL temporária `abmsol.vercel.app` com `noindex`.
 
 ---
@@ -168,7 +168,7 @@ O boilerplate exige termos, privacidade e banner de cookies. Para a ABMSOL, o **
 - **Wordmark (D):** "ABMSOL" como **SVG inline** em curvas (`role="img"`, `aria-label="ABMSOL"`, `<title>`), no header, footer, 404 e OG.
 
 ### Footer
-- A trilha vertical termina no núcleo do sol (ponto de aterrissagem do CTA final). WhatsApp primário, e-mail alternativo (quando confirmado), "Rio Preto (SP) · atendimento online em todo o Brasil", link de privacidade.
+- A trilha vertical termina no núcleo do sol (ponto de aterrissagem do CTA final). WhatsApp primário, e-mail alternativo (quando confirmado), "São José do Rio Preto (SP) · atendimento online em todo o Brasil", link de privacidade.
 
 ### Hero Archetype
 - `typographic-statement` + Sol-Índice. Explicitly NOT: ver Hero Composition.
@@ -245,7 +245,7 @@ Behavior: no hero é o sol grande; ao rolar o sol faz cross-fade para o mark-sim
 
 ```
 - Home /: narrativa única em 9 blocos (abaixo)
-- /servicos/: detalhe dos 3 grupos + suporte local (Rio Preto)
+- /servicos/: detalhe dos 3 grupos + suporte local (São José do Rio Preto)
 - /portfolio/<slug>/: 3 projetos conceito (generateStaticParams)
 - /sobre/: Quem assina (André) + origem do nome (A·B·M + SOL, com autorização) + método
 - /contato/: compositor de mensagem de WhatsApp + e-mail como alternativa (quando confirmado)
@@ -356,8 +356,8 @@ Específico da ABMSOL:
 
 ## SEO
 
-- **Keyword:** "site profissional e suporte de TI em Rio Preto" (família: criação de sites, sistemas sob medida, suporte de TI).
-- **Cidade:** Rio Preto (SP) + Brasil (online).
+- **Keyword:** "site profissional e suporte de TI em São José do Rio Preto" (família: criação de sites, sistemas sob medida, suporte de TI).
+- **Cidade:** São José do Rio Preto (SP) + Brasil (online).
 - **Schema:** `ProfessionalService` (com `areaServed`), `Service` por serviço, `FAQPage` na home, `WebSite`. **Sem** `Review`/`AggregateRating`.
 - **Title pattern:** 50 a 60 caracteres por página; descrição 140 a 160; canonical; OG 1200×630; Twitter card.
 - `noindex` em `*.vercel.app` até o domínio final. `sitemap.xml` (8 URLs), `robots.txt`, `llms.txt`.
@@ -468,5 +468,5 @@ Ver `docs/phases/`. **Uma fase por sessão do phase-executor**, `qa-static-expor
 
 ## Fora do escopo do site (ações do André)
 
-- Criar/verificar o **perfil no Google Meu Negócio** (área de atendimento: Rio Preto, SP) — ajuda o SEO local sem depender do site.
+- Criar/verificar o **perfil no Google Meu Negócio** (área de atendimento: São José do Rio Preto, SP) — ajuda o SEO local sem depender do site.
 - Colocar o **link do Instagram no rodapé** somente quando o perfil existir e tiver conteúdo (hoje o campo fica vazio; nada de ícone social sem destino real).

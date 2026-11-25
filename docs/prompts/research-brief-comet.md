@@ -21,7 +21,7 @@ Preciso de um documento de pesquisa para briefing de site (não é o site em si 
 
 Cliente: [Nome da empresa]
 Nicho: [ex.: clínica de dermatologia / confeitaria artesanal / serviços de jardinagem]
-Cidade/região: [ex.: São José do Rio Preto - SP]
+Cidade/região: [ex.: São José do São José do Rio Preto - SP]
 Site atual (se existir): [URL ou "site novo"]
 Instagram/redes: [URLs se tiver]
 
