@@ -306,7 +306,8 @@ html[data-nav-open] .whatsapp-bar {
 .hero-sun {
   position: absolute;
   right: -18%;
-  bottom: -4%;
+  /* Um pouco mais baixo: marca + 3D mais centrados na hero. */
+  bottom: -12%;
   z-index: 0;
   width: min(64vw, 260px);
   aspect-ratio: 1;
@@ -1466,7 +1467,8 @@ html[data-scroll-lock] .aos-embed-launcher {
 
   .hero-sun {
     right: -6%;
-    bottom: -14%;
+    /* Desce a composição (logo/mark + 3D) para o miolo vertical da hero. */
+    bottom: -24%;
     width: min(72vw, 920px);
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 16%);
     mask-image: linear-gradient(90deg, transparent 0%, #000 16%);
