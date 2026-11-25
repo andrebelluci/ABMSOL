@@ -1,11 +1,11 @@
 {
   "name": "ABMSOL",
   "tagline": "Soluções Digitais",
-  "description": "Sites premium, sistemas sob medida e suporte de TI com um parceiro só. Sediados em Rio Preto (SP), atendendo todo o Brasil online.",
+  "description": "Sites premium, sistemas sob medida e suporte de TI com um parceiro só. Sediados em São José do Rio Preto (SP), atendendo todo o Brasil online.",
   "slug": "abmsol",
   "url": "https://abmsol.com.br",
   "author": "André Belluci",
-  "city": "Rio Preto",
+  "city": "São José do Rio Preto",
   "state": "SP",
   "features": {
     "blog": true,
