@@ -18,8 +18,18 @@ type GsapApi = {
   killTweensOf: (target: object) => void
 }
 
-const GOLD = '#dca931'
-const MINT = '#73d9b1'
+function themeColor(varName: '--c-gold' | '--c-mint', fallback: string) {
+  if (typeof document === 'undefined') return fallback
+  return getComputedStyle(document.documentElement).getPropertyValue(varName).trim() || fallback
+}
+
+function gold() {
+  return themeColor('--c-gold', '#dca931')
+}
+
+function mint() {
+  return themeColor('--c-mint', '#73d9b1')
+}
 
 function killStageTweens(gsap: GsapApi, root: HTMLElement, cur: Pose) {
   gsap.killTweensOf(cur)
@@ -131,16 +141,21 @@ function playWindowScene(gsap: GsapApi, root: HTMLElement, reduced: boolean) {
   const lines = root.querySelectorAll('[data-no-window-line]')
   if (!win) return () => undefined
 
+  const GOLD = gold()
+  const MINT = mint()
+  // Pivô no canto inferior esquerdo da janela (x=88, y=114).
+  const origin = '88 114'
+
   gsap.set(win, {
-    rotation: reduced ? 0 : -14,
-    svgOrigin: '84 114',
+    rotation: reduced ? 0 : -10,
+    svgOrigin: origin,
   })
   gsap.set(frame, { stroke: GOLD })
   gsap.set(dots, { stroke: GOLD, fill: GOLD })
   gsap.set(lines, { opacity: reduced ? 1 : 0, stroke: MINT })
 
   if (reduced) {
-    gsap.set(win, { rotation: 0, svgOrigin: '84 114' })
+    gsap.set(win, { rotation: 0, svgOrigin: origin })
     gsap.set(frame, { stroke: MINT })
     gsap.set(dots, { stroke: MINT, fill: MINT })
     gsap.set(lines, { opacity: 1 })
@@ -148,8 +163,8 @@ function playWindowScene(gsap: GsapApi, root: HTMLElement, reduced: boolean) {
   }
 
   const tl = gsap.timeline()
-  tl.to(win, { rotation: 2, duration: 0.45, ease: 'power2.out', svgOrigin: '84 114' })
-  tl.to(win, { rotation: 0, duration: 0.15, ease: 'power1.out', svgOrigin: '84 114' })
+  tl.to(win, { rotation: 2, duration: 0.45, ease: 'power2.out', svgOrigin: origin })
+  tl.to(win, { rotation: 0, duration: 0.15, ease: 'power1.out', svgOrigin: origin })
   tl.to(frame, { stroke: MINT, duration: 0.3, ease: 'power1.out' }, '-=0.05')
   tl.to(dots, { stroke: MINT, fill: MINT, duration: 0.3, ease: 'power1.out' }, '<')
   tl.to(lines, { opacity: 1, duration: 0.25, stagger: 0.06 }, '-=0.1')
@@ -162,6 +177,9 @@ function playShopScene(gsap: GsapApi, root: HTMLElement, reduced: boolean) {
   const sign = root.querySelector('[data-no-shop-sign]')
   const halo = root.querySelector('[data-no-shop-halo]')
   if (!lamp || !sign || !halo) return () => undefined
+
+  const GOLD = gold()
+  const MINT = mint()
 
   gsap.set(dust, { opacity: reduced ? 0 : 0.7, y: 0 })
   gsap.set(lamp, { stroke: reduced ? MINT : GOLD, fill: 'none' })

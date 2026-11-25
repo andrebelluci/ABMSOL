@@ -35,14 +35,6 @@ O site pode carregar um assistente de conversa (Agency OS), num painel embutido 
 
 O conteúdo da conversa fica no serviço do assistente. Não vendemos esses dados.
 
-**Base legal**
-
-[PREENCHER: base legal do tratamento das conversas do chat].
-
-**Prazo de retenção**
-
-[PREENCHER: por quanto tempo as conversas do chat são guardadas].
-
 **Acesso e exclusão**
 
 Para pedir acesso ou exclusão de dados da conversa do chat, use o WhatsApp **(17) 99627-6236** ou o e-mail **andrebelluci@gmail.com**.
@@ -59,7 +51,7 @@ Isso não identifica pessoas. Se a medição estiver desligada neste ambiente, n
 
 ## O que não fazemos
 
-Não vendemos dados. Não pedimos acesso a sistemas para uma primeira conversa. Não há formulário de captura neste site. Não usamos banner de cookies.
+Não vendemos dados. Não pedimos acesso a sistemas para uma primeira conversa. Não usamos banner de cookies.
 
 ## Falar sobre isso
 
