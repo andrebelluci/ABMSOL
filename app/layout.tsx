@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/next'
 import { Instrument_Sans, JetBrains_Mono } from 'next/font/google'
 import localFont from 'next/font/local'
 import Script from 'next/script'
@@ -67,6 +68,7 @@ export default function RootLayout({
         <SmoothScroll>
           <AppShell>{children}</AppShell>
         </SmoothScroll>
+        <Analytics />
       </body>
     </html>
   )
